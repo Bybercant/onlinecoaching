@@ -1,36 +1,64 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ber can't Online Coaching</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berkant Yenel | Personal Trainer</title>
+    <style>
+        /* Minimalist Tasarım Stili */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #000; /* Koyu tema */
+            color: #fff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; width: 100%; text-align: left; }
+        
+        /* Büyük Başlık Stili */
+        h1 { font-size: 5rem; font-weight: 800; line-height: 1; margin-bottom: 20px; letter-spacing: -2px; }
+        
+        /* Açıklama Yazısı */
+        p { font-size: 1.5rem; color: #888; margin-bottom: 40px; font-weight: 300; }
+        
+        /* Link Stili */
+        .links a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            transition: 0.3s;
+        }
+        .links a:hover { color: #f0f0f0; border-color: #fff; }
 
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-  <!-- Lenis -->
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.5/bundled/lenis.min.js"></script>
+        /* Mobilde Yazı Boyutunu Küçült */
+        @media (max-width: 600px) {
+            h1 { font-size: 3rem; }
+            p { font-size: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-<canvas id="bg"></canvas>
+    <div class="container">
+        <h1>BERKANT YENEL</h1>
+        <p>Personal Trainer & Fitness Coach.<br>Transforming lives through movement and discipline.</p>
 
-<div class="cursor"></div>
+        <div class="links">
+            <a href="mailto:seninmailin@example.com">İletişim / Çalışalım</a>
+            <a href="#">Antrenman Programları</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
 
-<section class="hero">
-  <h1 class="title">BİGEME AŞIĞIM</h1>
-</section>
-
-<section class="section">
-  <h2 class="reveal">Projects</h2>
-</section>
-
-<section class="section">
-  <h2 class="reveal">Contact</h2>
-</section>
-
-<script type="module" src="main.js"></script>
 </body>
 </html>
