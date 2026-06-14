@@ -1,1 +1,53 @@
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial;
+  overflow-x: hidden;
+}
 
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+}
+
+.title {
+  font-size: 5rem;
+  letter-spacing: 4px;
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+/* CURSOR */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.cursor.hover {
+  transform: scale(2);
+}
