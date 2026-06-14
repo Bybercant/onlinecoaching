@@ -3,37 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berkant Yenel | Personal Trainer</title>
-    <style>
-        /* Arka plan hareketli renk geçişi (Wavy Effect) */
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
-            color: #ffffff;
-            
-            /* Renk geçişi ve animasyon ayarları */
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
+    <title>Berkant Yenel | Online Fitness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    <!-- Navigasyon -->
+    <nav class="navbar">
+        <div class="logo">BERKANT YENEL</div>
+        <ul class="nav-links">
+            <li><a href="#about">HAKKIMDA</a></li>
+            <li><a href="#">ARAÇLAR</a></li>
+            <li><a href="#">YAZILAR</a></li>
+            <li><a href="#">EGZERSİZ AKADEMİSİ</a></li>
+            <li><a href="#">PAKETLER</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="#" class="login">GİRİŞ YAP</a>
+            <a href="#" class="btn-hero">HEMEN BAŞLA</a>
+        </div>
+    </nav>
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 20px;
-            text-align: left;
-            background: rgba(0, 0, 0, 0.3); /* Yazıların okunması için hafif şeffaf kutu */
+    <!-- Ana İçerik -->
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>HEDEF DEĞİL SİSTEM</h1>
+                <p>Türkiye'nin önde gelen online fitness koçluk platformu. Kişiselleştirilmiş antrenman ve beslenme programlarıyla vücut geliştirme hedeflerine ulaş.</p>
+                <a href="#" class="btn-hero">HEMEN BAŞLA</a>
+            </div>
+            <div class="hero-image">
+                <!-- Buraya kendi fotoğrafını koyabilirsin -->
+                <div class="placeholder-img">FOTOĞRAFIN</div>
+            </div>
+        </section>
+
+        <!-- Hakkımda Bölümü -->
+        <section id="about" class="about-section">
+            <h2>HAKKIMDA</h2>
+            <p>Buraya kendi biyografini ve fitness felsefeni yazabilirsin. İnsanların sana neden güvenmesi gerektiğini kısa ve öz bir şekilde anlat.</p>
+        </section>
+    </main>
+
+</body>
+</html>
             border-radius: 20px;
             backdrop-filter: blur(10px); /* Modern cam efekti */
         }
