@@ -187,7 +187,7 @@
         .step-card h3 { font-size: 1.5rem; color: #ccff00; margin-bottom: 15px; font-weight: 800; }
         .step-card p { font-size: 1rem; color: #ccc; line-height: 1.6; }
 
-        /* Overlay Ekranları (Programlar & Koçluk) */
+        /* Overlay Ekranları (Programlar, Koçluk, Hesaplamalar) */
         .full-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); z-index: 2000; overflow-y: auto; padding: 20px; }
         .section-title { font-family: 'Bebas Neue', cursive; text-align: center; margin-bottom: 40px; font-size: 4rem; color: #ccff00; letter-spacing: 3px; }
         .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
@@ -213,68 +213,57 @@
         .coaching-list li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
         .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
 
+        /* HESAPLAMALAR BÖLÜMÜ ÖZEL STİLLERİ */
+        .calc-container {
+            background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; 
+            border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 600px; margin: 0 auto; box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+        }
+        .calc-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .calc-tab-btn { flex: 1; min-width: 120px; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; }
+        .calc-tab-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
+        .calc-content { display: none; }
+        .calc-content.active { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .calc-input, .calc-select {
+            width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333;
+            background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s;
+        }
+        .calc-select { cursor: pointer; appearance: none; }
+        .calc-input:focus, .calc-select:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
+        .gender-group { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 10px; }
+        .gender-btn { flex: 1; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; font-family: 'Montserrat', sans-serif; }
+        .gender-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
+
+        .result-box { background: rgba(204,255,0,0.05); border: 1px solid rgba(204, 255, 0, 0.4); padding: 20px; border-radius: 12px; color:#fff; font-weight: 600; margin-top: 15px; }
+        .result-value { font-size: 2rem; color: #ccff00; font-weight: 800; font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
+
         /* PROFESYONEL FOOTER BÖLÜMÜ */
-        .site-footer {
-            background-color: #0d0d0d;
-            border-top: 1px solid rgba(204, 255, 0, 0.1);
-            padding: 60px 5%;
-            margin-top: 50px;
-        }
-        .footer-container {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .site-footer { background-color: #0d0d0d; border-top: 1px solid rgba(204, 255, 0, 0.1); padding: 60px 5%; margin-top: 50px; }
+        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
         .footer-brand h2 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
         .footer-brand p { color: #888; font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; max-width: 250px; }
         .footer-socials { display: flex; gap: 15px; }
-        .footer-socials a {
-            display: flex; align-items: center; justify-content: center;
-            width: 40px; height: 40px; border-radius: 50%;
-            background: #1a1a1a; transition: 0.3s;
-        }
+        .footer-socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; transition: 0.3s; }
         .footer-socials a:hover { background: #333; }
         .footer-socials svg { width: 20px; height: 20px; fill: #aaa; transition: 0.3s; }
         .footer-socials a:hover svg { fill: #ccff00; }
         
-        .footer-links h3, .footer-contact h3 {
-            font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase;
-        }
+        .footer-links h3, .footer-contact h3 { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; }
         .footer-links ul, .footer-contact ul { list-style: none; }
         .footer-links li { margin-bottom: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 0.95rem; transition: 0.3s; cursor: pointer; }
         .footer-links a:hover { color: #ccff00; }
         
         .footer-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #888; font-size: 0.95rem; }
-        .icon-circle {
-            min-width: 35px; width: 35px; height: 35px; border-radius: 50%;
-            border: 1px solid rgba(204, 255, 0, 0.3);
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(204, 255, 0, 0.05);
-        }
+        .icon-circle { min-width: 35px; width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(204, 255, 0, 0.3); display: flex; align-items: center; justify-content: center; background: rgba(204, 255, 0, 0.05); }
         .icon-circle svg { width: 16px; height: 16px; fill: #ccff00; }
 
-        /* Modallar & Form Elemanları */
+        /* Modallar & Form Elemanları (Giriş & Yasal için) */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { 
-            background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; 
-            border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9);
-        }
-        .modal-content input, .modal-content select {
-            width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333;
-            background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s;
-        }
-        .modal-content select { cursor: pointer; appearance: none; }
-        .modal-content input:focus, .modal-content select:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
-
-        /* Cinsiyet Seçim Butonları (Kalori Hesaplayıcı için) */
-        .gender-group { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 10px; }
-        .gender-btn {
-            flex: 1; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; font-family: 'Montserrat', sans-serif;
-        }
-        .gender-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
+        .modal-content { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); }
+        .modal-content input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; }
+        .modal-content input:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
 
         /* MOBİL UYUMLULUK (Responsive) */
         @media (max-width: 768px) {
@@ -300,8 +289,8 @@
             <li><a href="#about">HAKKIMDA</a></li>
             <li><a onclick="openPrograms()">PROGRAMLAR</a></li>
             <li><a onclick="openCoaching()">KOÇLUK</a></li>
-            <!-- KALORİ HESAPLAMA EKLENDİ -->
-            <li><a onclick="openCalorieCalc()" style="color: #ccff00;">KALORİ HESAPLA</a></li>
+            <!-- HESAPLAMALAR EKLENDİ -->
+            <li><a onclick="openCalculators()" style="color: #ccff00;">HESAPLAMALAR</a></li>
         </ul>
         <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
     </nav>
@@ -353,10 +342,9 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
         </section>
     </main>
 
-    <!-- GELİŞMİŞ YENİ FOOTER BÖLÜMÜ -->
+    <!-- GELİŞMİŞ YENİ FOOTER BÖLÜMÜ (Numara Silindi, Linkler Güncellendi) -->
     <footer class="site-footer">
         <div class="footer-container">
-            <!-- 1. Sütun: Marka ve Sosyal -->
             <div class="footer-brand">
                 <h2>BER CAN'T</h2>
                 <p>Profesyonel online uzaktan eğitim platformu. Sınırlarını zorlaman için tasarlanmış bilimsel antrenman ve beslenme stratejileriyle en iyi versiyonuna ulaş.</p>
@@ -366,7 +354,6 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
                 </div>
             </div>
             
-            <!-- 2. Sütun: Hızlı Erişim -->
             <div class="footer-links">
                 <h3>HIZLI ERİŞİM</h3>
                 <ul>
@@ -374,11 +361,10 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
                     <li><a href="#about">Hakkımda</a></li>
                     <li><a onclick="openPrograms()">Programlar</a></li>
                     <li><a onclick="openCoaching()">Paketler</a></li>
-                    <li><a onclick="openCalorieCalc()">Kalori Hesapla (Ücretsiz)</a></li>
+                    <li><a onclick="openCalculators()">Hesaplamalar</a></li>
                 </ul>
             </div>
             
-            <!-- 3. Sütun: Yasal Bölümler -->
             <div class="footer-links">
                 <h3>YASAL</h3>
                 <ul>
@@ -389,17 +375,12 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
                 </ul>
             </div>
             
-            <!-- 4. Sütun: İletişim -->
             <div class="footer-contact">
                 <h3>İLETİŞİM</h3>
                 <ul>
                     <li>
                         <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
                         <span>Niğde / Türkiye</span>
-                    </li>
-                    <li>
-                        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M16.75 13.96c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.25-.66.82-.81.99-.15.17-.3.19-.55.06-1.33-.67-2.3-1.33-3.21-2.61-.14-.2-.01-.31.11-.43.12-.11.26-.29.38-.43.13-.15.17-.25.26-.43.08-.17.04-.33-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.5-.41-.43-.57-.44h-.48c-.2 0-.53.08-.81.38-.28.3-1.07 1.05-1.07 2.56s1.1 2.97 1.25 3.17c.15.2 2.16 3.3 5.23 4.63.73.32 1.3.51 1.74.65.73.23 1.4.2 1.93.12.59-.09 1.83-.75 2.09-1.47.26-.72.26-1.34.18-1.47-.08-.14-.29-.22-.54-.35zM19.05 4.91C17.18 3.03 14.69 2 12 2 6.48 2 2 6.48 2 12c0 1.76.46 3.49 1.33 5.01L2 22l5.12-1.34C8.6 21.53 10.28 22 12 22c5.52 0 10-4.48 10-10 0-2.69-1.05-5.18-2.95-7.09zM12 20.14c-1.49 0-2.95-.4-4.23-1.16l-.3-.18-3.14.82.83-3.06-.2-.31C4.19 14.93 3.66 13.49 3.66 12c0-4.6 3.74-8.34 8.34-8.34 2.23 0 4.32.87 5.89 2.45C19.46 7.68 20.34 9.77 20.34 12c0 4.6-3.74 8.34-8.34 8.34z"/></svg></div>
-                        <span>(Sizin Numaranız)</span>
                     </li>
                     <li>
                         <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
@@ -536,36 +517,123 @@ Incline fly + Butterfly — 3x15</div>
         </section>
     </div>
 
-    <!-- YENİ EKLENEN: KALORİ HESAPLAMA MODALI -->
-    <div id="calorieModal" class="modal">
-        <div class="modal-content">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:#ccff00; margin-bottom:20px; letter-spacing: 2px;">KALORİ HESAPLA</h2>
+    <!-- YENİ EKLENEN: GELİŞMİŞ HESAPLAMALAR MERKEZİ (FULL OVERLAY) -->
+    <div id="calculatorsSection" class="full-overlay">
+        <button onclick="closeCalculators()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
+        <section style="padding: 40px 5%; margin-top: 40px;">
+            <h2 class="section-title">HESAPLAMALAR</h2>
             
-            <div class="gender-group">
-                <button id="btnMale" class="gender-btn active" onclick="setGender('male')">ERKEK</button>
-                <button id="btnFemale" class="gender-btn" onclick="setGender('female')">KADIN</button>
+            <div class="calc-container">
+                <!-- Sekmeler -->
+                <div class="calc-tabs">
+                    <button class="calc-tab-btn active" onclick="switchCalcTab('tabCalorie', this)">Kalori (TDEE)</button>
+                    <button class="calc-tab-btn" onclick="switchCalcTab('tabProtein', this)">Günlük Protein</button>
+                    <button class="calc-tab-btn" onclick="switchCalcTab('tabFat', this)">Yağ Oranı</button>
+                    <button class="calc-tab-btn" onclick="switchCalcTab('tabMacro', this)">Makro Analiz</button>
+                </div>
+
+                <!-- 1. Kalori Hesaplama -->
+                <div id="tabCalorie" class="calc-content active">
+                    <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">GÜNLÜK KALORİ İHTİYACI</h3>
+                    <div class="gender-group">
+                        <button id="calMale" class="gender-btn active" onclick="setGender('cal', 'male')">ERKEK</button>
+                        <button id="calFemale" class="gender-btn" onclick="setGender('cal', 'female')">KADIN</button>
+                    </div>
+                    <input type="number" id="calAge" class="calc-input" placeholder="Yaşınız">
+                    <input type="number" id="calHeight" class="calc-input" placeholder="Boyunuz (cm)">
+                    <input type="number" id="calWeight" class="calc-input" placeholder="Kilonuz (kg)">
+                    <select id="calActivity" class="calc-select">
+                        <option value="1.2">Masa başı iş / Hareketsiz</option>
+                        <option value="1.375">Haftada 1-3 gün hafif antrenman</option>
+                        <option value="1.55" selected>Haftada 3-5 gün orta antrenman</option>
+                        <option value="1.725">Haftada 6-7 gün ağır antrenman</option>
+                        <option value="1.9">Profesyonel sporcu / Çok ağır iş</option>
+                    </select>
+                    <button class="btn-hero" style="width:100%; font-size: 1.1rem;" onclick="calcTDEE()">HESAPLA</button>
+                    <div id="resCalDisplay" class="result-box" style="display:none;">
+                        Kilonuzu Korumak İçin Gereken: <br><span class="result-value" id="resCalVal">0</span> <span style="color:#aaa;">kcal</span>
+                    </div>
+                </div>
+
+                <!-- 2. Protein İhtiyacı -->
+                <div id="tabProtein" class="calc-content">
+                    <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">PROTEİN İHTİYACI</h3>
+                    <input type="number" id="proWeight" class="calc-input" placeholder="Kilonuz (kg)">
+                    <select id="proGoal" class="calc-select">
+                        <option value="1">Hareketsiz Yaşam (Sadece Sağlık İçin)</option>
+                        <option value="1.6" selected>Hafif/Orta Spor (Kas Kütlesi Koruma)</option>
+                        <option value="2.2">Ağırlık Antrenmanı (Kas Gelişimi - Bulk)</option>
+                        <option value="2.4">Definasyon (Yağ Yakarken Kas Koruma)</option>
+                    </select>
+                    <button class="btn-hero" style="width:100%; font-size: 1.1rem;" onclick="calcProtein()">HESAPLA</button>
+                    <div id="resProDisplay" class="result-box" style="display:none;">
+                        Günlük Alınması Gereken: <br><span class="result-value" id="resProVal">0</span> <span style="color:#aaa;">gram</span>
+                    </div>
+                </div>
+
+                <!-- 3. Yağ Oranı Hesaplama -->
+                <div id="tabFat" class="calc-content">
+                    <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">YAĞ ORANI (US NAVY)</h3>
+                    <div class="gender-group">
+                        <button id="fatMale" class="gender-btn active" onclick="setGender('fat', 'male')">ERKEK</button>
+                        <button id="fatFemale" class="gender-btn" onclick="setGender('fat', 'female')">KADIN</button>
+                    </div>
+                    <input type="number" id="fatHeight" class="calc-input" placeholder="Boyunuz (cm)">
+                    <input type="number" id="fatNeck" class="calc-input" placeholder="Boyun Çevresi (cm)">
+                    <input type="number" id="fatWaist" class="calc-input" placeholder="Bel Çevresi (Göbek deliği hizası - cm)">
+                    <input type="number" id="fatHip" class="calc-input" placeholder="Kalça Çevresi (cm) - Sadece Kadınlar İçin" style="display:none;">
+                    
+                    <button class="btn-hero" style="width:100%; font-size: 1.1rem;" onclick="calcFat()">HESAPLA</button>
+                    <div id="resFatDisplay" class="result-box" style="display:none;">
+                        Tahmini Vücut Yağ Oranı: <br><span class="result-value">%<span id="resFatVal">0</span></span>
+                    </div>
+                </div>
+
+                <!-- 4. Makro Hesaplama -->
+                <div id="tabMacro" class="calc-content">
+                    <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">BOMBA MAKRO ANALİZİ</h3>
+                    <div class="gender-group">
+                        <button id="macMale" class="gender-btn active" onclick="setGender('mac', 'male')">ERKEK</button>
+                        <button id="macFemale" class="gender-btn" onclick="setGender('mac', 'female')">KADIN</button>
+                    </div>
+                    <input type="number" id="macAge" class="calc-input" placeholder="Yaşınız">
+                    <input type="number" id="macHeight" class="calc-input" placeholder="Boyunuz (cm)">
+                    <input type="number" id="macWeight" class="calc-input" placeholder="Kilonuz (kg)">
+                    <select id="macActivity" class="calc-select">
+                        <option value="1.2">Masa başı iş</option>
+                        <option value="1.375">Haftada 1-3 gün antrenman</option>
+                        <option value="1.55" selected>Haftada 3-5 gün antrenman</option>
+                        <option value="1.725">Haftada 6-7 gün ağır antrenman</option>
+                    </select>
+                    <select id="macGoal" class="calc-select" style="border-color: #ccff00;">
+                        <option value="cut">Yağ Yakımı (Definasyon)</option>
+                        <option value="maintain" selected>Kilo Koruma</option>
+                        <option value="bulk">Kas Gelişimi (Bulk)</option>
+                    </select>
+                    
+                    <button class="btn-hero" style="width:100%; font-size: 1.1rem;" onclick="calcMacros()">MAKROLARI OLUŞTUR</button>
+                    
+                    <div id="resMacDisplay" style="display:none; margin-top: 20px;">
+                        <p style="color:#aaa; font-size: 0.9rem;">Hedef Kalori: <strong style="color:#fff; font-size: 1.2rem;" id="resMacKcal">0</strong> kcal</p>
+                        <div style="display:flex; gap:10px; justify-content:center; margin-top:15px; flex-wrap: wrap;">
+                            <div style="background:#1a1a1a; padding:15px; border-radius:8px; border:1px solid #ccff00; flex:1; min-width: 100px;">
+                                <span style="font-size:0.8rem; color:#888;">PROTEİN</span><br>
+                                <span class="result-value" id="resMacProt">0</span><span style="color:#aaa; font-size: 0.9rem;">g</span>
+                            </div>
+                            <div style="background:#1a1a1a; padding:15px; border-radius:8px; border:1px solid #ccff00; flex:1; min-width: 100px;">
+                                <span style="font-size:0.8rem; color:#888;">KARB</span><br>
+                                <span class="result-value" id="resMacCarb">0</span><span style="color:#aaa; font-size: 0.9rem;">g</span>
+                            </div>
+                            <div style="background:#1a1a1a; padding:15px; border-radius:8px; border:1px solid #ccff00; flex:1; min-width: 100px;">
+                                <span style="font-size:0.8rem; color:#888;">YAĞ</span><br>
+                                <span class="result-value" id="resMacFat">0</span><span style="color:#aaa; font-size: 0.9rem;">g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            
-            <input type="number" id="calcAge" placeholder="Yaşınız" min="10" max="100">
-            <input type="number" id="calcHeight" placeholder="Boyunuz (cm)" min="100" max="250">
-            <input type="number" id="calcWeight" placeholder="Kilonuz (kg)" min="30" max="250">
-            
-            <select id="calcActivity">
-                <option value="1.2">Masa başı iş / Hareketsiz</option>
-                <option value="1.375">Haftada 1-3 gün hafif antrenman</option>
-                <option value="1.55" selected>Haftada 3-5 gün orta antrenman</option>
-                <option value="1.725">Haftada 6-7 gün ağır antrenman</option>
-                <option value="1.9">Profesyonel sporcu / Fiziksel zorlu iş</option>
-            </select>
-            
-            <button class="btn-hero" style="width:100%; font-size: 1.1rem; margin-bottom: 15px;" onclick="calculateCalorie()">HESAPLA</button>
-            
-            <div id="calcResultDisplay" style="display:none; background: rgba(204,255,0,0.1); border: 1px solid #ccff00; padding: 15px; border-radius: 8px; color:#fff; font-weight: 600;">
-                Günlük İhtiyacınız: <br><span style="font-size: 1.8rem; color: #ccff00;" id="resultKcal">0</span> kcal
-            </div>
-            
-            <button onclick="closeCalorieCalc()" style="background:none; color:#888; font-weight: 600; border:none; margin-top:20px; cursor:pointer; font-size: 0.9rem; transition: 0.3s;">Kapat</button>
-        </div>
+        </section>
     </div>
 
     <!-- MODALLAR (ŞİFRE VE YASAL METİNLER) -->
@@ -595,52 +663,109 @@ Incline fly + Butterfly — 3x15</div>
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
         
-        // KALORİ HESAPLAMA JS KODLARI
-        function openCalorieCalc() { document.getElementById('calorieModal').style.display = 'flex'; }
-        function closeCalorieCalc() { document.getElementById('calorieModal').style.display = 'none'; }
-        
-        let calcGender = 'male';
-        function setGender(g) {
-            calcGender = g;
+        // HESAPLAMALAR MERKEZİ JS KODLARI
+        function openCalculators() { document.getElementById('calculatorsSection').style.display = 'block'; }
+        function closeCalculators() { document.getElementById('calculatorsSection').style.display = 'none'; }
+
+        function switchCalcTab(tabId, btnElement) {
+            document.querySelectorAll('.calc-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.calc-tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        let genders = { cal: 'male', fat: 'male', mac: 'male' };
+        function setGender(type, g) {
+            genders[type] = g;
             if(g === 'male') {
-                document.getElementById('btnMale').classList.add('active');
-                document.getElementById('btnFemale').classList.remove('active');
+                document.getElementById(type+'Male').classList.add('active');
+                document.getElementById(type+'Female').classList.remove('active');
+                if(type === 'fat') document.getElementById('fatHip').style.display = 'none';
             } else {
-                document.getElementById('btnFemale').classList.add('active');
-                document.getElementById('btnMale').classList.remove('active');
+                document.getElementById(type+'Female').classList.add('active');
+                document.getElementById(type+'Male').classList.remove('active');
+                if(type === 'fat') document.getElementById('fatHip').style.display = 'block';
             }
         }
-        
-        function calculateCalorie() {
-            let age = parseFloat(document.getElementById('calcAge').value);
-            let height = parseFloat(document.getElementById('calcHeight').value);
-            let weight = parseFloat(document.getElementById('calcWeight').value);
-            let activity = parseFloat(document.getElementById('calcActivity').value);
 
-            if(!age || !height || !weight) {
-                alert("Lütfen tüm alanları doldurun!");
-                return;
-            }
-
-            // Doğru sonuç için dünya standardı olan Mifflin-St Jeor Formülü
-            let bmr;
-            if(calcGender === 'male') {
-                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-            } else {
-                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-            }
-
-            // Günlük kalori ihtiyacı (TDEE) hesaplama
-            let tdee = Math.round(bmr * activity);
-
-            document.getElementById('resultKcal').innerText = tdee;
-            document.getElementById('calcResultDisplay').style.display = 'block';
+        // 1. Kalori (Mifflin-St Jeor)
+        function calcTDEE() {
+            let a = parseFloat(document.getElementById('calAge').value);
+            let h = parseFloat(document.getElementById('calHeight').value);
+            let w = parseFloat(document.getElementById('calWeight').value);
+            let act = parseFloat(document.getElementById('calActivity').value);
+            if(!a || !h || !w) return alert("Lütfen yaş, boy ve kilo girin.");
+            
+            let bmr = (genders.cal === 'male') ? (10*w) + (6.25*h) - (5*a) + 5 : (10*w) + (6.25*h) - (5*a) - 161;
+            document.getElementById('resCalVal').innerText = Math.round(bmr * act);
+            document.getElementById('resCalDisplay').style.display = 'block';
         }
 
-        // YASAL METİNLER JS KODLARI
+        // 2. Protein Hesaplama
+        function calcProtein() {
+            let w = parseFloat(document.getElementById('proWeight').value);
+            let mult = parseFloat(document.getElementById('proGoal').value);
+            if(!w) return alert("Lütfen kilonuzu girin.");
+            
+            document.getElementById('resProVal').innerText = Math.round(w * mult);
+            document.getElementById('resProDisplay').style.display = 'block';
+        }
+
+        // 3. Yağ Oranı (US Navy Formülü)
+        function calcFat() {
+            let h = parseFloat(document.getElementById('fatHeight').value);
+            let n = parseFloat(document.getElementById('fatNeck').value);
+            let w = parseFloat(document.getElementById('fatWaist').value);
+            if(!h || !n || !w) return alert("Lütfen istenen tüm ölçüleri girin.");
+            
+            let fat = 0;
+            if(genders.fat === 'male') {
+                fat = 495 / (1.0324 - 0.19077 * Math.log10(w - n) + 0.15456 * Math.log10(h)) - 450;
+            } else {
+                let hip = parseFloat(document.getElementById('fatHip').value);
+                if(!hip) return alert("Kadınlar için kalça çevresi ölçüsü zorunludur.");
+                fat = 495 / (1.29579 - 0.35004 * Math.log10(w + hip - n) + 0.22100 * Math.log10(h)) - 450;
+            }
+            
+            document.getElementById('resFatVal').innerText = Math.max(2, fat).toFixed(1); // Yağ oranı %2'nin altına düşmemesi için
+            document.getElementById('resFatDisplay').style.display = 'block';
+        }
+
+        // 4. Makro Hesaplama
+        function calcMacros() {
+            let a = parseFloat(document.getElementById('macAge').value);
+            let h = parseFloat(document.getElementById('macHeight').value);
+            let w = parseFloat(document.getElementById('macWeight').value);
+            let act = parseFloat(document.getElementById('macActivity').value);
+            let goal = document.getElementById('macGoal').value;
+            if(!a || !h || !w) return alert("Lütfen tüm alanları doldurun.");
+            
+            // Temel kalori bulma
+            let bmr = (genders.mac === 'male') ? (10*w) + (6.25*h) - (5*a) + 5 : (10*w) + (6.25*h) - (5*a) - 161;
+            let tdee = Math.round(bmr * act);
+            
+            // Hedefe göre kalori ayarı
+            if(goal === 'cut') tdee -= 500;
+            if(goal === 'bulk') tdee += 300;
+            
+            // Makro dağılımı (Protein: 2.2g/kg, Yağ: Toplam kalorinin %25'i, Kalanı Karb)
+            let protein = Math.round(w * 2.2);
+            if(goal === 'cut') protein = Math.round(w * 2.4); // Definasyonda kas korumak için yüksek protein
+            
+            let fat = Math.round((tdee * 0.25) / 9);
+            let carbs = Math.round((tdee - (protein * 4) - (fat * 9)) / 4);
+            
+            // Sonuçları yazdır
+            document.getElementById('resMacKcal').innerText = tdee;
+            document.getElementById('resMacProt').innerText = protein;
+            document.getElementById('resMacFat').innerText = fat;
+            document.getElementById('resMacCarb').innerText = Math.max(0, carbs);
+            document.getElementById('resMacDisplay').style.display = 'block';
+        }
+
+        // YASAL METİNLER JS
         function openPrivacy(title) { 
             document.getElementById('privacyTitle').innerText = title;
-            
             let content = "Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.";
             
             if(title === "KVKK Aydınlatma Metni") {
@@ -650,7 +775,6 @@ Incline fly + Butterfly — 3x15</div>
             } else if(title === "İptal ve İade Politikası") {
                 content = "Dijital ortamda sunulan ve anında ifa edilen kişiye özel koçluk hizmetlerinde (programın size özel hazırlanıp iletilmesi durumunda) ücret iadesi yapılmamaktadır. Detaylı bilgi için iletişim adreslerinden destek alabilirsiniz.";
             }
-
             document.getElementById('privacyText').innerText = content;
             document.getElementById('privacyModal').style.display = 'flex'; 
         }
