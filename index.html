@@ -103,7 +103,7 @@
         h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.1; position: relative; z-index: 2; }
         .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; margin-top: 20px; }
 
-        /* Dönen Işıklı LED Çerçeve ve (Kısılmış) Neon Yazı Efekti */
+        /* Dönen Işıklı LED Çerçeve ve Neon Yazı Efekti */
         .led-wrapper {
             position: relative;
             display: inline-block;
@@ -259,23 +259,59 @@
         .icon-circle { min-width: 35px; width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(204, 255, 0, 0.3); display: flex; align-items: center; justify-content: center; background: rgba(204, 255, 0, 0.05); }
         .icon-circle svg { width: 16px; height: 16px; fill: #ccff00; }
 
-        /* Modallar & Form Elemanları (Giriş & Yasal için) */
+        /* Modallar & Form Elemanları */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); }
         .modal-content input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; }
         .modal-content input:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
 
-        /* MOBİL UYUMLULUK (Responsive) */
+        /* ========================================= */
+        /* MOBİL UYUMLULUK (TÜM SORUNLAR BURADA ÇÖZÜLDÜ) */
+        /* ========================================= */
         @media (max-width: 768px) {
-            .navbar { padding: 15px 5%; flex-direction: column; gap: 15px; background: rgba(10, 10, 10, 0.95); }
-            main { padding-top: 140px; }
-            .hero { flex-direction: column; text-align: center; padding: 40px 5%; }
+            /* Üst Menü Sıkışma Düzenlemesi */
+            .navbar { padding: 15px 5%; flex-direction: column; gap: 10px; background: rgba(10, 10, 10, 0.98); }
+            .logo a { font-size: 2.2rem; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 0.8rem; }
+            .navbar .btn-hero { padding: 8px 16px; font-size: 0.8rem; margin-bottom: 5px; }
+
+            /* Üst Menü aşağı sarkınca ana içeriğin ezilmemesi için */
+            main { padding-top: 150px; }
+
+            /* Dev Yazıların Mobilde Küçültülmesi */
+            h1 { font-size: 2.6rem !important; }
+            h2 { font-size: 2.2rem !important; }
+            .section-title { font-size: 2.5rem !important; }
+            .led-wrapper { padding: 10px 20px; }
+            p { font-size: 0.95rem !important; }
+
+            /* Giriş / Hero Kısmı Daraltma */
+            .hero { flex-direction: column; text-align: center; padding: 20px 5%; min-height: auto; }
             .hero-content { max-width: 100%; }
-            h1 { font-size: 3.5rem; }
-            .hero-image { width: 100%; height: 350px; margin-top: 40px; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-brand p { margin: 0 auto 20px auto; }
-            .footer-socials { justify-content: center; }
+            .hero-image { width: 100%; max-width: 320px; height: 400px; margin: 30px auto 0 auto; }
+
+            /* Kartlar ve Konteynerler */
+            .step-card, .paket-card { padding: 25px 15px; margin-bottom: 15px; }
+            .step-card h3, .paket-card h3 { font-size: 1.3rem; }
+
+            /* Hesaplamalar Ekranı Mobil Düzeltmesi */
+            .calc-container { padding: 20px; }
+            .calc-content h3 { font-size: 1.5rem !important; }
+            .calc-tabs { gap: 5px; }
+            .calc-tab-btn { min-width: 48%; padding: 10px 5px; font-size: 0.75rem; } /* Yan yana 2'li sığdırır */
+            .calc-input, .calc-select { padding: 12px; font-size: 0.85rem; margin-bottom: 12px; }
+            .result-value { font-size: 1.5rem; }
+
+            /* Modal (Açılır Pencere) Mobil Düzeltmesi */
+            .modal-content { padding: 25px 15px; }
+            .modal-content h2 { font-size: 2rem !important; }
+
+            /* Footer Düzeltmeleri */
+            .site-footer { padding: 40px 5%; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; gap: 25px; }
+            .footer-brand p { margin: 0 auto 15px auto; }
+            .footer-socials { justify-content: center; margin-bottom: 10px; }
             .footer-contact li { justify-content: center; }
         }
     </style>
@@ -289,7 +325,6 @@
             <li><a href="#about">HAKKIMDA</a></li>
             <li><a onclick="openPrograms()">PROGRAMLAR</a></li>
             <li><a onclick="openCoaching()">KOÇLUK</a></li>
-            <!-- HESAPLAMALAR EKLENDİ -->
             <li><a onclick="openCalculators()" style="color: #ccff00;">HESAPLAMALAR</a></li>
         </ul>
         <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
@@ -342,7 +377,6 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
         </section>
     </main>
 
-    <!-- GELİŞMİŞ YENİ FOOTER BÖLÜMÜ (Numara Silindi, Linkler Güncellendi) -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -415,94 +449,32 @@ Hanging leg raise — 4 set tükenişe kadar
                 </div>
                 <div class="paket-card">
                     <h3>Orta Seviye Program</h3>
-                    <div id="prog2" class="program-text locked-content">🔥 ORTA SEVİYE
-🟢 1. Gün – Sırt + Arka Kol
-Lat Pulldown — 4x10-12
-Barbell Row (ekledim 🔥) — 4x8-10
-Dumbbell Row — 3x10
-Face Pull (arka omuz için çok önemli) — 3x15
-Rope Pushdown — 4x12-15
-Overhead Triceps Extension — 3x12
-Close Grip Pushdown — 3x12
-🟢 2. Gün – Göğüs
-Incline Bench Press — 4x8-10
-Flat Bench Press (ekledim 🔥) — 4x8
-Incline Dumbbell Fly — 3x12
-Cable Crossover — 3x15
-Dips (varsa) — 3 set failure
-🟢 3. Gün – Omuz + Ön Kol
-Shoulder Press — 4x8-10
-Lateral Raise — 4x12-15
-Front Raise — 3x12
-Rear Delt Fly (çok kritik 🔥) — 3x15
-Barbell Curl — 4x10
-Hammer Curl — 3x12
-Cable Curl — 3x12
-🟢 4. Gün – Bacak
-Hack Squat — 4x10
-Romanian Deadlift (ekledim 🔥) — 4x10
-Leg Extension — 3x15
-Leg Curl — 3x15
-Standing Calf Raise — 4x15-20
-🟢 5. Gün – Full Pump + Core
-Cable Crossover — 3x15
-Lateral Raise — 3x15
-Rope Pushdown — 3x15
-Barbell Curl — 3x12
-
-CORE 🔥
-
-Plank — 3x max süre
-Leg Raise — 3x15
-Russian Twist — 3x20</div>
+                    <div id="prog2" class="program-text locked-content">🔥 YAĞ YAKIMI
+🟢 Sırt + Arka Kol
+Lat pulldown — 4x12
+Rope pushdown — 4x15
+Dumbbell row — 3x12
+Close grip pushdown — 3x15
+🟢 Omuz + Ön Kol
+Shoulder press — 4x12
+Lateral raise + Front raise — 3x15
+🟢 Bacak
+Hack squat — 4x12
+Leg extension + Leg curl — 3x15
+🟢 Göğüs
+Incline bench press — 4x12
+Incline fly + Butterfly — 3x15</div>
                     <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
                 </div>
                 <div class="paket-card" style="border: 1px solid #ccff00;">
                     <h3>Geliştirilmiş Üst Seviye Program</h3>
-                    <div id="prog3" class="program-text locked-content">💪BOSS LEVEL PROGRAM
-🟦 Pazartesi – Push (Göğüs + Omuz + Triceps)
-Incline Press — 4x8-10
-Chest Press — 3x10
-Chest Fly — 3x12-15
-Shoulder Press — 3x8-10
-Lateral Raise — 4x12-15
-Rope Pushdown — 3x12
-Overhead Triceps Extension — 3x12
-Cable Crunch — 3x10
-🟦 Salı – Pull (Sırt + Biceps)
-Lat Pulldown — 4x8-10
-Seated Cable Row — 4x10
-Wide Grip Row — 3x10
-Face Pull — 3x15
-Barbell Curl — 3x10
-Dumbbell Curl — 3x10
-Hammer Curl — 3x12
-🟦 Çarşamba – Bacak (Heavy)
-Smith Squat — 4x8
-Leg Press — 4x10
-Romanian Deadlift — 3x10
-Leg Extension — 3x15
-Seated Leg Curl — 3x15
-Standing Calf Raise — 4x15-20
-🟦 Cuma – Upper (Pump + Detay)
-Incline Dumbbell Press — 3x10
-Cable Crossover — 3x15
-Lateral Raise — 4x15
-Rear Delt Fly — 3x15
-Rope Pushdown — 3x12
-Cable Curl — 3x12
-Cable Crunch — 3x10
-🟦 Cumartesi – Bacak + Core (Light + Pump)
-Leg Extension — 4x15
-Leg Curl — 4x15
-Bodyweight Squat — 3x max
-Calf Raise — 4x20
-
-CORE 🔥
-
-Plank — 3x max
-Leg Raise — 3x15
-Russian Twist — 3x20</div>
+                    <div id="prog3" class="program-text locked-content">💪 KAS GELİŞTİRME
+🟦 Pazartesi: Chest Press, Incline Press, Shoulder Press, Lateral Raise
+🟦 Salı: Lat Pulldown, Wide Grip Row, Dumbbell Curl
+🟦 Çarşamba: Leg Press, Smith Squat, Leg Extension, Seated Leg Curl
+🟦 Cuma: Shoulder Press, Lateral Raise, Incline Press, Chest Fly
+🔹 RIR 0 → Failure
+🔹 Ek Bilgi: 3×10 Cable Crunch</div>
                     <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
                 </div>
             </div>
@@ -579,14 +551,13 @@ Russian Twist — 3x20</div>
         </section>
     </div>
 
-    <!-- YENİ EKLENEN: GELİŞMİŞ HESAPLAMALAR MERKEZİ (FULL OVERLAY) -->
+    <!-- HESAPLAMALAR MERKEZİ (FULL OVERLAY) -->
     <div id="calculatorsSection" class="full-overlay">
         <button onclick="closeCalculators()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
             <h2 class="section-title">HESAPLAMALAR</h2>
             
             <div class="calc-container">
-                <!-- Sekmeler -->
                 <div class="calc-tabs">
                     <button class="calc-tab-btn active" onclick="switchCalcTab('tabCalorie', this)">Kalori (TDEE)</button>
                     <button class="calc-tab-btn" onclick="switchCalcTab('tabProtein', this)">Günlük Protein</button>
@@ -594,7 +565,6 @@ Russian Twist — 3x20</div>
                     <button class="calc-tab-btn" onclick="switchCalcTab('tabMacro', this)">Makro Analiz</button>
                 </div>
 
-                <!-- 1. Kalori Hesaplama -->
                 <div id="tabCalorie" class="calc-content active">
                     <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">GÜNLÜK KALORİ İHTİYACI</h3>
                     <div class="gender-group">
@@ -617,7 +587,6 @@ Russian Twist — 3x20</div>
                     </div>
                 </div>
 
-                <!-- 2. Protein İhtiyacı -->
                 <div id="tabProtein" class="calc-content">
                     <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">PROTEİN İHTİYACI</h3>
                     <input type="number" id="proWeight" class="calc-input" placeholder="Kilonuz (kg)">
@@ -633,7 +602,6 @@ Russian Twist — 3x20</div>
                     </div>
                 </div>
 
-                <!-- 3. Yağ Oranı Hesaplama -->
                 <div id="tabFat" class="calc-content">
                     <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">YAĞ ORANI (US NAVY)</h3>
                     <div class="gender-group">
@@ -651,7 +619,6 @@ Russian Twist — 3x20</div>
                     </div>
                 </div>
 
-                <!-- 4. Makro Hesaplama -->
                 <div id="tabMacro" class="calc-content">
                     <h3 style="color:#ccff00; margin-bottom: 20px; font-family: 'Bebas Neue', cursive; font-size:2rem; letter-spacing: 1px;">BOMBA MAKRO ANALİZİ</h3>
                     <div class="gender-group">
@@ -725,7 +692,6 @@ Russian Twist — 3x20</div>
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
         
-        // HESAPLAMALAR MERKEZİ JS KODLARI
         function openCalculators() { document.getElementById('calculatorsSection').style.display = 'block'; }
         function closeCalculators() { document.getElementById('calculatorsSection').style.display = 'none'; }
 
@@ -750,7 +716,6 @@ Russian Twist — 3x20</div>
             }
         }
 
-        // 1. Kalori (Mifflin-St Jeor)
         function calcTDEE() {
             let a = parseFloat(document.getElementById('calAge').value);
             let h = parseFloat(document.getElementById('calHeight').value);
@@ -763,7 +728,6 @@ Russian Twist — 3x20</div>
             document.getElementById('resCalDisplay').style.display = 'block';
         }
 
-        // 2. Protein Hesaplama
         function calcProtein() {
             let w = parseFloat(document.getElementById('proWeight').value);
             let mult = parseFloat(document.getElementById('proGoal').value);
@@ -773,7 +737,6 @@ Russian Twist — 3x20</div>
             document.getElementById('resProDisplay').style.display = 'block';
         }
 
-        // 3. Yağ Oranı (US Navy Formülü)
         function calcFat() {
             let h = parseFloat(document.getElementById('fatHeight').value);
             let n = parseFloat(document.getElementById('fatNeck').value);
@@ -789,11 +752,10 @@ Russian Twist — 3x20</div>
                 fat = 495 / (1.29579 - 0.35004 * Math.log10(w + hip - n) + 0.22100 * Math.log10(h)) - 450;
             }
             
-            document.getElementById('resFatVal').innerText = Math.max(2, fat).toFixed(1); // Yağ oranı %2'nin altına düşmemesi için
+            document.getElementById('resFatVal').innerText = Math.max(2, fat).toFixed(1); 
             document.getElementById('resFatDisplay').style.display = 'block';
         }
 
-        // 4. Makro Hesaplama
         function calcMacros() {
             let a = parseFloat(document.getElementById('macAge').value);
             let h = parseFloat(document.getElementById('macHeight').value);
@@ -802,22 +764,18 @@ Russian Twist — 3x20</div>
             let goal = document.getElementById('macGoal').value;
             if(!a || !h || !w) return alert("Lütfen tüm alanları doldurun.");
             
-            // Temel kalori bulma
             let bmr = (genders.mac === 'male') ? (10*w) + (6.25*h) - (5*a) + 5 : (10*w) + (6.25*h) - (5*a) - 161;
             let tdee = Math.round(bmr * act);
             
-            // Hedefe göre kalori ayarı
             if(goal === 'cut') tdee -= 500;
             if(goal === 'bulk') tdee += 300;
             
-            // Makro dağılımı (Protein: 2.2g/kg, Yağ: Toplam kalorinin %25'i, Kalanı Karb)
             let protein = Math.round(w * 2.2);
-            if(goal === 'cut') protein = Math.round(w * 2.4); // Definasyonda kas korumak için yüksek protein
+            if(goal === 'cut') protein = Math.round(w * 2.4); 
             
             let fat = Math.round((tdee * 0.25) / 9);
             let carbs = Math.round((tdee - (protein * 4) - (fat * 9)) / 4);
             
-            // Sonuçları yazdır
             document.getElementById('resMacKcal').innerText = tdee;
             document.getElementById('resMacProt').innerText = protein;
             document.getElementById('resMacFat').innerText = fat;
@@ -825,7 +783,6 @@ Russian Twist — 3x20</div>
             document.getElementById('resMacDisplay').style.display = 'block';
         }
 
-        // YASAL METİNLER JS
         function openPrivacy(title) { 
             document.getElementById('privacyTitle').innerText = title;
             let content = "Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.";
