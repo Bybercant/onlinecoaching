@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berkant Yenel | Online Fitness</title>
     <style>
-        /* Tasarım Stili */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #0a0a0a; color: #fff; font-family: 'Arial', sans-serif; }
+        body { background-color: #0a0a0a; color: #fff; font-family: 'Arial', sans-serif; line-height: 1.6; }
 
         /* Navbar */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }
@@ -18,21 +17,26 @@
         /* Hero */
         .hero { display: flex; align-items: center; justify-content: space-between; padding: 100px 50px; }
         .hero-content { max-width: 50%; }
-        h1 { font-size: 5rem; line-height: 1; margin-bottom: 20px; color: #fff; }
-        .hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
-
-        /* Resim alanı */
+        h1 { font-size: 4rem; margin-bottom: 20px; }
         .hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; color: #666; }
 
-        /* Hakkımda */
-        .about-section { padding: 100px 50px; background: #111; text-align: center; }
-        .about-section h2 { font-size: 3rem; margin-bottom: 20px; color: #ccff00; }
-        .about-section p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; }
+        /* Paketler Bölümü */
+        .paketler-section { padding: 80px 50px; background: #050505; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 3rem; color: #ccff00; }
+        .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 300px; border: 1px solid #333; transition: 0.3s; text-align: center; }
+        .paket-card:hover { border-color: #ccff00; transform: translateY(-10px); }
+        .paket-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .paket-card ul { list-style: none; margin: 20px 0; text-align: left; min-height: 200px; }
+        .paket-card li { margin-bottom: 10px; font-size: 0.9rem; color: #ccc; }
+        .paket-card li::before { content: "✓ "; color: #ccff00; }
 
-        /* GİRİŞ MODALI STİLİ */
+        /* Giriş Modalı */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #111; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid #ccff00; width: 300px; }
         .modal-content input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
+
+        @media (max-width: 768px) { .hero { flex-direction: column; text-align: center; } .hero-content { max-width: 100%; } }
     </style>
 </head>
 <body>
@@ -41,14 +45,9 @@
         <div class="logo">BERKANT YENEL</div>
         <ul class="nav-links">
             <li><a href="#about">HAKKIMDA</a></li>
-            <li><a href="#">ARAÇLAR</a></li>
-            <li><a href="#">YAZILAR</a></li>
-            <li><a href="#">EGZERSİZ AKADEMİSİ</a></li>
-            <li><a href="#">PAKETLER</a></li>
+            <li><a href="#paketler">PAKETLER</a></li>
         </ul>
-        <div class="nav-buttons">
-            <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
-        </div>
+        <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
     </nav>
 
     <main>
@@ -61,13 +60,51 @@
             <div class="hero-image">FOTOĞRAFIN</div>
         </section>
 
-        <section id="about" class="about-section">
+        <section id="paketler" class="paketler-section">
+            <h2 class="section-title">PROGRAMLAR</h2>
+            <div class="paket-container">
+                
+                <div class="paket-card">
+                    <h3>1 Aylık Başlangıç</h3>
+                    <ul>
+                        <li>Kişiye Özel Antrenman Planı</li>
+                        <li>Standart Beslenme Rehberi</li>
+                        <li>Haftalık İlerleme Takibi</li>
+                    </ul>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+
+                <div class="paket-card">
+                    <h3>3 Aylık Dönüşüm</h3>
+                    <ul>
+                        <li>Gelişmiş Antrenman Planı</li>
+                        <li>Makro Odaklı Beslenme Stratejisi</li>
+                        <li>İki Haftada Bir Program Revizesi</li>
+                        <li>Doğrudan İletişim (WhatsApp)</li>
+                    </ul>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+
+                <div class="paket-card" style="border: 2px solid #ccff00;">
+                    <h3>6 Aylık Elite Performans</h3>
+                    <ul>
+                        <li>Full Kapsamlı Koçluk Sistemi</li>
+                        <li>Detaylı Supplement ve Beslenme Protokolü</li>
+                        <li>Haftalık Video Analizi ve Teknik Düzeltme</li>
+                        <li>7/24 Öncelikli İletişim Desteği</li>
+                        <li>Form Analizi ve Adaptasyon</li>
+                    </ul>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" style="padding: 50px; text-align: center;">
             <h2>HAKKIMDA</h2>
             <p>Buraya kendi biyografini ve fitness felsefeni yazabilirsin.</p>
         </section>
     </main>
 
-    <!-- GİRİŞ MODALI -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2 style="color:#ccff00; margin-bottom:20px;">GİRİŞ YAP</h2>
@@ -79,23 +116,16 @@
     </div>
 
     <script>
-        // Buradan kullanıcı adı ve şifreyi değiştir
-        const DOGRU_KULLANICI = "admin";
-        const DOGRU_SIFRE = "12345";
-
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
-
         function checkLogin() {
             let user = document.getElementById('username').value;
             let pass = document.getElementById('password').value;
-
-            if (user === DOGRU_KULLANICI && pass === DOGRU_SIFRE) {
-                alert("Giriş Başarılı! Egzersiz Akademisine Hoş Geldin.");
+            if (user === "admin" && pass === "12345") {
+                alert("Giriş Başarılı!");
                 closeLogin();
-                // Burada başarılı olunca yapmak istediğin şeyi ekleyebilirsin (örn: yönlendirme)
             } else {
-                alert("Hatalı kullanıcı adı veya şifre!");
+                alert("Hatalı bilgiler!");
             }
         }
     </script>
