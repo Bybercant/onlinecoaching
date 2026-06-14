@@ -10,7 +10,7 @@
 
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }
         .nav-links { display: flex; list-style: none; gap: 20px; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; cursor: pointer; }
         .btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; transition: 0.3s; }
         .btn-hero:hover { opacity: 0.8; }
 
@@ -19,20 +19,18 @@
         h1 { font-size: 4rem; margin-bottom: 20px; }
         .hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; color: #666; }
 
-        /* Paketler ve Kilitli İçerik */
-        .paketler-section { padding: 80px 50px; background: #050505; }
+        /* Programlar Overlay (Yeni Alan) */
+        .programs-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; z-index: 2000; overflow-y: auto; padding: 50px; }
+        .paketler-section { padding-top: 50px; }
         .section-title { text-align: center; margin-bottom: 50px; font-size: 3rem; color: #ccff00; }
-        .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
+        .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
         .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 350px; border: 1px solid #333; text-align: center; }
-        
-        /* Metin alanı */
         .program-text { font-size: 0.85rem; color: #ccc; text-align: left; margin: 20px 0; min-height: 250px; white-space: pre-wrap; transition: 0.5s; }
         
-        /* Blur Efekti */
         .locked-content { filter: blur(8px); user-select: none; }
         .unlocked { filter: blur(0px); }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; justify-content: center; align-items: center; }
         .modal-content { background: #111; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid #ccff00; width: 300px; }
         .modal-content input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
 
@@ -45,7 +43,7 @@
         <div class="logo">BERKANT YENEL</div>
         <ul class="nav-links">
             <li><a href="#about">HAKKIMDA</a></li>
-            <li><a href="#paketler">PROGRAMLAR</a></li>
+            <li><a onclick="openPrograms()">PROGRAMLAR</a></li>
             <li><a href="mailto:yenelberkant@gmail.com">İLETİŞİM</a></li>
         </ul>
         <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
@@ -61,100 +59,6 @@
             <div class="hero-image">FOTOĞRAFIN</div>
         </section>
 
-        <section id="paketler" class="paketler-section">
-            <h2 class="section-title">PROGRAMLAR</h2>
-            <div class="paket-container">
-                
-                <!-- 1 Aylık -->
-                <div class="paket-card">
-                    <h3>1 Aylık Başlangıç</h3>
-                    <div id="prog1" class="program-text locked-content">Haftada 4-5 Gün
-
-Lat pulldown — 3x12
-Seated low row — 3x12
-Machine shoulder press — 3x12
-Chest press — 3x12
-Machine fly — 3x12
-Cable biceps curl — 3x12
-Cable triceps pushdown — 3x12
-Leg extension — 3x12
-Leg curl — 3x12
-Hanging leg raise — 4 set tükenişe kadar
-
-🔥 30-45 dk kardiyo
-Incline: 15 | Speed: 5</div>
-                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
-                </div>
-
-                <!-- 3 Aylık -->
-                <div class="paket-card">
-                    <h3>3 Aylık Dönüşüm</h3>
-                    <div id="prog2" class="program-text locked-content">🔥 YAĞ YAKIMI PROGRAMI
-
-Pazartesi – Sırt + Arka Kol
-Lat pulldown — 4x12
-Rope pushdown — 4x15
-Dumbbell row — 3x12
-Close grip pushdown — 3x15
-Straight arm pulldown — 3x15
-
-Salı – Omuz + Ön Kol
-Shoulder press — 4x12
-Lateral raise + Front raise — 3x15
-Rear delt + Barbell curl — 3x12
-
-Perşembe – Bacak
-Hack squat — 4x12
-Leg extension + Leg curl — 3x15
-Walking lunge — 3 tur
-Leg press + Calf raise — 3x15
-
-Cuma – Göğüs
-Incline bench press — 4x12
-Incline fly + Butterfly — 3x15
-Bench press — 3x10
-
-Cumartesi – Kol + Metabolik
-Barbell curl + Skullcrusher — 4x12
-Hammer curl + Rope pushdown — 3x15</div>
-                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
-                </div>
-
-                <!-- 6 Aylık -->
-                <div class="paket-card" style="border: 2px solid #ccff00;">
-                    <h3>6 Aylık Elite Performans</h3>
-                    <div id="prog3" class="program-text locked-content">💪 KAS GELİŞTİRME PROGRAMI
-
-Pazartesi (Göğüs/Omuz/Triceps)
-Chest Press — 2×5–6 (RIR 1)
-Low Incline Press — 2×5–6 (RIR 1)
-Shoulder Press — 2×5–6 (RIR 1)
-Lateral Raise — 3×8–10 (Failure)
-Triceps Pushdown — 2×6–8 (Failure)
-
-Salı (Sırt/Biceps)
-Lat Pulldown — 2×6–8 (RIR 1)
-Wide Grip Row — 3×6–8 (RIR 1)
-Dumbbell Curl — 2×6–8 (Failure)
-Hammer Curl + Reverse Barbell — 2×8–10
-
-Çarşamba (Bacak)
-Leg Press — 2×6–8 (RIR 1)
-Smith Squat — 2×6–8 (RIR 1)
-Leg Extension — 2×8–10 (Failure)
-Seated Leg Curl — 3×8–10 (RIR 1)
-
-Cuma (Göğüs/Omuz/Triceps)
-Shoulder Press — 2×5–6
-Lateral Raise — 3×8–10
-Incline Press — 2×5–6
-Chest Fly — 2×6–8
-Triceps Pushdown — 2×6–8</div>
-                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
-                </div>
-            </div>
-        </section>
-
         <section id="about" style="padding: 80px 50px; text-align: center;">
             <h2 style="font-size: 3rem; margin-bottom: 20px; color: #ccff00;">HAKKIMDA</h2>
             <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">Buraya kendi biyografini ve fitness felsefeni yazabilirsin.</p>
@@ -165,6 +69,30 @@ Triceps Pushdown — 2×6–8</div>
             </div>
         </section>
     </main>
+
+    <div id="programsSection" class="programs-overlay">
+        <button onclick="closePrograms()" class="btn-hero" style="float:right;">X KAPAT</button>
+        <section class="paketler-section">
+            <h2 class="section-title">PROGRAMLAR</h2>
+            <div class="paket-container">
+                <div class="paket-card">
+                    <h3>Başlangıç Programı</h3>
+                    <div id="prog1" class="program-text locked-content">Haftada 4-5 Gün... (İçerik buraya)</div>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+                <div class="paket-card">
+                    <h3>Orta seviye Program</h3>
+                    <div id="prog2" class="program-text locked-content">🔥 YAĞ YAKIMI PROGRAMI... (İçerik buraya)</div>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+                <div class="paket-card" style="border: 2px solid #ccff00;">
+                    <h3>Geliştirilmiş üst seviye program</h3>
+                    <div id="prog3" class="program-text locked-content">💪 KAS GELİŞTİRME PROGRAMI... (İçerik buraya)</div>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -177,19 +105,19 @@ Triceps Pushdown — 2×6–8</div>
     </div>
 
     <script>
+        function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }
+        function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+        
         function checkLogin() {
             let user = document.getElementById('username').value;
             let pass = document.getElementById('password').value;
             if (user === "admin" && pass === "12345") {
                 alert("Giriş Başarılı!");
                 document.getElementById('prog1').classList.remove('locked-content');
-                document.getElementById('prog1').classList.add('unlocked');
                 document.getElementById('prog2').classList.remove('locked-content');
-                document.getElementById('prog2').classList.add('unlocked');
                 document.getElementById('prog3').classList.remove('locked-content');
-                document.getElementById('prog3').classList.add('unlocked');
                 closeLogin();
             } else {
                 alert("Hatalı bilgiler!");
