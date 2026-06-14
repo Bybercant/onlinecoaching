@@ -8,29 +8,29 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #0a0a0a; color: #fff; font-family: 'Arial', sans-serif; line-height: 1.6; }
 
-        /* Navbar */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }
         .nav-links { display: flex; list-style: none; gap: 20px; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; }
         .btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; transition: 0.3s; }
         .btn-hero:hover { opacity: 0.8; }
 
-        /* Hero */
         .hero { display: flex; align-items: center; justify-content: space-between; padding: 100px 50px; }
         .hero-content { max-width: 50%; }
         h1 { font-size: 4rem; margin-bottom: 20px; }
         .hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; color: #666; }
 
-        /* Paketler */
+        /* Paketler ve Kilit Sistemi */
         .paketler-section { padding: 80px 50px; background: #050505; }
         .section-title { text-align: center; margin-bottom: 50px; font-size: 3rem; color: #ccff00; }
         .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 300px; border: 1px solid #333; text-align: center; }
-        .paket-card ul { list-style: none; margin: 20px 0; text-align: left; min-height: 200px; }
-        .paket-card li { margin-bottom: 10px; font-size: 0.9rem; color: #ccc; }
-        .paket-card li::before { content: "✓ "; color: #ccff00; }
+        .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 350px; border: 1px solid #333; text-align: left; }
+        
+        /* Blur Efekti */
+        .locked-content { filter: blur(8px); pointer-events: none; transition: 0.5s; }
+        .unlocked { filter: blur(0px); pointer-events: auto; }
+        
+        .program-text { font-size: 0.85rem; color: #ccc; margin-top: 15px; line-height: 1.4; white-space: pre-wrap; }
 
-        /* Giriş Modalı */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #111; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid #ccff00; width: 300px; }
         .modal-content input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
@@ -54,8 +54,144 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>HEDEF DEĞİL SİSTEM</h1>
-                <p>Türkiye'nin önde gelen online fitness koçluk platformu. Kişiselleştirilmiş antrenman ve beslenme programlarıyla vücut geliştirme hedeflerine ulaş.</p>
+                <p>Türkiye'nin önde gelen online fitness koçluk platformu.</p>
                 <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
+            </div>
+            <div class="hero-image">FOTOĞRAFIN</div>
+        </section>
+
+        <section id="paketler" class="paketler-section">
+            <h2 class="section-title">PROGRAMLAR</h2>
+            <div class="paket-container">
+                
+                <!-- 1 Aylık -->
+                <div class="paket-card">
+                    <h3>1 Aylık Başlangıç</h3>
+                    <div id="p1" class="program-content locked-content">
+                        <div class="program-text">
+Haftada 4-5 Gün
+
+Lat pulldown — 3x12
+Seated low row — 3x12
+Machine shoulder press — 3x12
+Chest press — 3x12
+Machine fly — 3x12
+Cable biceps curl — 3x12
+Cable triceps pushdown — 3x12
+Leg extension — 3x12
+Leg curl — 3x12
+Hanging leg raise — 4 set tükenişe kadar
+
+🔥 30-45 dk kardiyo
+Incline: 15 | Speed: 5
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Aylık -->
+                <div class="paket-card">
+                    <h3>3 Aylık Dönüşüm</h3>
+                    <div id="p2" class="program-content locked-content">
+                        <div class="program-text">
+🔥 YAĞ YAKIMI PROGRAMI (Orta Seviye)
+
+🟢 Pazartesi – Sırt + Arka Kol
+Lat pulldown — 4x12
+SUPERSET Rope pushdown — 4x15
+Dumbbell row — 3x12
+SUPERSET Close grip pushdown — 3x15
+Straight arm pulldown — 3x15
+🔥 10 dk incline yürüyüş
+
+🟢 Salı – Omuz + Ön Kol
+Shoulder press — 4x12
+SUPERSET Lateral raise + Front raise — 3x15
+SUPERSET Rear delt machine + Barbell curl — 3x12
+🔥 8 dk HIIT
+
+🟢 Perşembe – Bacak
+Hack squat — 4x12
+SUPERSET Leg extension + Leg curl — 3x15
+Walking lunge — 3 tur
+🔥 10 dk bisiklet sprint
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 Aylık -->
+                <div class="paket-card" style="border: 2px solid #ccff00;">
+                    <h3>6 Aylık Elite Performans</h3>
+                    <div id="p3" class="program-content locked-content">
+                        <div class="program-text">
+💪 KAS GELİŞTİRME PROGRAMI
+
+🟦 Pazartesi (Göğüs + Omuz + Triceps)
+Plate Loaded Chest Press — 2×5–6
+Smith Machine Low Incl. Press — 2×5–6
+Shoulder Press Machine — 2×5–6
+Lateral Raise — 3×8–10
+
+🟦 Salı (Sırt + Biceps)
+Lat Pulldown — 2×6–8
+Plate Loaded Wide Grip Row — 3×6–8
+Hammer Curl + Reverse Barbell Curl — 2×8–10
+
+🟦 Çarşamba (Bacak)
+Leg Press — 2×6–8
+Smith Machine Squat — 2×6–8
+Leg Extension — 2×8–10
+Seated Leg Curl — 3×8–10
+
+🔹 RIR 0 → Failure (tükeniş)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" style="padding: 80px 50px; text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 20px; color: #ccff00;">HAKKIMDA</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">Buraya kendi biyografini ve fitness felsefeni yazabilirsin.</p>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 50px auto; width: 50%;">
+            <div class="social-links">
+                <a href="https://www.instagram.com/bybercant" class="btn-hero" style="margin: 0 10px;">Instagram</a>
+                <a href="https://www.youtube.com/@bybercantt" class="btn-hero" style="margin: 0 10px;">YouTube</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color:#ccff00; margin-bottom:20px;">GİRİŞ YAP</h2>
+            <input type="text" id="username" placeholder="Kullanıcı Adı">
+            <input type="password" id="password" placeholder="Parola">
+            <button class="btn-hero" style="width:100%; margin-top:10px;" onclick="checkLogin()">GİRİŞ YAP</button>
+            <button onclick="closeLogin()" style="background:none; color:gray; border:none; margin-top:20px; cursor:pointer;">Kapat</button>
+        </div>
+    </div>
+
+    <script>
+        function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
+        function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+        
+        function checkLogin() {
+            let user = document.getElementById('username').value;
+            let pass = document.getElementById('password').value;
+            // Burayı istediğin kullanıcı adı ve şifreyle değiştir
+            if (user === "admin" && pass === "12345") {
+                alert("Giriş Başarılı! Programlar açıldı.");
+                // Tüm kilitli içerikleri bul ve aç
+                let contents = document.querySelectorAll('.program-content');
+                contents.forEach(el => el.classList.remove('locked-content'));
+                contents.forEach(el => el.classList.add('unlocked'));
+                closeLogin();
+            } else {
+                alert("Hatalı bilgiler!");
+            }
+        }
+    </script>
+</body>
+</html>
             </div>
             <div class="hero-image">FOTOĞRAFIN</div>
         </section>
