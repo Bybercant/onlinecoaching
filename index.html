@@ -103,7 +103,7 @@
         h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.1; position: relative; z-index: 2; }
         .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; margin-top: 20px; }
 
-        /* Yeni: Dönen Işıklı LED Çerçeve ve Neon Yazı Efekti */
+        /* Dönen Işıklı LED Çerçeve ve (Kısılmış) Neon Yazı Efekti */
         .led-wrapper {
             position: relative;
             display: inline-block;
@@ -125,8 +125,8 @@
         .led-wrapper::after {
             content: '';
             position: absolute;
-            inset: 3px; /* Çerçevenin kalınlığı */
-            background: #0a0a0a; /* İçerik arka planı */
+            inset: 3px; 
+            background: #0a0a0a; 
             border-radius: 12px;
             z-index: 1;
         }
@@ -136,7 +136,8 @@
         }
         .neon-text {
             color: #ccff00;
-            text-shadow: 0 0 5px #ccff00, 0 0 20px #ccff00, 0 0 40px rgba(204, 255, 0, 0.6);
+            /* Parlama efekti daha soft ve kısık hale getirildi */
+            text-shadow: 0 0 3px #ccff00, 0 0 10px rgba(204, 255, 0, 0.4);
         }
         
         /* Premium Placeholder (Fotoğraf Alanı) */
@@ -158,7 +159,6 @@
             overflow: hidden;
         }
         
-        /* Arka planda ince detaylı bir aydınlatma / Gym atmosferi */
         .hero::before {
             content: '';
             position: absolute;
@@ -185,24 +185,14 @@
             border-color: rgba(204, 255, 0, 0.5);
             box-shadow: 0 15px 40px rgba(204, 255, 0, 0.15);
         }
-        .step-card h3 {
-            font-size: 1.5rem;
-            color: #ccff00;
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-        .step-card p {
-            font-size: 1rem;
-            color: #ccc;
-            line-height: 1.6;
-        }
+        .step-card h3 { font-size: 1.5rem; color: #ccff00; margin-bottom: 15px; font-weight: 800; }
+        .step-card p { font-size: 1rem; color: #ccc; line-height: 1.6; }
 
         /* Overlay Ekranları (Programlar & Koçluk) */
         .full-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); z-index: 2000; overflow-y: auto; padding: 20px; }
         .section-title { font-family: 'Bebas Neue', cursive; text-align: center; margin-bottom: 40px; font-size: 4rem; color: #ccff00; letter-spacing: 3px; }
         .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
         
-        /* Kartlar */
         .paket-card { 
             background: linear-gradient(145deg, #121212, #0a0a0a); 
             padding: 30px 20px; 
@@ -214,64 +204,70 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: transform 0.4s ease, border 0.4s ease;
         }
-        .paket-card:hover {
-            transform: translateY(-10px);
-            border: 1px solid rgba(204, 255, 0, 0.3);
-            box-shadow: 0 15px 40px rgba(204, 255, 0, 0.1);
-        }
+        .paket-card:hover { transform: translateY(-10px); border: 1px solid rgba(204, 255, 0, 0.3); box-shadow: 0 15px 40px rgba(204, 255, 0, 0.1); }
         .paket-card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 800; color: #fff; }
         
         .program-text { font-size: 0.95rem; color: #aaa; text-align: left; margin: 20px 0; min-height: 200px; white-space: pre-wrap; transition: 0.5s; line-height: 1.8; font-weight: 400; }
         .locked-content { filter: blur(8px); user-select: none; opacity: 0.5; }
         .unlocked { filter: blur(0px); opacity: 1; }
-
-        /* Koçluk Özellik Listesi Stili */
         .coaching-list { list-style: none; padding: 0; margin: 20px 0 30px 0; text-align: left; }
         .coaching-list li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
         .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
 
-        /* Footer & Kurumsal */
-        footer { padding: 50px 5%; background: #030303; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 20px; }
-        .footer-left h2 { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: #ccff00; letter-spacing: 2px;}
-        .footer-kurumsal { display: flex; flex-direction: column; gap: 12px; }
-        .footer-kurumsal h3 { color: #fff; font-size: 1.2rem; margin-bottom: 5px; font-weight: 600; }
-        .footer-kurumsal a { color: #888; text-decoration: none; transition: 0.3s; font-weight: 500; font-size: 0.95rem; }
-        .footer-kurumsal a:hover { color: #ccff00; }
+        /* YENİ EKLENEN PROFESYONEL FOOTER BÖLÜMÜ (Fotoğraftaki Tasarım) */
+        .site-footer {
+            background-color: #0d0d0d;
+            border-top: 1px solid rgba(204, 255, 0, 0.1);
+            padding: 60px 5%;
+            margin-top: 50px;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-brand h2 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
+        .footer-brand p { color: #888; font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; max-width: 250px; }
+        .footer-socials { display: flex; gap: 15px; }
+        .footer-socials a {
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: #1a1a1a; transition: 0.3s;
+        }
+        .footer-socials a:hover { background: #333; }
+        .footer-socials svg { width: 20px; height: 20px; fill: #aaa; transition: 0.3s; }
+        .footer-socials a:hover svg { fill: #ccff00; }
         
-        /* Modallar (Giriş & Gizlilik) */
+        .footer-links h3, .footer-contact h3 {
+            font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase;
+        }
+        .footer-links ul, .footer-contact ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 0.95rem; transition: 0.3s; cursor: pointer; }
+        .footer-links a:hover { color: #ccff00; }
+        
+        .footer-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #888; font-size: 0.95rem; }
+        .icon-circle {
+            min-width: 35px; width: 35px; height: 35px; border-radius: 50%;
+            border: 1px solid rgba(204, 255, 0, 0.3);
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(204, 255, 0, 0.05);
+        }
+        .icon-circle svg { width: 16px; height: 16px; fill: #ccff00; }
+
+        /* Modallar */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { 
-            background: #0f0f0f; 
-            padding: 40px; 
-            border-radius: 20px; 
-            text-align: center; 
-            border: 1px solid rgba(204, 255, 0, 0.4); 
-            width: 100%; 
-            max-width: 400px; 
-            box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+            background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; 
+            border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9);
         }
         .modal-content input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background: #1a1a1a;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: 0.3s;
+            width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333;
+            background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s;
         }
-        .modal-content input:focus {
-            border-color: #ccff00;
-            box-shadow: 0 0 10px rgba(204,255,0,0.2);
-        }
-
-        /* Sosyal Medya */
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 20px; }
-        .social-icon { width: 35px; height: 35px; fill: #aaa; transition: 0.3s ease; }
-        .social-icon:hover { fill: #ccff00; transform: scale(1.1); }
+        .modal-content input:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
 
         /* MOBİL UYUMLULUK (Responsive) */
         @media (max-width: 768px) {
@@ -281,8 +277,10 @@
             .hero-content { max-width: 100%; }
             h1 { font-size: 3.5rem; }
             .hero-image { width: 100%; height: 350px; margin-top: 40px; }
-            footer { flex-direction: column; text-align: center; }
-            .footer-kurumsal { text-align: center; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { margin: 0 auto 20px auto; }
+            .footer-socials { justify-content: center; }
+            .footer-contact li { justify-content: center; }
         }
     </style>
 </head>
@@ -302,7 +300,6 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <!-- Dönen Işıklı Çerçeve ve Neon Yazı Burada -->
                 <div class="led-wrapper">
                     <h1>BAHANE YOK <br><span class="neon-text">SONUÇ</span> VAR</h1>
                 </div>
@@ -314,7 +311,6 @@
             </div>
         </section>  
 
-        <!-- YENİ EKLENEN BÖLÜM: SİSTEM NASIL İŞLER? -->
         <section id="how-it-works" style="padding: 60px 5%; text-align: center;">
             <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #ccff00; letter-spacing: 2px; margin-bottom: 10px;">Sistem Nasıl İşler?</h2>
             <p style="color: #ddd; font-weight: 300; margin-bottom: 50px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Başarı şansa bırakılmaz. Bilimsel döngü, sürekli analiz ve mükemmel sonuç.</p>
@@ -335,7 +331,6 @@
             </div>
         </section>
 
-        <!-- Bölümleri ayıran ince ve şık çizgi -->
         <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 20px auto; width: 70%;">
 
         <section id="about" style="padding: 80px 5%; text-align: center;">
@@ -346,24 +341,61 @@ Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gel
 
 Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için buradayız.</p>
         </section>
-
-        <!-- SOSYAL MEDYA KISMI EN ALT ORTAYA ALINDI -->
-        <section id="social" style="padding: 40px 5%; text-align: center; background: #080808; border-top: 1px solid rgba(255,255,255,0.02);">
-            <h3 style="font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px; color: #fff;">SOSYAL MEDYA</h3>
-            <div class="social-links">
-                <a href="https://www.instagram.com/bybercant" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
-                <a href="https://www.youtube.com/@bybercantt" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            </div>
-        </section>
     </main>
 
-    <footer>
-        <div class="footer-left"><h2>Ber can't</h2></div>
-        <div class="footer-kurumsal">
-            <h3>Kurumsal</h3>
-            <a href="#about">Hakkımızda</a>
-            <a href="mailto:yenelberkant@gmail.com">İletişim</a>
-            <a href="#" onclick="openPrivacy()">Gizlilik Politikası</a>
+    <!-- FOTOĞRAFTAKİ GİBİ GELİŞMİŞ YENİ FOOTER BÖLÜMÜ -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- 1. Sütun: Marka ve Sosyal -->
+            <div class="footer-brand">
+                <h2>BER CAN'T</h2>
+                <p>Online fitness ve vücut geliştirme koçluğu. Kişiye özel antrenman ve beslenme programlarıyla hedeflerine ulaş.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/bybercant" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
+                    <a href="https://www.youtube.com/@bybercantt" target="_blank"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
+            </div>
+            
+            <!-- 2. Sütun: Hızlı Erişim -->
+            <div class="footer-links">
+                <h3>HIZLI ERİŞİM</h3>
+                <ul>
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#about">Hakkımda</a></li>
+                    <li><a onclick="openPrograms()">Programlar (Ücretsiz Araçlar)</a></li>
+                    <li><a onclick="openCoaching()">Paketler</a></li>
+                </ul>
+            </div>
+            
+            <!-- 3. Sütun: Yasal Bölümler (Dinamik çalışacak metinler eklendi) -->
+            <div class="footer-links">
+                <h3>YASAL</h3>
+                <ul>
+                    <li><a onclick="openPrivacy('Gizlilik Sözleşmesi')">Gizlilik Sözleşmesi</a></li>
+                    <li><a onclick="openPrivacy('KVKK Aydınlatma Metni')">KVKK Aydınlatma Metni</a></li>
+                    <li><a onclick="openPrivacy('Mesafeli Satış Sözleşmesi')">Mesafeli Satış Sözleşmesi</a></li>
+                    <li><a onclick="openPrivacy('İptal ve İade Politikası')">İptal ve İade Politikası</a></li>
+                </ul>
+            </div>
+            
+            <!-- 4. Sütun: İletişim (İkonlu) -->
+            <div class="footer-contact">
+                <h3>İLETİŞİM</h3>
+                <ul>
+                    <li>
+                        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                        <span>Niğde / Türkiye</span>
+                    </li>
+                    <li>
+                        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M16.75 13.96c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.25-.66.82-.81.99-.15.17-.3.19-.55.06-1.33-.67-2.3-1.33-3.21-2.61-.14-.2-.01-.31.11-.43.12-.11.26-.29.38-.43.13-.15.17-.25.26-.43.08-.17.04-.33-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.5-.41-.43-.57-.44h-.48c-.2 0-.53.08-.81.38-.28.3-1.07 1.05-1.07 2.56s1.1 2.97 1.25 3.17c.15.2 2.16 3.3 5.23 4.63.73.32 1.3.51 1.74.65.73.23 1.4.2 1.93.12.59-.09 1.83-.75 2.09-1.47.26-.72.26-1.34.18-1.47-.08-.14-.29-.22-.54-.35zM19.05 4.91C17.18 3.03 14.69 2 12 2 6.48 2 2 6.48 2 12c0 1.76.46 3.49 1.33 5.01L2 22l5.12-1.34C8.6 21.53 10.28 22 12 22c5.52 0 10-4.48 10-10 0-2.69-1.05-5.18-2.95-7.09zM12 20.14c-1.49 0-2.95-.4-4.23-1.16l-.3-.18-3.14.82.83-3.06-.2-.31C4.19 14.93 3.66 13.49 3.66 12c0-4.6 3.74-8.34 8.34-8.34 2.23 0 4.32.87 5.89 2.45C19.46 7.68 20.34 9.77 20.34 12c0 4.6-3.74 8.34-8.34 8.34z"/></svg></div>
+                        <span>(Sizin Numaranız)</span>
+                    </li>
+                    <li>
+                        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+                        <span>yenelberkant@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </footer>
 
@@ -423,13 +455,12 @@ Incline fly + Butterfly — 3x15</div>
         </section>
     </div>
 
-    <!-- KOÇLUK OVERLAY (Shopier Bağlantılı Butonlar) -->
+    <!-- KOÇLUK OVERLAY -->
     <div id="coachingSection" class="full-overlay">
         <button onclick="closeCoaching()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
             <h2 class="section-title">ONLINE KOÇLUK</h2>
             <div class="paket-container">
-                <!-- 4 Hafta -->
                 <div class="paket-card">
                     <h3>4 HAFTA</h3>
                     <ul class="coaching-list">
@@ -450,7 +481,6 @@ Incline fly + Butterfly — 3x15</div>
                     </ul>
                     <button class="btn-hero" onclick="window.open('https://www.shopier.com/bercanty', '_blank')" style="width: 100%;">BAŞLA</button>
                 </div>
-                <!-- 8 Hafta -->
                 <div class="paket-card">
                     <h3>8 HAFTA</h3>
                     <ul class="coaching-list">
@@ -471,7 +501,6 @@ Incline fly + Butterfly — 3x15</div>
                     </ul>
                     <button class="btn-hero" onclick="window.open('https://www.shopier.com/bercanty', '_blank')" style="width: 100%;">BAŞLA</button>
                 </div>
-                <!-- 12 Hafta -->
                 <div class="paket-card" style="border: 1px solid #ccff00;">
                     <h3>12 HAFTA</h3>
                     <ul class="coaching-list">
@@ -496,7 +525,7 @@ Incline fly + Butterfly — 3x15</div>
         </section>
     </div>
 
-    <!-- MODALLAR -->
+    <!-- MODALLAR (ŞİFRE VE YASAL METİNLER) -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:#ccff00; margin-bottom:20px; letter-spacing: 2px;">GİRİŞ YAP</h2>
@@ -509,8 +538,8 @@ Incline fly + Butterfly — 3x15</div>
 
     <div id="privacyModal" class="modal">
         <div class="modal-content">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:#ccff00; letter-spacing: 2px;">GİZLİLİK</h2>
-            <p style="text-align:center; color:#ccc; margin-top:20px; font-size: 0.95rem;">Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.</p>
+            <h2 id="privacyTitle" style="font-family: 'Bebas Neue', cursive; font-size: 2.2rem; color:#ccff00; letter-spacing: 2px;">GİZLİLİK</h2>
+            <p id="privacyText" style="text-align:center; color:#ccc; margin-top:20px; font-size: 0.95rem;">Tüm verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.</p>
             <button onclick="closePrivacy()" class="btn-hero" style="margin-top:25px; width: 100%;">Anladım</button>
         </div>
     </div>
@@ -518,13 +547,29 @@ Incline fly + Butterfly — 3x15</div>
     <script>
         function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }
         function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }
-        
         function openCoaching() { document.getElementById('coachingSection').style.display = 'block'; }
         function closeCoaching() { document.getElementById('coachingSection').style.display = 'none'; }
-        
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
-        function openPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
+        
+        // Yeni Dinamik Yasal Metin Modal Fonksiyonu
+        function openPrivacy(title) { 
+            document.getElementById('privacyTitle').innerText = title;
+            
+            let content = "Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.";
+            
+            // Tıklanan Başlığa Göre İçerik Dolacak (İçi Dolu Olsun Mantığı)
+            if(title === "KVKK Aydınlatma Metni") {
+                content = "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında, paylaştığınız veriler (fiziksel durum, antrenman geçmişi vb.) yalnızca antrenman ve beslenme programlarınızı kişiselleştirmek amacıyla işlenmekte ve kesinlikle üçüncü şahıslarla paylaşılmamaktadır.";
+            } else if(title === "Mesafeli Satış Sözleşmesi") {
+                content = "Bu sözleşme, alıcı ile satıcı (Ber can't Koçluk) arasındaki dijital hizmet satış şartlarını belirler. Hizmet, dijital ortamda anında teslim edildiği için yasal olarak cayma hakkı istisnalarına tabidir.";
+            } else if(title === "İptal ve İade Politikası") {
+                content = "Dijital ortamda sunulan ve anında ifa edilen kişiye özel koçluk hizmetlerinde (programın size özel hazırlanıp iletilmesi durumunda) ücret iadesi yapılmamaktadır. Detaylı bilgi için iletişim adreslerinden destek alabilirsiniz.";
+            }
+
+            document.getElementById('privacyText').innerText = content;
+            document.getElementById('privacyModal').style.display = 'flex'; 
+        }
         function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
         
         function checkLogin() {
