@@ -1,53 +1,22 @@
-body {
-  margin: 0;
-  background: black;
-  color: white;
-  font-family: Arial;
-  overflow-x: hidden;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #0a0a0a; color: #fff; font-family: 'Arial', sans-serif; }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
+/* Navbar */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; }
+.btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-left: 10%;
-}
+/* Hero Section */
+.hero { display: flex; align-items: center; justify-content: space-between; padding: 100px 50px; }
+.hero-content { max-width: 50%; }
+h1 { font-size: 5rem; line-height: 1; margin-bottom: 20px; color: #fff; }
+.hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
 
-.title {
-  font-size: 5rem;
-  letter-spacing: 4px;
-}
+/* Sağ taraftaki resim alanı */
+.hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; }
 
-.section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-left: 10%;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(100px);
-}
-
-/* CURSOR */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 1px solid white;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transition: transform 0.2s ease;
-}
-
-.cursor.hover {
-  transform: scale(2);
-}
+/* Hakkımda Bölümü */
+.about-section { padding: 100px 50px; background: #111; text-align: center; }
+.about-section h2 { font-size: 3rem; margin-bottom: 20px; color: #ccff00; }
+.about-section p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; }
