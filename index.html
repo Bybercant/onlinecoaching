@@ -100,8 +100,44 @@
         /* Hero Bölümü */
         .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 5%; min-height: 80vh; position: relative; }
         .hero-content { max-width: 50%; }
-        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 20px; color: #ffffff; letter-spacing: 4px; line-height: 1.1; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
-        .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; }
+        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.1; position: relative; z-index: 2; }
+        .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; margin-top: 20px; }
+
+        /* Yeni: Dönen Işıklı LED Çerçeve ve Neon Yazı Efekti */
+        .led-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #050505;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .led-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, #ccff00);
+            animation: rotateLed 2.5s linear infinite;
+            z-index: 0;
+        }
+        .led-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 3px; /* Çerçevenin kalınlığı */
+            background: #0a0a0a; /* İçerik arka planı */
+            border-radius: 12px;
+            z-index: 1;
+        }
+        @keyframes rotateLed {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .neon-text {
+            color: #ccff00;
+            text-shadow: 0 0 5px #ccff00, 0 0 20px #ccff00, 0 0 40px rgba(204, 255, 0, 0.6);
+        }
         
         /* Premium Placeholder (Fotoğraf Alanı) */
         .hero-image { 
@@ -130,6 +166,35 @@
             background: radial-gradient(circle at 50% 50%, rgba(204, 255, 0, 0.04) 0%, transparent 60%);
             z-index: -1;
             pointer-events: none;
+        }
+
+        /* Sistem Nasıl İşler Kutuları */
+        .step-card {
+            background: linear-gradient(145deg, #151515, #080808);
+            padding: 40px 25px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 350px;
+            border: 1px solid rgba(204, 255, 0, 0.1);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease, border 0.4s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(204, 255, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(204, 255, 0, 0.15);
+        }
+        .step-card h3 {
+            font-size: 1.5rem;
+            color: #ccff00;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .step-card p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.6;
         }
 
         /* Overlay Ekranları (Programlar & Koçluk) */
@@ -166,7 +231,7 @@
         .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
 
         /* Footer & Kurumsal */
-        footer { padding: 50px 5%; background: #030303; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 20px; margin-top: 40px;}
+        footer { padding: 50px 5%; background: #030303; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 20px; }
         .footer-left h2 { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: #ccff00; letter-spacing: 2px;}
         .footer-kurumsal { display: flex; flex-direction: column; gap: 12px; }
         .footer-kurumsal h3 { color: #fff; font-size: 1.2rem; margin-bottom: 5px; font-weight: 600; }
@@ -204,7 +269,7 @@
         }
 
         /* Sosyal Medya */
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 25px; }
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 20px; }
         .social-icon { width: 35px; height: 35px; fill: #aaa; transition: 0.3s ease; }
         .social-icon:hover { fill: #ccff00; transform: scale(1.1); }
 
@@ -226,10 +291,10 @@
     <nav class="navbar">
         <div class="logo"><a href="#">BER CAN'T</a></div>
         <ul class="nav-links">
+            <li><a href="#how-it-works">SİSTEM</a></li>
             <li><a href="#about">HAKKIMDA</a></li>
             <li><a onclick="openPrograms()">PROGRAMLAR</a></li>
             <li><a onclick="openCoaching()">KOÇLUK</a></li>
-            <li><a href="mailto:yenelberkant@gmail.com">İLETİŞİM</a></li>
         </ul>
         <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
     </nav>
@@ -237,27 +302,54 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>BAHANE YOK SONUÇ VAR</h1>
+                <!-- Dönen Işıklı Çerçeve ve Neon Yazı Burada -->
+                <div class="led-wrapper">
+                    <h1>BAHANE YOK <br><span class="neon-text">SONUÇ</span> VAR</h1>
+                </div>
                 <p>Türkiye'nin önde gelen online fitness koçluk platformu, Profesyonel antrenman programları ve sürdürülebilir gelişim için şimdi başla.</p>
-                <button class="btn-hero" onclick="openLogin()" style="margin-top:20px;">HEMEN BAŞLA</button>
+                <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
             </div>
             <div class="hero-image">
                 <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Berkant Yenel" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </section>  
-        
-        <section id="about" style="padding: 60px 5%; text-align: center;">
+
+        <!-- YENİ EKLENEN BÖLÜM: SİSTEM NASIL İŞLER? -->
+        <section id="how-it-works" style="padding: 60px 5%; text-align: center;">
+            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #ccff00; letter-spacing: 2px; margin-bottom: 10px;">Sistem Nasıl İşler?</h2>
+            <p style="color: #ddd; font-weight: 300; margin-bottom: 50px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Başarı şansa bırakılmaz. Bilimsel döngü, sürekli analiz ve mükemmel sonuç.</p>
+            
+            <div class="paket-container">
+                <div class="step-card">
+                    <h3>Analiz & Planlama</h3>
+                    <p>Detaylı anamnez formu ile metabolik durumun, yaşam tarzın ve hedeflerin analiz edilir.</p>
+                </div>
+                <div class="step-card">
+                    <h3>Uygulama & Takip</h3>
+                    <p>Antrenman ve beslenme programın başlar. Haftalık check-inler ile formun kontrol altında tutulur.</p>
+                </div>
+                <div class="step-card">
+                    <h3>Optimizasyon & Sonuç</h3>
+                    <p>Vücudunun verdiği tepkilere göre program revize edilir. Sürekli gelişim sağlanır.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bölümleri ayıran ince ve şık çizgi -->
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 20px auto; width: 70%;">
+
+        <section id="about" style="padding: 80px 5%; text-align: center;">
             <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; margin-bottom: 20px; color: #ccff00; letter-spacing: 2px;">HAKKIMDA</h2>
             <p style="max-width: 800px; margin: 0 auto; font-size: 1.05rem; color: #ddd; font-weight: 300;">Biz, sağlıklı yaşamın ve güçlü bir bedenin herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Amacımız, kullanıcılarımızın fiziksel ve zihinsel potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmak ve sürdürülebilir bir yaşam tarzı oluşturmalarını sağlamaktır. Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımız, kişisel hedeflerinize ulaşmanız için özel olarak tasarlanmıştır. İster kas geliştirmek, ister yağ yakmak, ister daha sağlıklı bir yaşam sürmek isteyin — size uygun çözümler sunuyoruz.<br><br>
 
 Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gelişiminizi takip eden ve sizi her gün daha iyiye taşıyan bir topluluk oluşturmayı hedefliyoruz. Çünkü bizce gerçek başarı, disiplin, istikrar ve doğru rehberlikle mümkündür.<br><br>
 
 Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için buradayız.</p>
-            
-            <!-- Çizgi ve başlık arasına boşluk eklendi, sosyal medya aşağı alındı -->
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 70px auto 50px auto; width: 60%;">
-            
-            <h3 style="font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px; color: #fff; margin-top: 50px;">SOSYAL MEDYA</h3>
+        </section>
+
+        <!-- SOSYAL MEDYA KISMI EN ALT ORTAYA ALINDI -->
+        <section id="social" style="padding: 40px 5%; text-align: center; background: #080808; border-top: 1px solid rgba(255,255,255,0.02);">
+            <h3 style="font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px; color: #fff;">SOSYAL MEDYA</h3>
             <div class="social-links">
                 <a href="https://www.instagram.com/bybercant" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
                 <a href="https://www.youtube.com/@bybercantt" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
