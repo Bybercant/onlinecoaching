@@ -97,17 +97,26 @@
         /* Navbar sabit olduğu için içeriğin altta kalmasını engelliyoruz */
         main { padding-top: 100px; }
 
-        /* Hero Bölümü */
-        .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 5%; min-height: 80vh; position: relative; }
+        /* Hero Bölümü (Sola kayma hissini çözen max-width ve margin ayarları) */
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 60px 5%; 
+            min-height: 80vh; 
+            position: relative; 
+            max-width: 1300px; /* İçeriği merkezde tutar */
+            margin: 0 auto; /* Tam ortalar */
+        }
         .hero-content { max-width: 50%; }
-        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.1; position: relative; z-index: 2; }
+        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.2; position: relative; z-index: 2; }
         .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; margin-top: 20px; }
 
-        /* Dönen Işıklı LED Çerçeve ve Neon Yazı Efekti */
+        /* Dönen Işıklı LED Çerçeve ve Neon Yazı Efekti (Kesilmeleri önlemek için revize edildi) */
         .led-wrapper {
             position: relative;
-            display: inline-block;
-            padding: 15px 30px;
+            display: inline-flex; /* İçeriğe göre genişlemesi için güncellendi */
+            padding: 20px 40px; /* Etrafındaki güvenli boşluk artırıldı */
             border-radius: 15px;
             overflow: hidden;
             background: #050505;
@@ -116,8 +125,8 @@
         .led-wrapper::before {
             content: '';
             position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
+            top: -150%; left: -150%; /* Dönüş sırasında köşelerin boş kalmaması için büyütüldü */
+            width: 400%; height: 400%;
             background: conic-gradient(transparent, transparent, transparent, #ccff00);
             animation: rotateLed 2.5s linear infinite;
             z-index: 0;
@@ -266,7 +275,7 @@
         .modal-content input:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
 
         /* ========================================= */
-        /* MOBİL UYUMLULUK (TÜM SORUNLAR BURADA ÇÖZÜLDÜ) */
+        /* MOBİL UYUMLULUK (TAŞMA VE KESİLME ÇÖZÜMLERİ) */
         /* ========================================= */
         @media (max-width: 768px) {
             /* Üst Menü Sıkışma Düzenlemesi */
@@ -279,11 +288,13 @@
             /* Üst Menü aşağı sarkınca ana içeriğin ezilmemesi için */
             main { padding-top: 150px; }
 
-            /* Dev Yazıların Mobilde Küçültülmesi */
-            h1 { font-size: 2.6rem !important; }
+            /* Dev Yazıların Mobilde Küçültülmesi ve Satır Aralığı Düzeltmesi (Kesilmeyi Engeller) */
+            h1 { font-size: 2.3rem !important; line-height: 1.3 !important; padding: 10px 0; }
             h2 { font-size: 2.2rem !important; }
             .section-title { font-size: 2.5rem !important; }
-            .led-wrapper { padding: 10px 20px; }
+            
+            /* LED Çerçeve Mobilde Rahatlatıldı */
+            .led-wrapper { padding: 15px 20px; border-radius: 12px; }
             p { font-size: 0.95rem !important; }
 
             /* Giriş / Hero Kısmı Daraltma */
