@@ -12,7 +12,8 @@
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }
         .nav-links { display: flex; list-style: none; gap: 20px; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; }
-        .btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; }
+        .btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-hero:hover { opacity: 0.8; }
 
         /* Hero */
         .hero { display: flex; align-items: center; justify-content: space-between; padding: 100px 50px; }
@@ -20,13 +21,11 @@
         h1 { font-size: 4rem; margin-bottom: 20px; }
         .hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; color: #666; }
 
-        /* Paketler Bölümü */
+        /* Paketler */
         .paketler-section { padding: 80px 50px; background: #050505; }
         .section-title { text-align: center; margin-bottom: 50px; font-size: 3rem; color: #ccff00; }
         .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 300px; border: 1px solid #333; transition: 0.3s; text-align: center; }
-        .paket-card:hover { border-color: #ccff00; transform: translateY(-10px); }
-        .paket-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 300px; border: 1px solid #333; text-align: center; }
         .paket-card ul { list-style: none; margin: 20px 0; text-align: left; min-height: 200px; }
         .paket-card li { margin-bottom: 10px; font-size: 0.9rem; color: #ccc; }
         .paket-card li::before { content: "✓ "; color: #ccff00; }
@@ -46,6 +45,7 @@
         <ul class="nav-links">
             <li><a href="#about">HAKKIMDA</a></li>
             <li><a href="#paketler">PAKETLER</a></li>
+            <li><a href="mailto:yenelberkant@gmail.com">İLETİŞİM</a></li>
         </ul>
         <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
     </nav>
@@ -60,10 +60,10 @@
             <div class="hero-image">FOTOĞRAFIN</div>
         </section>
 
+        <!-- PAKETLER -->
         <section id="paketler" class="paketler-section">
             <h2 class="section-title">PROGRAMLAR</h2>
             <div class="paket-container">
-                
                 <div class="paket-card">
                     <h3>1 Aylık Başlangıç</h3>
                     <ul>
@@ -73,7 +73,6 @@
                     </ul>
                     <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
                 </div>
-
                 <div class="paket-card">
                     <h3>3 Aylık Dönüşüm</h3>
                     <ul>
@@ -84,7 +83,6 @@
                     </ul>
                     <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
                 </div>
-
                 <div class="paket-card" style="border: 2px solid #ccff00;">
                     <h3>6 Aylık Elite Performans</h3>
                     <ul>
@@ -92,22 +90,27 @@
                         <li>Detaylı Supplement ve Beslenme Protokolü</li>
                         <li>Haftalık Video Analizi ve Teknik Düzeltme</li>
                         <li>7/24 Öncelikli İletişim Desteği</li>
-                        <li>Form Analizi ve Adaptasyon</li>
                     </ul>
                     <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
                 </div>
             </div>
         </section>
 
-        <section id="about" style="padding: 50px; text-align: center;">
-            <h2>HAKKIMDA</h2>
-            <p>Biz, sağlıklı yaşamın ve güçlü bir bedenin herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Amacımız, kullanıcılarımızın fiziksel ve zihinsel potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmak ve sürdürülebilir bir yaşam tarzı oluşturmalarını sağlamaktır.
-Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımız, kişisel hedeflerinize ulaşmanız için özel olarak tasarlanmıştır. İster kas geliştirmek, ister yağ yakmak, ister daha sağlıklı bir yaşam sürmek isteyin — size uygun çözümler sunuyoruz.
-Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gelişiminizi takip eden ve sizi her gün daha iyiye taşıyan bir topluluk oluşturmayı hedefliyoruz. Çünkü bizce gerçek başarı, disiplin, istikrar ve doğru rehberlikle mümkündür.
-Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için buradayız..</p>
+        <section id="about" style="padding: 80px 50px; text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 20px; color: #ccff00;">HAKKIMDA</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">Buraya kendi biyografini ve fitness felsefeni yazabilirsin.</p>
+            
+            <!-- ÇİZGİ VE BUTONLAR -->
+            <hr style="border: 0; border-top: 1px solid #333; margin: 50px auto; width: 50%;">
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/bybercant" class="btn-hero" style="margin: 0 10px;">Instagram</a>
+                <a href="https://www.youtube.com/@bybercantt" class="btn-hero" style="margin: 0 10px;">YouTube</a>
+            </div>
         </section>
     </main>
 
+    <!-- GİRİŞ MODALI -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2 style="color:#ccff00; margin-bottom:20px;">GİRİŞ YAP</h2>
