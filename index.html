@@ -132,12 +132,12 @@
             pointer-events: none;
         }
 
-        /* Programlar Overlay */
-        .programs-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); z-index: 2000; overflow-y: auto; padding: 20px; }
+        /* Overlay Ekranları (Programlar & Koçluk) */
+        .full-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); z-index: 2000; overflow-y: auto; padding: 20px; }
         .section-title { font-family: 'Bebas Neue', cursive; text-align: center; margin-bottom: 40px; font-size: 4rem; color: #ccff00; letter-spacing: 3px; }
         .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
         
-        /* Program Kartları */
+        /* Kartlar */
         .paket-card { 
             background: linear-gradient(145deg, #121212, #0a0a0a); 
             padding: 30px 20px; 
@@ -159,6 +159,11 @@
         .program-text { font-size: 0.95rem; color: #aaa; text-align: left; margin: 20px 0; min-height: 200px; white-space: pre-wrap; transition: 0.5s; line-height: 1.8; font-weight: 400; }
         .locked-content { filter: blur(8px); user-select: none; opacity: 0.5; }
         .unlocked { filter: blur(0px); opacity: 1; }
+
+        /* Koçluk Özellik Listesi Stili */
+        .coaching-list { list-style: none; padding: 0; margin: 20px 0 30px 0; text-align: left; }
+        .coaching-list li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
+        .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
 
         /* Footer & Kurumsal */
         footer { padding: 50px 5%; background: #030303; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 20px; margin-top: 40px;}
@@ -219,11 +224,11 @@
 <body>
 
     <nav class="navbar">
-        <!-- Logo Alanı Artık Ana Sayfaya Bağlantılı -->
         <div class="logo"><a href="#">BER CAN'T</a></div>
         <ul class="nav-links">
             <li><a href="#about">HAKKIMDA</a></li>
             <li><a onclick="openPrograms()">PROGRAMLAR</a></li>
+            <li><a onclick="openCoaching()">KOÇLUK</a></li>
             <li><a href="mailto:yenelberkant@gmail.com">İLETİŞİM</a></li>
         </ul>
         <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
@@ -237,8 +242,8 @@
                 <button class="btn-hero" onclick="openLogin()" style="margin-top:20px;">HEMEN BAŞLA</button>
             </div>
             <div class="hero-image">
-    <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Berkant Yenel" style="width: 100%; height: 100%; object-fit: cover;">
-</div>
+                <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Berkant Yenel" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
         </section>  
         
         <section id="about" style="padding: 60px 5%; text-align: center;">
@@ -269,7 +274,7 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
     </footer>
 
     <!-- PROGRAMLAR OVERLAY -->
-    <div id="programsSection" class="programs-overlay">
+    <div id="programsSection" class="full-overlay">
         <button onclick="closePrograms()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
             <h2 class="section-title">PROGRAMLAR</h2>
@@ -324,6 +329,79 @@ Incline fly + Butterfly — 3x15</div>
         </section>
     </div>
 
+    <!-- KOÇLUK OVERLAY (YENİ EKLENEN KISIM) -->
+    <div id="coachingSection" class="full-overlay">
+        <button onclick="closeCoaching()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
+        <section style="padding: 40px 5%; margin-top: 40px;">
+            <h2 class="section-title">ONLINE KOÇLUK</h2>
+            <div class="paket-container">
+                <!-- 4 Hafta -->
+                <div class="paket-card">
+                    <h3>4 HAFTA</h3>
+                    <ul class="coaching-list">
+                        <li>Haftalık Program</li>
+                        <li>Kişisel antrenman programı</li>
+                        <li>Beslenme planlaması</li>
+                        <li>Kardiyo planlaması</li>
+                        <li>Vitamin & supplement önerisi</li>
+                        <li>Form analizi (foto/video)</li>
+                        <li>Teknik düzeltme geri bildirimleri</li>
+                        <li>Haftalık kontrol</li>
+                        <li>Geri dönüşe göre plan güncelleme</li>
+                        <li>Haftalık teknik video analizi</li>
+                        <li>Makro güncellemesi (gelişime göre)</li>
+                        <li>Yaşam tarzına uygun planlama</li>
+                        <li>Haftalık Q&A destek</li>
+                        <li>7/24 WhatsApp iletişim</li>
+                    </ul>
+                    <button class="btn-hero" onclick="openLogin()" style="width: 100%;">BAŞLA</button>
+                </div>
+                <!-- 8 Hafta -->
+                <div class="paket-card">
+                    <h3>8 HAFTA</h3>
+                    <ul class="coaching-list">
+                        <li>Haftalık Program</li>
+                        <li>Kişisel antrenman programı</li>
+                        <li>Beslenme planlaması</li>
+                        <li>Kardiyo planlaması</li>
+                        <li>Vitamin & supplement önerisi</li>
+                        <li>Form analizi (foto/video)</li>
+                        <li>Teknik düzeltme geri bildirimleri</li>
+                        <li>Haftalık kontrol</li>
+                        <li>Geri dönüşe göre plan güncelleme</li>
+                        <li>Haftalık teknik video analizi</li>
+                        <li>Makro güncellemesi (gelişime göre)</li>
+                        <li>Yaşam tarzına uygun planlama</li>
+                        <li>Haftalık Q&A destek</li>
+                        <li>7/24 WhatsApp iletişim</li>
+                    </ul>
+                    <button class="btn-hero" onclick="openLogin()" style="width: 100%;">BAŞLA</button>
+                </div>
+                <!-- 12 Hafta (Vurgulu) -->
+                <div class="paket-card" style="border: 1px solid #ccff00;">
+                    <h3>12 HAFTA</h3>
+                    <ul class="coaching-list">
+                        <li>Haftalık Program</li>
+                        <li>Kişisel antrenman programı</li>
+                        <li>Beslenme planlaması</li>
+                        <li>Kardiyo planlaması</li>
+                        <li>Vitamin & supplement önerisi</li>
+                        <li>Form analizi (foto/video)</li>
+                        <li>Teknik düzeltme geri bildirimleri</li>
+                        <li>Haftalık kontrol</li>
+                        <li>Geri dönüşe göre plan güncelleme</li>
+                        <li>Haftalık teknik video analizi</li>
+                        <li>Makro güncellemesi (gelişime göre)</li>
+                        <li>Yaşam tarzına uygun planlama</li>
+                        <li>Haftalık Q&A destek</li>
+                        <li>7/24 WhatsApp iletişim</li>
+                    </ul>
+                    <button class="btn-hero" onclick="openLogin()" style="width: 100%;">BAŞLA</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- MODALLAR -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -346,6 +424,11 @@ Incline fly + Butterfly — 3x15</div>
     <script>
         function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }
         function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }
+        
+        // Yeni Eklenen Koçluk Fonksiyonları
+        function openCoaching() { document.getElementById('coachingSection').style.display = 'block'; }
+        function closeCoaching() { document.getElementById('coachingSection').style.display = 'none'; }
+        
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
         function openPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
