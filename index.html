@@ -1,103 +1,113 @@
-<!DOCTYPE html>  <html lang="tr">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Ber can't | Online Coaching</title>  
-    <style>  
-        * { margin: 0; padding: 0; box-sizing: border-box; }  
-        body { background-color: #0a0a0a; color: #fff; font-family: 'Arial', sans-serif; line-height: 1.6; }  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }  
-    .nav-links { display: flex; list-style: none; gap: 20px; }  
-    .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; cursor: pointer; }  
-    .btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; transition: 0.3s; }  
-    .btn-hero:hover { opacity: 0.8; }  
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ber can't | Online Coaching</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0a0a0a; color: #fff; font-family: 'Arial', sans-serif; line-height: 1.6; overflow-x: hidden; }
 
-    .hero { display: flex; align-items: center; justify-content: space-between; padding: 100px 50px; }  
-    .hero-content { max-width: 50%; }  
-    h1 { font-size: 4rem; margin-bottom: 20px; }  
-    .hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; color: #666; }  
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: bold; cursor: pointer; }
+        .btn-hero { background-color: #ccff00; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; transition: 0.3s; }
 
-    /* Programlar Alanı */  
-    .programs-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; z-index: 2000; overflow-y: auto; padding: 50px; }  
-    .section-title { text-align: center; margin-bottom: 50px; font-size: 3rem; color: #ccff00; }  
-    .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }  
-    .paket-card { background: #111; padding: 30px; border-radius: 15px; width: 350px; border: 1px solid #333; text-align: center; }  
-    .program-text { font-size: 0.85rem; color: #ccc; text-align: left; margin: 20px 0; min-height: 250px; white-space: pre-wrap; transition: 0.5s; }  
-      
-    .locked-content { filter: blur(8px); user-select: none; }  
-    .unlocked { filter: blur(0px); }  
+        /* Hero */
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 80px 5%; min-height: 80vh; }
+        .hero-content { max-width: 50%; }
+        h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-image { width: 400px; height: 500px; background: #222; display: flex; align-items: center; justify-content: center; border: 2px solid #ccff00; border-radius: 20px; color: #666; }
 
-    /* Footer */  
-    footer { padding: 50px; background: #050505; display: flex; justify-content: space-between; align-items: flex-start; border-top: 1px solid #333; margin-top: 50px; }  
-    .footer-kurumsal { display: flex; flex-direction: column; gap: 10px; }  
-    .footer-kurumsal a { color: #aaa; text-decoration: none; transition: 0.3s; }  
-    .footer-kurumsal a:hover { color: #ccff00; }  
+        /* Programlar */
+        .programs-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; z-index: 2000; overflow-y: auto; padding: 20px; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2.5rem; color: #ccff00; }
+        .paket-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .paket-card { background: #111; padding: 20px; border-radius: 15px; width: 100%; max-width: 350px; border: 1px solid #333; text-align: center; }
+        .program-text { font-size: 0.85rem; color: #ccc; text-align: left; margin: 20px 0; min-height: 200px; white-space: pre-wrap; transition: 0.5s; }
+        .locked-content { filter: blur(8px); user-select: none; }
+        .unlocked { filter: blur(0px); }
 
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; }  
-    .modal-content { background: #111; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid #ccff00; width: 400px; max-height: 80%; overflow-y: auto; }  
-    .modal-content input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }  
+        /* Footer & Kurumsal */
+        footer { padding: 40px 5%; background: #050505; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; flex-wrap: wrap; gap: 20px; }
+        .footer-kurumsal { display: flex; flex-direction: column; gap: 10px; }
+        .footer-kurumsal a { color: #aaa; text-decoration: none; }
+        
+        /* Modallar */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: #111; padding: 30px; border-radius: 15px; text-align: center; border: 1px solid #ccff00; width: 100%; max-width: 400px; }
 
-    .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }  
-    .social-icon { width: 40px; height: 40px; fill: white; transition: 0.3s; }  
-    .social-icon:hover { fill: #ccff00; }  
-</style>
+        /* Sosyal Medya */
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .social-icon { width: 40px; height: 40px; fill: white; }
 
-</head>  
-<body>  <nav class="navbar">  
-    <div class="logo">BER CAN'T</div>  
-    <ul class="nav-links">  
-        <li><a href="#about">HAKKIMDA</a></li>  
-        <li><a onclick="openPrograms()">PROGRAMLAR</a></li>  
-        <li><a href="mailto:yenelberkant@gmail.com">İLETİŞİM</a></li>  
-    </ul>  
-    <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>  
-</nav>  
+        /* MOBİL UYUMLULUK (Responsive) */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .hero { flex-direction: column; text-align: center; padding: 40px 5%; }
+            .hero-content { max-width: 100%; }
+            h1 { font-size: 2.5rem; }
+            .hero-image { width: 100%; height: 300px; margin-top: 30px; }
+            footer { flex-direction: column; text-align: center; }
+            .footer-kurumsal { text-align: center; }
+        }
+    </style>
+</head>
+<body>
 
-<main>  
-    <section class="hero">  
-        <div class="hero-content">  
-            <h1>HEDEF DEĞİL SİSTEM</h1>  
-            <p>Türkiye'nin önde gelen online fitness koçluk platformu,Profesyonel antrenman programları ve sürdürülebilir gelişim için şimdi başla.</p>  
-            <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>  
-        </div>  
-        <div class="hero-image">FOTOĞRAFIN</div>  
-    </section>  
+    <nav class="navbar">
+        <div class="logo">BER CAN'T</div>
+        <ul class="nav-links">
+            <li><a href="#about">HAKKIMDA</a></li>
+            <li><a onclick="openPrograms()">PROGRAMLAR</a></li>
+            <li><a href="mailto:yenelberkant@gmail.com">İLETİŞİM</a></li>
+        </ul>
+        <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
+    </nav>
 
-    <section id="about" style="padding: 80px 50px; text-align: center;">  
-        <h2 style="font-size: 3rem; margin-bottom: 20px; color: #ccff00;">HAKKIMDA</h2>  
-        <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">Biz, sağlıklı yaşamın ve güçlü bir bedenin herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Amacımız, kullanıcılarımızın fiziksel ve zihinsel potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmak ve sürdürülebilir bir yaşam tarzı oluşturmalarını sağlamaktır.
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>HEDEF DEĞİL SİSTEM</h1>
+                <p>Türkiye'nin önde gelen online fitness koçluk platformu, Profesyonel antrenman programları ve sürdürülebilir gelişim için şimdi başla.</p>
+                <button class="btn-hero" onclick="openLogin()" style="margin-top:20px;">HEMEN BAŞLA</button>
+            </div>
+            <div class="hero-image">FOTOĞRAFIN</div>
+        </section>
 
-Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımız, kişisel hedeflerinize ulaşmanız için özel olarak tasarlanmıştır. İster kas geliştirmek, ister yağ yakmak, ister daha sağlıklı bir yaşam sürmek isteyin — size uygun çözümler sunuyoruz.
-Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gelişiminizi takip eden ve sizi her gün daha iyiye taşıyan bir topluluk oluşturmayı hedefliyoruz. Çünkü bizce gerçek başarı, disiplin, istikrar ve doğru rehberlikle mümkündür.
-Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için buradayız.</p>
-<hr style="border: 0; border-top: 1px solid #333; margin: 50px auto; width: 50%;">
-<h3 style="letter-spacing: 2px;">SOSYAL MEDYA</h3>
-<div class="social-links">
-<a href="https://www.instagram.com/bybercant" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
-<a href="https://www.youtube.com/@bybercantt" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-</div>
-</section>
-</main>
+        <section id="about" style="padding: 60px 5%; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: #ccff00;">HAKKIMDA</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1rem;">Biz, sağlıklı yaşamın herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımızla, sürdürülebilir bir yaşam tarzı oluşturmanı sağlıyoruz.</p>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 40px auto; width: 80%;">
+            
+            <h3 style="letter-spacing: 2px;">SOSYAL MEDYA</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/bybercant" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
+                <a href="https://www.youtube.com/@bybercantt" target="_blank"><svg class="social-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            </div>
+        </section>
+    </main>
 
-<footer>  
-    <div class="footer-left"><h2>Ber can't</h2></div>  
-    <div class="footer-kurumsal">  
-        <h3>Kurumsal</h3>  
-        <a href="#about">Hakkımızda</a>  
-        <a href="mailto:yenelberkant@gmail.com">İletişim</a>  
-        <a href="#" onclick="openPrivacy()">Gizlilik Politikası</a>  
-    </div>  
-</footer>  
+    <footer>
+        <div class="footer-left"><h2>Ber can't</h2></div>
+        <div class="footer-kurumsal">
+            <h3>Kurumsal</h3>
+            <a href="#about">Hakkımızda</a>
+            <a href="mailto:yenelberkant@gmail.com">İletişim</a>
+            <a href="#" onclick="openPrivacy()">Gizlilik Politikası</a>
+        </div>
+    </footer>
 
-<!-- PROGRAMLAR OVERLAY -->  
-<div id="programsSection" class="programs-overlay">  
-    <button onclick="closePrograms()" class="btn-hero" style="float:right;">X KAPAT</button>  
-    <section class="paketler-section">  
-        <h2 class="section-title">PROGRAMLAR</h2>  
-        <div class="paket-container">  
-            <div class="paket-card">  
-                <h3>Başlangıç Programı</h3>  
-                <div id="prog1" class="program-text locked-content">Haftada 4-5 Gün
-
+    <!-- PROGRAMLAR OVERLAY -->
+    <div id="programsSection" class="programs-overlay">
+        <button onclick="closePrograms()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
+        <section style="padding: 40px 5%;">
+            <h2 class="section-title">PROGRAMLAR</h2>
+            <div class="paket-container">
+                <div class="paket-card">
+                    <h3>Başlangıç Programı</h3>
+                    <div id="prog1" class="program-text locked-content">Haftada 4-5 Gün
 Lat pulldown — 3x12
 Seated low row — 3x12
 Machine shoulder press — 3x12
@@ -109,95 +119,78 @@ Leg extension — 3x12
 Leg curl — 3x12
 Hanging leg raise — 4 set tükenişe kadar
 🔥 30-45 dk kardiyo (Incline: 15 | Speed: 5)</div>
-<button class="btn-hero" onclick="openLogin()">BAŞLA</button>
-</div>
-<div class="paket-card">
-<h3>Orta Seviye Program</h3>
-<div id="prog2" class="program-text locked-content">🔥 YAĞ YAKIMI PROGRAMI
-🟢 Pazartesi – Sırt + Arka Kol
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+                <div class="paket-card">
+                    <h3>Orta Seviye Program</h3>
+                    <div id="prog2" class="program-text locked-content">🔥 YAĞ YAKIMI
+🟢 Sırt + Arka Kol
 Lat pulldown — 4x12
 Rope pushdown — 4x15
 Dumbbell row — 3x12
 Close grip pushdown — 3x15
-Straight arm pulldown — 3x15
-🔥 10 dk incline yürüyüş
-
-🟢 Salı – Omuz + Ön Kol
+🟢 Omuz + Ön Kol
 Shoulder press — 4x12
 Lateral raise + Front raise — 3x15
-Rear delt + Barbell curl — 3x12
-
-🟢 Perşembe – Bacak
+🟢 Bacak
 Hack squat — 4x12
 Leg extension + Leg curl — 3x15
-Walking lunge — 3 tur
-Leg press + Calf raise — 3x15
-
-🟢 Cuma – Göğüs
+🟢 Göğüs
 Incline bench press — 4x12
-Incline fly + Butterfly — 3x15
-
-🟢 Cumartesi – Kol + Metabolik
-Barbell curl + Skullcrusher — 4x12
-Hammer curl + Rope pushdown — 3x15</div>
-<button class="btn-hero" onclick="openLogin()">BAŞLA</button>
-</div>
-<div class="paket-card" style="border: 2px solid #ccff00;">
-<h3>Geliştirilmiş Üst Seviye Program</h3>
-<div id="prog3" class="program-text locked-content">💪 KAS GELİŞTİRME PROGRAMI
-🟦 Pazartesi: Chest Press, Incline Press, Shoulder Press, Lateral Raise, Triceps Pushdown
-🟦 Salı: Lat Pulldown, Wide Grip Row, Dumbbell Curl, Hammer Curl + Reverse Barbell
+Incline fly + Butterfly — 3x15</div>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+                <div class="paket-card" style="border: 2px solid #ccff00;">
+                    <h3>Geliştirilmiş Üst Seviye Program</h3>
+                    <div id="prog3" class="program-text locked-content">💪 KAS GELİŞTİRME
+🟦 Pazartesi: Chest Press, Incline Press, Shoulder Press, Lateral Raise
+🟦 Salı: Lat Pulldown, Wide Grip Row, Dumbbell Curl
 🟦 Çarşamba: Leg Press, Smith Squat, Leg Extension, Seated Leg Curl
-🟦 Cuma: Shoulder Press, Lateral Raise, Incline Press, Chest Fly, Triceps Pushdown
-🔹 RIR 0 → Failure (tükeniş)
-🔹 Ek Bilgi: 3×10 Cable Crunch, 3×10 Standing Calf Raise</div>
-<button class="btn-hero" onclick="openLogin()">BAŞLA</button>
-</div>
-</div>
-</section>
-</div>
+🟦 Cuma: Shoulder Press, Lateral Raise, Incline Press, Chest Fly
+🔹 RIR 0 → Failure
+🔹 Ek Bilgi: 3×10 Cable Crunch</div>
+                    <button class="btn-hero" onclick="openLogin()">BAŞLA</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<!-- GİRİŞ & GİZLİLİK MODALLARI -->  
-<div id="loginModal" class="modal">  
-    <div class="modal-content">  
-        <h2 style="color:#ccff00; margin-bottom:20px;">GİRİŞ YAP</h2>  
-        <input type="text" id="username" placeholder="Kullanıcı Adı">  
-        <input type="password" id="password" placeholder="Parola">  
-        <button class="btn-hero" style="width:100%; margin-top:10px;" onclick="checkLogin()">GİRİŞ YAP</button>  
-        <button onclick="closeLogin()" style="background:none; color:gray; border:none; margin-top:20px; cursor:pointer;">Kapat</button>  
-    </div>  
-</div>  
+    <!-- MODALLAR -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color:#ccff00; margin-bottom:20px;">GİRİŞ YAP</h2>
+            <input type="text" id="username" placeholder="Kullanıcı Adı">
+            <input type="password" id="password" placeholder="Parola">
+            <button class="btn-hero" style="width:100%;" onclick="checkLogin()">GİRİŞ YAP</button>
+            <button onclick="closeLogin()" style="background:none; color:gray; border:none; margin-top:15px; cursor:pointer;">Kapat</button>
+        </div>
+    </div>
 
-<div id="privacyModal" class="modal">  
-    <div class="modal-content">  
-        <h2 style="color:#ccff00;">GİZLİLİK POLİTİKASI</h2>  
-        <p style="text-align:left; color:#ccc; margin-top:20px;">Kişisel verileriniz hiçbir şekilde üçüncü taraflarla paylaşılmaz. Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.</p>  
-        <button onclick="closePrivacy()" class="btn-hero" style="margin-top:20px;">Tamam</button>  
-    </div>  
-</div>  
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color:#ccff00;">GİZLİLİK</h2>
+            <p style="text-align:left; color:#ccc; margin-top:20px;">Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.</p>
+            <button onclick="closePrivacy()" class="btn-hero" style="margin-top:20px;">Tamam</button>
+        </div>
+    </div>
 
-<script>  
-    function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }  
-    function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }  
-    function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }  
-    function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }  
-    function openPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }  
-    function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }  
-      
-    function checkLogin() {  
-        let user = document.getElementById('username').value;  
-        let pass = document.getElementById('password').value;  
-        if (user === "admin" && pass === "12345") {  
-            alert("Giriş Başarılı!");  
-            document.getElementById('prog1').classList.remove('locked-content');  
-            document.getElementById('prog2').classList.remove('locked-content');  
-            document.getElementById('prog3').classList.remove('locked-content');  
-            closeLogin();  
-        } else {  
-            alert("Hatalı bilgiler!");  
-        }  
-    }  
-</script>
-
-</body>  
-</html>   
+    <script>
+        function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }
+        function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }
+        function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
+        function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+        function openPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
+        function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
+        
+        function checkLogin() {
+            if (document.getElementById('username').value === "admin" && document.getElementById('password').value === "12345") {
+                alert("Başarılı!");
+                document.getElementById('prog1').classList.remove('locked-content');
+                document.getElementById('prog2').classList.remove('locked-content');
+                document.getElementById('prog3').classList.remove('locked-content');
+                closeLogin();
+            } else { alert("Hatalı!"); }
+        }
+    </script>
+</body>
+</html>
