@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ber can't | Online Coaching</title>
-    <!-- Premium Görünüm İçin Bebas Neue ve Montserrat Fontları -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         /* Yumuşak Kaydırma ve Temel Ayarlar */
@@ -45,18 +44,21 @@
             transition: all 0.3s ease;
         }
         
-        /* Logo Stili ve Ana Sayfa Bağlantısı */
+        /* Görsel Logo ve Neon Stili */
         .logo a { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: 3rem; 
-            color: #ccff00; 
+            display: flex;
+            align-items: center;
             text-decoration: none; 
-            letter-spacing: 3px; 
-            text-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
-            transition: 0.3s ease;
         }
-        .logo a:hover {
-            text-shadow: 0 0 25px rgba(204, 255, 0, 0.7);
+        .nav-logo-img {
+            height: 55px; /* Logonun masaüstü boyutu */
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.6)); /* Neon Gölgelendirme */
+            transition: all 0.3s ease;
+        }
+        .logo a:hover .nav-logo-img {
+            filter: drop-shadow(0 0 15px rgba(204, 255, 0, 1)) drop-shadow(0 0 30px rgba(204, 255, 0, 0.6));
+            transform: scale(1.05); /* Fareyle üstüne gelince hafif büyüme */
         }
 
         .nav-links { display: flex; list-style: none; gap: 30px; }
@@ -280,7 +282,10 @@
         @media (max-width: 768px) {
             /* Üst Menü Sıkışma Düzenlemesi */
             .navbar { padding: 15px 5%; flex-direction: column; gap: 10px; background: rgba(10, 10, 10, 0.98); }
-            .logo a { font-size: 2.2rem; }
+            
+            /* Logo Mobilde Daha Şık Durması İçin Küçültüldü */
+            .nav-logo-img { height: 45px; }
+
             .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 0.8rem; }
             .navbar .btn-hero { padding: 8px 16px; font-size: 0.8rem; margin-bottom: 5px; }
@@ -330,7 +335,11 @@
 <body>
 
     <nav class="navbar">
-        <div class="logo"><a href="#">BER CAN'T</a></div>
+        <div class="logo">
+            <a href="#">
+                <img src="logo.png" alt="Ber can't Logo" class="nav-logo-img">
+            </a>
+        </div>
         <ul class="nav-links">
             <li><a href="#how-it-works">SİSTEM</a></li>
             <li><a href="#about">HAKKIMDA</a></li>
@@ -436,7 +445,6 @@ Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için 
         </div>
     </footer>
 
-    <!-- PROGRAMLAR OVERLAY -->
     <div id="programsSection" class="full-overlay">
         <button onclick="closePrograms()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
@@ -554,7 +562,6 @@ Russian Twist — 3x20</div>
         </section>
     </div>
 
-    <!-- KOÇLUK OVERLAY -->
     <div id="coachingSection" class="full-overlay">
         <button onclick="closeCoaching()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
@@ -624,7 +631,6 @@ Russian Twist — 3x20</div>
         </section>
     </div>
 
-    <!-- HESAPLAMALAR MERKEZİ (FULL OVERLAY) -->
     <div id="calculatorsSection" class="full-overlay">
         <button onclick="closeCalculators()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
@@ -738,7 +744,6 @@ Russian Twist — 3x20</div>
         </section>
     </div>
 
-    <!-- MODALLAR (ŞİFRE VE YASAL METİNLER) -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:#ccff00; margin-bottom:20px; letter-spacing: 2px;">GİRİŞ YAP</h2>
