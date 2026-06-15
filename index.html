@@ -6,459 +6,405 @@
     <title>Ber can't | Premium Coaching Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ================= TEMEL AYARLAR & DEĞİŞKENLER ================= */
-        :root {
-            --neon: #ccff00;
-            --bg-dark: #050505;
-            --bg-panel: #0a0a0a;
-            --bg-card: #111111;
-            --border-color: rgba(204, 255, 0, 0.15);
-            --text-main: #ffffff;
-            --text-muted: #888888;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ========================================= */
+        /* 1. TEMEL AYARLAR VE ANA SAYFA TASARIMI    */
+        /* ========================================= */
         html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
-            background: var(--bg-dark); 
-            color: var(--text-main); 
+            background: linear-gradient(-45deg, #050505, #121212, #0d1a00, #000000);
+            background-size: 400% 400%;
+            animation: waveBackground 15s ease infinite;
+            color: #ffffff; 
             font-family: 'Montserrat', sans-serif; 
             line-height: 1.6; 
             overflow-x: hidden; 
         }
 
-        /* View Yönetimi (Sayfalar Arası Geçiş İçin) */
+        @keyframes waveBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Sayfa Geçişleri İçin View Mantığı */
         .app-view { display: none; width: 100%; min-height: 100vh; animation: fadeIn 0.4s ease; }
-        .app-view.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Buton Stilleri */
-        .btn-neon { 
-            background-color: var(--neon); color: #000; padding: 12px 25px; 
-            font-weight: 800; border-radius: 8px; cursor: pointer; border: none; 
-            text-transform: uppercase; font-family: 'Montserrat', sans-serif;
-            transition: 0.3s ease; box-shadow: 0 4px 15px rgba(204, 255, 0, 0.2);
-            text-align: center; display: inline-block; text-decoration: none;
-        }
-        .btn-neon:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(204, 255, 0, 0.4); }
-        
-        .btn-outline {
-            background: transparent; color: var(--text-main); padding: 12px 25px;
-            font-weight: 600; border-radius: 8px; cursor: pointer; border: 1px solid var(--text-muted);
-            text-transform: uppercase; transition: 0.3s;
-        }
-        .btn-outline:hover { border-color: var(--neon); color: var(--neon); }
-
-        /* ================= 1. ANA SAYFA (LANDING PAGE) STİLLERİ ================= */
+        /* Navbar & Logo */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 15px 5%; position: fixed; width: 100%; top: 0; z-index: 1000; 
-            background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(204, 255, 0, 0.1);
         }
-        .nav-logo-img { height: 70px; width: auto; filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.6)); transition: 0.3s; }
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .nav-logo-img { height: 70px; width: auto; filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.6)); transition: all 0.3s ease; }
+        .logo a:hover .nav-logo-img { filter: drop-shadow(0 0 15px rgba(204, 255, 0, 1)); transform: scale(1.05); }
+
+        /* Mobil Hamburger */
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+        .hamburger span { width: 35px; height: 4px; background-color: #ccff00; border-radius: 5px; box-shadow: 0 0 5px rgba(204, 255, 0, 0.5); }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
         .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { color: #ddd; text-decoration: none; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--neon); }
-        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: #ddd; text-decoration: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.3s ease; text-transform: uppercase; }
+        .nav-links a:hover { color: #ccff00; }
 
-        .hero { 
-            display: flex; align-items: center; justify-content: space-between; 
-            padding: 150px 5% 80px 5%; max-width: 1400px; margin: 0 auto; min-height: 90vh;
+        /* Premium Butonlar */
+        .btn-hero { 
+            background-color: #ccff00; color: #050505; padding: 12px 28px; 
+            text-decoration: none; font-weight: 800; font-family: 'Montserrat', sans-serif;
+            border-radius: 8px; cursor: pointer; border: none; text-transform: uppercase;
+            transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(204, 255, 0, 0.2);
         }
-        .hero-content { max-width: 55%; }
-        .hero-content h1 { font-family: 'Bebas Neue', cursive; font-size: 6rem; line-height: 1; margin-bottom: 10px; }
-        .neon-text { color: var(--neon); text-shadow: 0 0 10px rgba(204, 255, 0, 0.5); }
-        .hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; font-weight: 300; }
-        
-        .hero-stats { display: flex; gap: 40px; margin-bottom: 40px; }
-        .stat-item h3 { color: var(--neon); font-size: 2rem; font-family: 'Bebas Neue', cursive; margin-bottom: 5px; }
-        .stat-item p { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+        .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(204, 255, 0, 0.5); background-color: #d4ff33; }
 
-        .hero-image-box { position: relative; width: 450px; height: 600px; border-radius: 20px; overflow: hidden; border: 2px solid var(--neon); box-shadow: 0 0 30px rgba(204, 255, 0, 0.1); }
-        .hero-image-box img { width: 100%; height: 100%; object-fit: cover; }
+        /* Hero / Ana Kısım */
+        main { padding-top: 100px; }
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 5%; min-height: 80vh; max-width: 1300px; margin: 0 auto; position: relative; }
+        .hero-content { max-width: 50%; }
+        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.2; }
+        .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; margin-top: 20px; }
+        
+        .led-wrapper {
+            position: relative; display: inline-flex; padding: 20px 40px; border-radius: 15px;
+            overflow: hidden; background: #050505; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .led-wrapper::before {
+            content: ''; position: absolute; top: -150%; left: -150%; width: 400%; height: 400%;
+            background: conic-gradient(transparent, transparent, transparent, #ccff00);
+            animation: rotateLed 2.5s linear infinite; z-index: 0;
+        }
+        .led-wrapper::after { content: ''; position: absolute; inset: 3px; background: #0a0a0a; border-radius: 12px; z-index: 1; }
+        @keyframes rotateLed { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .neon-text { color: #ccff00; text-shadow: 0 0 3px #ccff00, 0 0 10px rgba(204, 255, 0, 0.4); }
 
-        /* Yeni Fiyatlandırma Bölümü */
-        .pricing-section { padding: 80px 5%; background: var(--bg-panel); text-align: center; }
-        .section-title { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: var(--text-main); margin-bottom: 10px; }
-        .section-subtitle { color: var(--text-muted); margin-bottom: 50px; }
-        
-        .pricing-grid { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
-        .pricing-card { background: var(--bg-card); border: 1px solid #222; border-radius: 15px; padding: 40px 20px; width: 320px; text-align: left; position: relative; transition: 0.3s; }
-        .pricing-card.popular { border-color: var(--neon); box-shadow: 0 10px 30px rgba(204, 255, 0, 0.1); transform: scale(1.05); }
-        .popular-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--neon); color: #000; padding: 5px 15px; font-size: 0.8rem; font-weight: 800; border-radius: 20px; }
-        
-        .pricing-card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 5px; text-align: center; }
-        .pricing-card h4 { font-size: 1rem; color: #aaa; font-weight: 400; text-align: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px; }
-        
-        .pricing-features { list-style: none; margin-bottom: 40px; }
-        .pricing-features li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #ccc; margin-bottom: 12px; }
-        .pricing-features li::before { content: '✔'; color: var(--neon); font-weight: bold; }
-        
-        .price { font-size: 2.5rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 20px; }
-        
-        /* Güven Badge'leri */
-        .trust-badges { display: flex; justify-content: center; gap: 50px; padding: 40px 5%; border-top: 1px solid #222; border-bottom: 1px solid #222; background: var(--bg-dark); flex-wrap: wrap; }
-        .trust-item { display: flex; align-items: center; gap: 15px; }
-        .trust-item svg { fill: var(--neon); width: 35px; height: 35px; }
-        .trust-item div h4 { font-size: 1.5rem; font-family: 'Bebas Neue', cursive; color: #fff; }
-        .trust-item div p { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+        .hero-image { 
+            width: 400px; height: 550px; background: linear-gradient(135deg, #111, #1a1a1a); 
+            display: flex; align-items: center; justify-content: center; border: 2px solid rgba(204, 255, 0, 0.3); 
+            border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(204, 255, 0, 0.05); overflow: hidden;
+        }
 
-        /* ================= 2. DASHBOARD ORTAK STİLLER ================= */
-        .dashboard-layout { display: flex; min-height: 100vh; background: var(--bg-dark); }
-        
-        /* Sidebar */
-        .sidebar { width: 260px; background: var(--bg-card); border-right: 1px solid #222; padding: 30px 20px; position: fixed; height: 100vh; overflow-y: auto; }
-        .sidebar-logo { display: flex; justify-content: center; margin-bottom: 40px; }
-        .sidebar-logo img { height: 50px; filter: drop-shadow(0 0 5px rgba(204, 255, 0, 0.4)); }
-        
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 10px; }
-        .sidebar-menu a { display: flex; align-items: center; gap: 15px; color: var(--text-muted); text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: 0.3s; font-weight: 500; font-size: 0.95rem; }
-        .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(204, 255, 0, 0.1); color: var(--neon); }
-        .sidebar-menu svg { width: 20px; height: 20px; fill: currentColor; }
+        /* Kartlar ve Ortak Sınıflar */
+        .step-card, .paket-card { 
+            background: linear-gradient(145deg, #151515, #080808); padding: 40px 25px; border-radius: 20px; 
+            width: 100%; max-width: 350px; border: 1px solid rgba(204, 255, 0, 0.1); text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.4s ease; 
+        }
+        .step-card:hover, .paket-card:hover { transform: translateY(-10px); border-color: rgba(204, 255, 0, 0.5); box-shadow: 0 15px 40px rgba(204, 255, 0, 0.15); }
+        .step-card h3, .paket-card h3 { font-size: 1.5rem; color: #ccff00; margin-bottom: 15px; font-weight: 800; }
+        .paket-card h3 { color: #fff; }
+        .step-card p { font-size: 1rem; color: #ccc; line-height: 1.6; }
 
-        .logout-btn { margin-top: auto; position: absolute; bottom: 30px; width: calc(100% - 40px); display: flex; align-items: center; gap: 10px; color: #ff4444; padding: 12px 15px; cursor: pointer; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+        .full-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); z-index: 2000; overflow-y: auto; padding: 20px; }
+        .section-title { font-family: 'Bebas Neue', cursive; text-align: center; margin-bottom: 40px; font-size: 4rem; color: #ccff00; letter-spacing: 3px; }
+        .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        
+        .program-text { font-size: 0.95rem; color: #aaa; text-align: left; margin: 20px 0; min-height: 200px; white-space: pre-wrap; transition: 0.5s; line-height: 1.8; }
+        .locked-content { filter: blur(8px); user-select: none; opacity: 0.5; }
+        .unlocked { filter: blur(0px); opacity: 1; }
+        
+        .coaching-list { list-style: none; padding: 0; margin: 20px 0 30px 0; text-align: left; }
+        .coaching-list li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+        .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
+
+        /* Hesaplamalar Stilleri */
+        .calc-container { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); max-width: 600px; margin: 0 auto; }
+        .calc-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .calc-tab-btn { flex: 1; min-width: 120px; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+        .calc-tab-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
+        .calc-content { display: none; }
+        .calc-content.active { display: block; animation: fadeIn 0.4s; }
+        
+        .calc-input, .calc-select { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-size: 0.95rem; outline: none; }
+        .calc-input:focus, .calc-select:focus { border-color: #ccff00; }
+        .gender-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .gender-btn { flex: 1; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .gender-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
+        .result-box { background: rgba(204,255,0,0.05); border: 1px solid rgba(204, 255, 0, 0.4); padding: 20px; border-radius: 12px; margin-top: 15px; font-weight: 600; }
+        .result-value { font-size: 2rem; color: #ccff00; font-weight: 800; font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
+
+        /* Footer */
+        .site-footer { background-color: #0d0d0d; border-top: 1px solid rgba(204, 255, 0, 0.1); padding: 60px 5%; margin-top: 50px; }
+        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .footer-brand h2 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
+        .footer-socials { display: flex; gap: 15px; margin-top: 15px; }
+        .footer-socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; transition: 0.3s; }
+        .footer-socials a:hover { background: #ccff00; }
+        .footer-socials a:hover svg { fill: #000; }
+        .footer-socials svg { width: 20px; height: 20px; fill: #aaa; transition: 0.3s; }
+        .footer-links h3, .footer-contact h3 { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; margin-bottom: 20px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: #888; text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .footer-links a:hover { color: #ccff00; }
+        .footer-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #888; }
+        .icon-circle { width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(204,255,0,0.3); display: flex; align-items: center; justify-content: center; background: rgba(204,255,0,0.05); }
+        .icon-circle svg { width: 16px; fill: #ccff00; }
+
+        /* Modal Ortak Sınıfları */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); }
+        
+        /* ========================================= */
+        /* 2. DASHBOARD ÖZEL TASARIMLARI             */
+        /* ========================================= */
+        .dash-layout { display: flex; min-height: 100vh; background: #050505; }
+        .dash-sidebar { width: 260px; background: #0a0a0a; border-right: 1px solid #222; padding: 30px 20px; position: fixed; height: 100vh; }
+        .dash-logo { display: flex; justify-content: center; margin-bottom: 40px; }
+        .dash-logo img { height: 45px; filter: drop-shadow(0 0 8px rgba(204, 255, 0, 0.5)); }
+        .dash-menu { list-style: none; }
+        .dash-menu li { margin-bottom: 10px; }
+        .dash-menu a { display: flex; align-items: center; gap: 15px; color: #888; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: 0.3s; font-size: 0.95rem; font-weight: 500; }
+        .dash-menu a:hover, .dash-menu a.active { background: rgba(204, 255, 0, 0.1); color: #ccff00; }
+        .dash-menu svg { width: 20px; fill: currentColor; }
+        .logout-btn { position: absolute; bottom: 30px; width: calc(100% - 40px); display: flex; align-items: center; gap: 10px; color: #ff4444; padding: 12px 15px; cursor: pointer; border-radius: 8px; font-weight: 600; }
         .logout-btn:hover { background: rgba(255, 68, 68, 0.1); }
 
-        /* Main Dashboard Content */
         .dash-main { margin-left: 260px; padding: 40px; width: calc(100% - 260px); }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+        .dash-header h2 { font-size: 2rem; }
+        .dash-header-stats { display: flex; gap: 30px; align-items: center; }
+        .h-stat { text-align: center; }
+        .h-stat p { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+        .h-stat h4 { font-size: 1.3rem; color: #fff; }
         
-        /* Dashboard Header */
-        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .dash-header-left h2 { font-size: 1.8rem; font-weight: 600; }
-        .dash-header-left p { color: var(--text-muted); font-size: 0.9rem; }
-        
-        .dash-header-stats { display: flex; gap: 30px; }
-        .header-stat { text-align: center; }
-        .header-stat p { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
-        .header-stat h4 { font-size: 1.4rem; font-weight: 700; color: #fff; }
-        
-        .user-profile-mini { display: flex; align-items: center; gap: 15px; }
-        .user-avatar { width: 50px; height: 50px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--neon); }
-        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Panel Grid Sistemleri */
         .dash-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .dash-card { background: #111; border: 1px solid #222; border-radius: 15px; padding: 25px; }
+        .dash-card-header { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .dash-card-header h3 { font-size: 1.1rem; color: #fff; }
+
+        /* Grafik ve Çemberler */
+        .circle-wrap { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(#ccff00 72%, #222 0); display: flex; align-items: center; justify-content: center; position: relative; }
+        .circle-wrap::after { content: ''; width: 100px; height: 100px; border-radius: 50%; background: #111; position: absolute; }
+        .circle-val { position: relative; z-index: 1; text-align: center; }
         
-        .dash-card { background: var(--bg-card); border: 1px solid #222; border-radius: 15px; padding: 25px; }
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center; }
-        .card-header h3 { font-size: 1.1rem; font-weight: 600; color: #fff; }
-
-        /* Dairesel Progress ve Hedefler */
-        .targets-container { display: flex; align-items: center; gap: 30px; justify-content: space-between; }
-        .circle-progress { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--neon) 72%, #222 0); display: flex; align-items: center; justify-content: center; position: relative; }
-        .circle-progress::after { content: ''; width: 100px; height: 100px; border-radius: 50%; background: var(--bg-card); position: absolute; }
-        .circle-progress-value { position: relative; z-index: 1; text-align: center; }
-        .circle-progress-value h2 { font-size: 1.8rem; color: #fff; }
-        .circle-progress-value p { font-size: 0.6rem; color: #888; }
-
-        .daily-mini-stats { display: flex; gap: 20px; flex: 1; justify-content: space-between; }
+        .stat-grid { display: flex; gap: 20px; justify-content: space-between; flex: 1; }
         .mini-stat { text-align: center; }
-        .mini-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; }
-        .mini-icon svg { width: 20px; fill: var(--neon); }
-        .mini-stat h5 { font-size: 0.85rem; color: #ccc; font-weight: 500; }
-        .mini-stat p { font-size: 0.8rem; color: var(--text-muted); }
+        .mini-stat-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; }
+        .mini-stat-icon svg { width: 20px; fill: #ccff00; }
         
-        /* Tablo (Admin) */
-        .data-table { width: 100%; border-collapse: collapse; text-align: left; }
-        .data-table th { padding: 15px 10px; color: var(--text-muted); font-size: 0.85rem; border-bottom: 1px solid #333; font-weight: 500; }
-        .data-table td { padding: 15px 10px; border-bottom: 1px solid #222; font-size: 0.9rem; color: #eee; }
-        .status-badge { background: rgba(204,255,0,0.1); color: var(--neon); padding: 5px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
-        
-        /* Modallar (Genel) */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); text-align: center; }
-        .modal-input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-family: inherit; outline: none; }
-        .modal-input:focus { border-color: var(--neon); }
+        /* Tablo (Admin için) */
+        .admin-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .admin-table th { padding: 15px 10px; color: #888; font-size: 0.85rem; border-bottom: 1px solid #333; }
+        .admin-table td { padding: 15px 10px; border-bottom: 1px solid #222; font-size: 0.9rem; color: #eee; }
+        .badge-active { background: rgba(204,255,0,0.1); color: #ccff00; padding: 5px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
 
-        /* Basit Utility Sınıfları */
-        .text-green { color: var(--neon); }
-        .text-red { color: #ff4444; }
-
-        /* Mobil Uyumluluk */
+        /* ========================================= */
+        /* 3. MOBİL UYUMLULUK (HEM LANDING HEM DASH) */
+        /* ========================================= */
         @media (max-width: 992px) {
-            .navbar { flex-wrap: wrap; padding: 15px; }
-            .nav-links { display: none; } /* Mobilde gizle, basitlik için butona tıkla */
-            
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .hero-content { max-width: 100%; }
-            .hero-stats { justify-content: center; flex-wrap: wrap; }
-            .hero-image-box { width: 100%; max-width: 350px; height: 450px; margin-top: 30px; }
+            /* Navbar ve Landing Page */
+            .navbar { padding: 15px 5%; flex-direction: row; align-items: center; }
+            .nav-logo-img { height: 50px; }
+            .hamburger { display: flex; }
+            .nav-right {
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(10, 10, 10, 0.98); flex-direction: column; padding: 20px 5%;
+                border-bottom: 1px solid rgba(204, 255, 0, 0.2);
+            }
+            .nav-right.active { display: flex; }
+            .nav-links { flex-direction: column; gap: 20px; align-items: center; width: 100%; }
+            .nav-links a { font-size: 1.2rem; }
+            .navbar .btn-hero { width: 100%; margin-top: 15px; }
 
-            .dashboard-layout { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-right: none; border-bottom: 1px solid #222; }
-            .sidebar-logo { margin: 0; }
-            .sidebar-menu { display: flex; overflow-x: auto; gap: 10px; width: 100%; margin-left: 20px; }
-            .sidebar-menu a { padding: 8px 12px; white-space: nowrap; }
+            main { padding-top: 120px; }
+            h1 { font-size: 2.8rem !important; line-height: 1.2 !important; padding: 10px 0; }
+            .led-wrapper { padding: 15px 20px; }
+            
+            .hero { flex-direction: column; text-align: center; padding: 20px 5%; }
+            .hero-content { max-width: 100%; }
+            .hero-image { width: 100%; max-width: 320px; height: 400px; margin: 30px auto; }
+            
+            .calc-tabs { flex-direction: column; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-socials, .footer-contact li { justify-content: center; }
+
+            /* Dashboard Mobil */
+            .dash-layout { flex-direction: column; }
+            .dash-sidebar { width: 100%; height: auto; position: relative; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-right: none; border-bottom: 1px solid #222; }
+            .dash-logo { margin: 0; }
+            .dash-menu { display: flex; overflow-x: auto; gap: 10px; width: 100%; margin-left: 20px; margin-bottom: 0; }
+            .dash-menu a { padding: 8px 12px; white-space: nowrap; font-size: 0.8rem; }
             .logout-btn { position: relative; bottom: 0; width: auto; margin-left: 10px; padding: 8px; }
             .logout-btn span { display: none; }
             
             .dash-main { margin-left: 0; width: 100%; padding: 20px; }
-            .dash-header { flex-direction: column; gap: 20px; align-items: flex-start; }
             .dash-grid { grid-template-columns: 1fr; }
-            
-            .targets-container { flex-direction: column; }
-            .daily-mini-stats { flex-wrap: wrap; justify-content: center; }
-            .data-table { display: block; overflow-x: auto; }
+            .stat-grid { flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
+            .admin-table { display: block; overflow-x: auto; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========================================== -->
-    <!-- 1. ANA SAYFA / LANDING PAGE VIEW           -->
-    <!-- ========================================== -->
+    <!-- ============================================================== -->
+    <!-- VIEW 1: ANA SAYFA (LANDING PAGE - Sitenin Orijinal Hali)       -->
+    <!-- ============================================================== -->
     <div id="view-landing" class="app-view active">
-        
         <nav class="navbar">
             <div class="logo">
-                <a href="#" onclick="showView('view-landing')">
-                    <img src="logo.png" alt="Ber can't" class="nav-logo-img">
+                <a href="#" onclick="window.scrollTo(0,0)">
+                    <img src="logo.png" alt="Ber can't Logo" class="nav-logo-img">
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#about">SİSTEM</a></li>
-                <li><a href="#pricing">PAKETLER</a></li>
-                <li><a onclick="openModal('calcModal')">HESAPLAMALAR</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a class="btn-outline" onclick="openModal('loginModal')">GİRİŞ YAP</a>
-                <a class="btn-neon" href="#pricing">HEMEN BAŞLA</a>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+
+            <div class="nav-right" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#how-it-works" onclick="closeMobileMenu()">SİSTEM</a></li>
+                    <li><a href="#about" onclick="closeMobileMenu()">HAKKIMDA</a></li>
+                    <li><a onclick="openPrograms(); closeMobileMenu()">PROGRAMLAR</a></li>
+                    <li><a onclick="openCoaching(); closeMobileMenu()">KOÇLUK</a></li>
+                    <li><a onclick="openCalculators(); closeMobileMenu()" style="color: #ccff00;">HESAPLAMALAR</a></li>
+                </ul>
+                <button class="btn-hero" onclick="openLogin(); closeMobileMenu()">GİRİŞ YAP</button>
             </div>
         </nav>
 
-        <section class="hero">
-            <div class="hero-content">
-                <h1><span class="neon-text">SINIRLARINI</span><br>AŞ</h1>
-                <p>Kendine yatırım yap, en iyi versiyonun ol. Kişiye özel antrenman ve beslenme programları ile hedeflerine ulaşman için buradayım.</p>
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="led-wrapper">
+                        <h1>BAHANE YOK <br><span class="neon-text">SONUÇ</span> VAR</h1>
+                    </div>
+                    <p>Türkiye'nin önde gelen online fitness koçluk platformu, Profesyonel antrenman programları ve sürdürülebilir gelişim için şimdi başla.</p>
+                    <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
+                </div>
+                <div class="hero-image">
+                    <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Berkant Yenel" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </section>  
+
+            <section id="how-it-works" style="padding: 60px 5%; text-align: center;">
+                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #ccff00; letter-spacing: 2px; margin-bottom: 10px;">Sistem Nasıl İşler?</h2>
+                <p style="color: #ddd; font-weight: 300; margin-bottom: 50px; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Gelişim tesadüf değildir. Doğru strateji, disiplinli takip ve kaçınılmaz başarı.</p>
                 
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <h3>500+</h3>
-                        <p>Mutlu Öğrenci</p>
+                <div class="paket-container" style="margin-top: 40px;">
+                    <div class="step-card">
+                        <h3>Kişisel Analiz & Yol Haritası</h3>
+                        <p>Mevcut fiziksel durumun, günlük rutinin ve hedeflerin detaylıca incelenerek sadece sana özel bir temel oluşturulur.</p>
                     </div>
-                    <div class="stat-item">
-                        <h3>%95</h3>
-                        <p>Memnuniyet</p>
+                    <div class="step-card">
+                        <h3>Aksiyon & Birebir Süreç</h3>
+                        <p>Sana özel hazırlanan programlar devreye girer. Düzenli raporlamalarla sürecin her adımı yakından izlenir.</p>
                     </div>
-                    <div class="stat-item">
-                        <h3>7/24</h3>
-                        <p>Koç Desteği</p>
+                    <div class="step-card">
+                        <h3>Gelişim & Zirve</h3>
+                        <p>Vücudunun adaptasyonuna göre makrolar ve idmanlar güncellenir. Duraklama olmadan sürekli ilerleme hedeflenir.</p>
                     </div>
                 </div>
+            </section>
 
-                <div style="display: flex; gap: 15px;">
-                    <a href="#pricing" class="btn-neon">HEMEN BAŞLA</a>
-                    <a href="#pricing" class="btn-outline">PAKETLERİ İNCELE</a>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 20px auto; width: 70%;">
+
+            <section id="about" style="padding: 80px 5%; text-align: center;">
+                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; margin-bottom: 20px; color: #ccff00; letter-spacing: 2px;">HAKKIMDA</h2>
+                <p style="max-width: 800px; margin: 0 auto; font-size: 1.05rem; color: #ddd; font-weight: 300;">Biz, sağlıklı yaşamın ve güçlü bir bedenin herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Amacımız, kullanıcılarımızın fiziksel ve zihinsel potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmak ve sürdürülebilir bir yaşam tarzı oluşturmalarını sağlamaktır. Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımız, kişisel hedeflerinize ulaşmanız için özel olarak tasarlanmıştır. İster kas geliştirmek, ister yağ yakmak, ister daha sağlıklı bir yaşam sürmek isteyin — size uygun çözümler sunuyoruz.<br><br>Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gelişiminizi takip eden ve sizi her gün daha iyiye taşıyan bir topluluk oluşturmayı hedefliyoruz. Çünkü bizce gerçek başarı, disiplin, istikrar ve doğru rehberlikle mümkündür.</p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #fff; letter-spacing: 2px;">BER CAN'T</h2>
+                    <p style="color: #888; font-size: 0.9rem;">Profesyonel online uzaktan eğitim platformu. Sınırlarını zorlaman için tasarlanmış bilimsel antrenman ve beslenme stratejileriyle en iyi versiyonuna ulaş.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/bybercant" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
+                        <a href="https://www.youtube.com/@bybercantt" target="_blank"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image-box">
-                <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Coach Berkant">
-            </div>
-        </section>
-
-        <!-- Güven Bandı -->
-        <div class="trust-badges">
-            <div class="trust-item">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <div><h4>%95</h4><p>MEMNUNİYET ORANI</p></div>
-            </div>
-            <div class="trust-item">
-                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                <div><h4>500+</h4><p>AKTİF ÖĞRENCİ</p></div>
-            </div>
-            <div class="trust-item">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                <div><h4>7/24</h4><p>DESTEK</p></div>
-            </div>
-        </div>
-
-        <section id="pricing" class="pricing-section">
-            <h2 class="section-title">Size En Uygun Paketi Seçin</h2>
-            <p class="section-subtitle">Hedefine giden yolda sana en uygun olan paketi seç ve hemen başla!</p>
-
-            <div class="pricing-grid">
-                <!-- 4 HAFTA -->
-                <div class="pricing-card">
-                    <h3>4 HAFTA</h3>
-                    <h4>Başlangıç Paketi</h4>
-                    <ul class="pricing-features">
-                        <li>Kişiye Özel Antrenman Programı</li>
-                        <li>Beslenme Planı</li>
-                        <li>Haftalık Check-in</li>
-                        <li>7/24 Whatsapp Desteği</li>
+                <div class="footer-links">
+                    <h3>HIZLI ERİŞİM</h3>
+                    <ul>
+                        <li><a href="#" onclick="window.scrollTo(0,0)">Anasayfa</a></li>
+                        <li><a onclick="openPrograms()">Programlar</a></li>
+                        <li><a onclick="openCoaching()">Paketler</a></li>
+                        <li><a onclick="openCalculators()">Hesaplamalar</a></li>
                     </ul>
-                    <div class="price">₺1.499</div>
-                    <button class="btn-neon" style="width: 100%;" onclick="window.open('https://www.shopier.com/bercanty', '_blank')">HEMEN BAŞLA</button>
                 </div>
-
-                <!-- 8 HAFTA (POPÜLER) -->
-                <div class="pricing-card popular">
-                    <div class="popular-badge">EN ÇOK TERCİH EDİLEN</div>
-                    <h3>8 HAFTA</h3>
-                    <h4>Gelişim Paketi</h4>
-                    <ul class="pricing-features">
-                        <li>Kişiye Özel Antrenman Programı</li>
-                        <li>Beslenme Planı</li>
-                        <li>Haftalık Check-in</li>
-                        <li>7/24 Whatsapp Desteği</li>
-                        <li>2 Haftada 1 Vücut Analizi</li>
-                        <li>Öncelikli Dönüş</li>
+                <div class="footer-links">
+                    <h3>YASAL</h3>
+                    <ul>
+                        <li><a onclick="openPrivacy('Gizlilik Sözleşmesi')">Gizlilik Sözleşmesi</a></li>
+                        <li><a onclick="openPrivacy('KVKK Aydınlatma Metni')">KVKK Aydınlatma Metni</a></li>
+                        <li><a onclick="openPrivacy('Mesafeli Satış Sözleşmesi')">Mesafeli Satış Sözleşmesi</a></li>
+                        <li><a onclick="openPrivacy('İptal ve İade Politikası')">İptal ve İade Politikası</a></li>
                     </ul>
-                    <div class="price text-green">₺2.799</div>
-                    <button class="btn-neon" style="width: 100%;" onclick="window.open('https://www.shopier.com/bercanty', '_blank')">HEMEN BAŞLA</button>
                 </div>
-
-                <!-- 12 HAFTA -->
-                <div class="pricing-card">
-                    <h3>12 HAFTA</h3>
-                    <h4>Dönüşüm Paketi</h4>
-                    <ul class="pricing-features">
-                        <li>Kişiye Özel Antrenman Programı</li>
-                        <li>Beslenme Planı</li>
-                        <li>Haftalık Check-in</li>
-                        <li>7/24 Whatsapp Desteği</li>
-                        <li>Haftalık Vücut Analizi</li>
-                        <li>Öncelikli Dönüş</li>
-                        <li>Aylık Görüntülü Görüşme</li>
-                        <li>Özel Plan Güncellemeleri</li>
+                <div class="footer-contact">
+                    <h3>İLETİŞİM</h3>
+                    <ul>
+                        <li><div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div> <span>Niğde / Türkiye</span></li>
+                        <li><div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div> <span>yenelberkant@gmail.com</span></li>
                     </ul>
-                    <div class="price">₺3.999</div>
-                    <button class="btn-neon" style="width: 100%;" onclick="window.open('https://www.shopier.com/bercanty', '_blank')">HEMEN BAŞLA</button>
                 </div>
             </div>
-        </section>
-        
-        <footer style="text-align: center; padding: 40px; background: #000; border-top: 1px solid #222;">
-            <p style="color: #666; font-size: 0.9rem;">&copy; 2026 Ber can't Online Coaching. Tüm hakları saklıdır.</p>
         </footer>
     </div>
 
 
-    <!-- ========================================== -->
-    <!-- 2. KULLANICI (ÖĞRENCİ) PANELİ VIEW         -->
-    <!-- ========================================== -->
+    <!-- ============================================================== -->
+    <!-- VIEW 2: ÖĞRENCİ PANELİ (USER DASHBOARD)                        -->
+    <!-- ============================================================== -->
     <div id="view-user" class="app-view">
-        <div class="dashboard-layout">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <div class="sidebar-logo">
-                    <img src="logo.png" alt="Ber can't">
-                </div>
-                <ul class="sidebar-menu">
-                    <li><a href="#" class="active"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> Ana Sayfa</a></li>
-                    <li><a href="#"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v2h2v5h2v-5h2v-2z"/></svg> Günlük Takip</a></li>
+        <div class="dash-layout">
+            <aside class="dash-sidebar">
+                <div class="dash-logo"><img src="logo.png" alt="Logo"></div>
+                <ul class="dash-menu">
+                    <li><a href="#" class="active"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> Genel Bakış</a></li>
                     <li><a href="#"><svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg> Antrenman</a></li>
-                    <li><a href="#"><svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.88 3.75 3.99V22h2.5v-9.01C11.34 12.88 13 11.12 13 9V2h-2v7zm8-7c-1.1 0-2 .9-2 2v4.1c0 .46.19.89.5 1.21L19 10.82V22h2V2h-2z"/></svg> Beslenme</a></li>
-                    <li><a href="#"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v2h2v5h2v-5h2v-2z"/></svg> Ölçümler</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.88 3.75 3.99V22h2.5v-9.01C11.34 12.88 13 11.12 13 9V2h-2v7z"/></svg> Beslenme</a></li>
                 </ul>
-                <div class="logout-btn" onclick="logout()">
-                    <svg viewBox="0 0 24 24" width="20"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/></svg> <span>Çıkış Yap</span>
-                </div>
+                <div class="logout-btn" onclick="logoutApp()"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg> <span>Çıkış Yap</span></div>
             </aside>
-
             <main class="dash-main">
                 <header class="dash-header">
-                    <div class="dash-header-left">
-                        <h2>Hoş geldin, <span class="text-green">Atakan!</span></h2>
-                        <p>Bugün kendini dünden daha iyi yap!</p>
+                    <div>
+                        <h2>Hoş geldin, <span style="color:#ccff00;">Öğrenci!</span></h2>
+                        <p style="color:#888;">Bugün kendini dünden daha iyi yap!</p>
                     </div>
                     <div class="dash-header-stats">
-                        <div class="header-stat">
-                            <p>Koçlukta</p>
-                            <h4>46. Gün</h4>
-                        </div>
-                        <div class="header-stat">
-                            <p>Hedef Kilon</p>
-                            <h4>78 kg</h4>
-                        </div>
-                        <div class="header-stat">
-                            <p>Kalan Süre</p>
-                            <h4>44 Gün</h4>
-                        </div>
-                        <div class="user-profile-mini">
-                            <div class="user-avatar">
-                                <svg viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                            </div>
-                        </div>
+                        <div class="h-stat"><p>Koçlukta</p><h4>46. Gün</h4></div>
+                        <div class="h-stat"><p>Hedef</p><h4>78 kg</h4></div>
+                        <div class="h-stat"><p>Kalan</p><h4>44 Gün</h4></div>
                     </div>
                 </header>
-
                 <div class="dash-grid">
-                    <!-- Sol Taraf (Grafik ve Hedefler) -->
-                    <div style="display:flex; flex-direction: column; gap:30px;">
+                    <div style="display:flex; flex-direction:column; gap:30px;">
                         <div class="dash-card">
-                            <div class="card-header">
-                                <h3>Günlük Hedeflerin</h3>
-                            </div>
-                            <div class="targets-container">
-                                <div class="circle-progress">
-                                    <div class="circle-progress-value">
-                                        <h2>%72</h2>
-                                        <p>Tamamlandı</p>
-                                    </div>
-                                </div>
-                                <div class="daily-mini-stats">
-                                    <div class="mini-stat">
-                                        <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></div>
-                                        <h5>Antrenman</h5>
-                                        <p class="text-green">✔ Tamamlandı</p>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.88 3.75 3.99V22h2.5v-9.01C11.34 12.88 13 11.12 13 9V2h-2v7z"/></svg></div>
-                                        <h5>Protein</h5>
-                                        <p>120 / 160g</p>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/></svg></div>
-                                        <h5>Su</h5>
-                                        <p>2.4 / 3L</p>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></div>
-                                        <h5>Adım</h5>
-                                        <p>8.200 / 10k</p>
-                                    </div>
+                            <div class="dash-card-header"><h3>Günlük Hedeflerin</h3></div>
+                            <div style="display:flex; gap:30px; align-items:center; flex-wrap:wrap;">
+                                <div class="circle-wrap"><div class="circle-val"><h2 style="color:#fff; font-size:1.8rem;">%72</h2><p style="color:#888; font-size:0.7rem;">Tamamlandı</p></div></div>
+                                <div class="stat-grid">
+                                    <div class="mini-stat"><div class="mini-stat-icon"><svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></div><h5 style="color:#ccc;">İdman</h5><p style="color:#ccff00; font-size:0.8rem;">✔ Tamam</p></div>
+                                    <div class="mini-stat"><div class="mini-stat-icon"><svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.88 3.75 3.99V22h2.5v-9.01C11.34 12.88 13 11.12 13 9V2h-2v7z"/></svg></div><h5 style="color:#ccc;">Protein</h5><p style="color:#888; font-size:0.8rem;">120/160g</p></div>
+                                    <div class="mini-stat"><div class="mini-stat-icon"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/></svg></div><h5 style="color:#ccc;">Su</h5><p style="color:#888; font-size:0.8rem;">2.4 / 3L</p></div>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="dash-card">
-                            <div class="card-header">
-                                <h3>Kilo Grafiği <span class="text-green" style="font-size:0.8rem; margin-left:10px;">-1.2 kg</span></h3>
-                                <p style="color:var(--text-muted); font-size:0.9rem;">Mevcut: 82.4 kg</p>
-                            </div>
-                            <div style="height: 150px; background: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 100 30\" preserveAspectRatio=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 25 Q 10 20, 20 22 T 40 18 T 60 15 T 80 20 T 100 10\" fill=\"none\" stroke=\"%23ccff00\" stroke-width=\"1\"/></svg>') no-repeat center center; background-size: cover; border-bottom: 1px solid #333; border-left: 1px solid #333; position:relative;">
-                            </div>
+                            <div class="dash-card-header"><h3>Kilo Grafiği <span style="color:#ccff00; font-size:0.8rem;">-1.2 kg</span></h3></div>
+                            <div style="height: 150px; background: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 100 30\" preserveAspectRatio=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 25 Q 10 20, 20 22 T 40 18 T 60 15 T 80 20 T 100 10\" fill=\"none\" stroke=\"%23ccff00\" stroke-width=\"1\"/></svg>') no-repeat center center; background-size: cover; border-bottom: 1px solid #333; border-left: 1px solid #333;"></div>
                         </div>
                     </div>
-
-                    <!-- Sağ Taraf (Program ve Mesaj) -->
-                    <div style="display:flex; flex-direction: column; gap:30px;">
+                    <div style="display:flex; flex-direction:column; gap:30px;">
                         <div class="dash-card">
-                            <div class="card-header">
-                                <h3>Son Antrenman</h3>
-                                <span style="color:#888; font-size:0.8rem;">Bugün - 14:30</span>
-                            </div>
-                            <h4 style="color:var(--neon); margin-bottom:15px; font-weight:500;">Push - Göğüs & Triceps</h4>
+                            <div class="dash-card-header"><h3>Son Antrenman</h3><span style="color:#888; font-size:0.8rem;">Bugün 14:30</span></div>
+                            <h4 style="color:#ccff00; margin-bottom:15px; font-weight:500;">Push - Göğüs & Triceps</h4>
                             <ul style="list-style:none;">
                                 <li style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem; border-bottom:1px solid #222; padding-bottom:5px;"><span>Bench Press</span> <span style="color:#aaa;">4x8 · 80kg</span></li>
                                 <li style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem; border-bottom:1px solid #222; padding-bottom:5px;"><span>Incline DB Press</span> <span style="color:#aaa;">4x10 · 30kg</span></li>
                                 <li style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem;"><span>Cable Fly</span> <span style="color:#aaa;">3x12 · 15kg</span></li>
                             </ul>
-                            <button class="btn-outline" style="width:100%; margin-top:15px; font-size:0.8rem; padding:8px;">TÜM ANTRENMANI GÖR</button>
                         </div>
-                        
                         <div class="dash-card">
-                            <div class="card-header">
-                                <h3>Koçundan Mesaj</h3>
-                            </div>
-                            <div style="display:flex; gap:15px; align-items:center;">
-                                <div class="user-avatar" style="width:60px; height:60px; border-color:#fff;">
-                                    <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Ber can't">
-                                </div>
-                                <p style="font-size:0.85rem; color:#ccc; font-style:italic;">"Disiplinli olduğun sürece sonuç kaçınılmaz. İnan, çalış, başar!" <br><strong style="color:var(--neon);">- Ber can't</strong></p>
-                            </div>
+                            <div class="dash-card-header"><h3>Koçundan Mesaj</h3></div>
+                            <p style="font-size:0.85rem; color:#ccc; font-style:italic;">"Disiplinli olduğun sürece sonuç kaçınılmaz. İnan, çalış, başar!" <br><strong style="color:#ccff00;">- Ber can't</strong></p>
                         </div>
                     </div>
                 </div>
@@ -466,656 +412,71 @@
         </div>
     </div>
 
-
-    <!-- ========================================== -->
-    <!-- 3. ADMİN (KOÇ) PANELİ VIEW                 -->
-    <!-- ========================================== -->
+    <!-- ============================================================== -->
+    <!-- VIEW 3: KOÇ (ADMİN) PANELİ                                     -->
+    <!-- ============================================================== -->
     <div id="view-admin" class="app-view">
-        <div class="dashboard-layout">
-            <aside class="sidebar">
-                <div class="sidebar-logo">
-                    <img src="logo.png" alt="Ber can't">
-                </div>
-                <ul class="sidebar-menu">
-                    <li><a href="#"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg> Panel</a></li>
+        <div class="dash-layout">
+            <aside class="dash-sidebar">
+                <div class="dash-logo"><img src="logo.png" alt="Logo"></div>
+                <ul class="dash-menu">
                     <li><a href="#" class="active"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Öğrenciler</a></li>
                     <li><a href="#"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg> Programlar</a></li>
                     <li><a href="#"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Mesajlar</a></li>
                 </ul>
-                <div class="logout-btn" onclick="logout()">
-                    <svg viewBox="0 0 24 24" width="20"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/></svg> <span>Çıkış Yap</span>
-                </div>
+                <div class="logout-btn" onclick="logoutApp()"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg> <span>Çıkış Yap</span></div>
             </aside>
-
             <main class="dash-main">
                 <header class="dash-header">
-                    <div class="dash-header-left">
-                        <h2>Öğrenci <span class="text-green">Yönetimi</span></h2>
-                    </div>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" placeholder="Öğrenci Ara..." style="padding:10px 15px; border-radius:8px; border:1px solid #333; background:#111; color:#fff; outline:none;">
-                        <button class="btn-neon" style="padding: 10px 15px; font-size:0.9rem;">+ YENİ ÖĞRENCİ</button>
-                    </div>
+                    <h2>Öğrenci <span style="color:#ccff00;">Yönetimi</span></h2>
+                    <button class="btn-hero" style="font-size: 0.8rem; padding: 10px 15px;">+ YENİ ÖĞRENCİ</button>
                 </header>
-
                 <div class="dash-grid">
-                    <!-- Sol: Öğrenci Listesi -->
-                    <div class="dash-card">
-                        <table class="data-table">
+                    <div class="dash-card" style="overflow-x:auto;">
+                        <table class="admin-table">
                             <thead>
-                                <tr>
-                                    <th>Öğrenci</th>
-                                    <th>Cinsiyet</th>
-                                    <th>Hedef</th>
-                                    <th>Başlangıç</th>
-                                    <th>Son Kilo</th>
-                                    <th>İlerleme</th>
-                                    <th>Koçlukta</th>
-                                    <th>Durum</th>
-                                </tr>
+                                <tr><th>Öğrenci</th><th>Hedef</th><th>Başlangıç</th><th>Son Kilo</th><th>İlerleme</th><th>Durum</th></tr>
                             </thead>
                             <tbody>
                                 <tr style="background: rgba(204,255,0,0.05); cursor:pointer;">
-                                    <td style="display:flex; align-items:center; gap:10px;"><div class="user-avatar" style="width:30px; height:30px;"><img src="https://ui-avatars.com/api/?name=Atakan+Yilmaz&background=ccff00&color=000" alt="AY"></div> Atakan Yılmaz</td>
-                                    <td>Erkek</td>
-                                    <td>Yağ Yakımı</td>
-                                    <td>85.2 kg</td>
-                                    <td>82.4 kg</td>
-                                    <td class="text-green">-2.8 kg</td>
-                                    <td>46 Gün</td>
-                                    <td><span class="status-badge">Aktif</span></td>
+                                    <td style="color:#fff;">Atakan Yılmaz</td><td>Yağ Yakımı</td><td>85.2 kg</td><td>82.4 kg</td><td style="color:#ccff00;">-2.8 kg</td><td><span class="badge-active">Aktif</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="display:flex; align-items:center; gap:10px;"><div class="user-avatar" style="width:30px; height:30px;"><img src="https://ui-avatars.com/api/?name=Merve+Demir&background=333&color=fff" alt="MD"></div> Merve Demir</td>
-                                    <td>Kadın</td>
-                                    <td>Kas Gelişimi</td>
-                                    <td>58.7 kg</td>
-                                    <td>61.3 kg</td>
-                                    <td class="text-green">+2.6 kg</td>
-                                    <td>32 Gün</td>
-                                    <td><span class="status-badge">Aktif</span></td>
+                                    <td style="color:#fff;">Merve Demir</td><td>Kas Gelişimi</td><td>58.7 kg</td><td>61.3 kg</td><td style="color:#ccff00;">+2.6 kg</td><td><span class="badge-active">Aktif</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="display:flex; align-items:center; gap:10px;"><div class="user-avatar" style="width:30px; height:30px;"><img src="https://ui-avatars.com/api/?name=Emre+Aydin&background=333&color=fff" alt="EA"></div> Emre Aydın</td>
-                                    <td>Erkek</td>
-                                    <td>Kas Gelişimi</td>
-                                    <td>67.4 kg</td>
-                                    <td>69.1 kg</td>
-                                    <td class="text-green">+1.7 kg</td>
-                                    <td>29 Gün</td>
-                                    <td><span class="status-badge">Aktif</span></td>
+                                    <td style="color:#fff;">Emre Aydın</td><td>Kas Gelişimi</td><td>67.4 kg</td><td>69.1 kg</td><td style="color:#ccff00;">+1.7 kg</td><td><span class="badge-active">Aktif</span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Sağ: Seçili Öğrenci Detayı -->
                     <div class="dash-card">
-                        <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; border-bottom:1px solid #333; padding-bottom:15px;">
-                            <div class="user-avatar" style="width:60px; height:60px;"><img src="https://ui-avatars.com/api/?name=Atakan+Yilmaz&background=ccff00&color=000" alt="AY"></div>
-                            <div>
-                                <h3 style="font-size:1.2rem; color:#fff;">Atakan Yılmaz</h3>
-                                <p style="font-size:0.85rem; color:var(--text-muted);">Erkek / 24 Yaş</p>
-                            </div>
+                        <div style="border-bottom:1px solid #222; padding-bottom:15px; margin-bottom:15px;">
+                            <h3 style="color:#fff;">Atakan Yılmaz</h3>
+                            <p style="font-size:0.85rem; color:#888;">Erkek / 24 Yaş</p>
                         </div>
-
                         <div style="display:flex; gap:15px; margin-bottom:20px;">
                             <div style="background:#1a1a1a; padding:15px; border-radius:10px; flex:1; text-align:center;">
-                                <p style="font-size:0.8rem; color:#888;">İlerleme</p>
-                                <h4 class="text-green">-2.8 kg</h4>
+                                <p style="font-size:0.8rem; color:#888;">İlerleme</p><h4 style="color:#ccff00;">-2.8 kg</h4>
                             </div>
                             <div style="background:#1a1a1a; padding:15px; border-radius:10px; flex:1; text-align:center;">
-                                <p style="font-size:0.8rem; color:#888;">Yağ Oranı</p>
-                                <h4>%12.4</h4>
+                                <p style="font-size:0.8rem; color:#888;">Yağ Oranı</p><h4 style="color:#fff;">%12.4</h4>
                             </div>
                         </div>
-
                         <div style="margin-bottom: 20px;">
-                            <h4 style="font-size:0.9rem; color:#ccc; margin-bottom:10px;">Koç Notları:</h4>
                             <p style="font-size:0.85rem; color:#888; background:#1a1a1a; padding:15px; border-radius:8px;">Antrenmanlarda çok iyi gidiyorsun. Beslenmeye biraz daha dikkat etmen sonuçları hızlandıracak. Devam et!</p>
                         </div>
-                        
-                        <div style="display:flex; gap:10px;">
-                            <button class="btn-neon" style="flex:1; padding:10px; font-size:0.8rem;">PROGRAMI GÜNCELLE</button>
-                            <button class="btn-outline" style="flex:1; padding:10px; font-size:0.8rem;">MESAJ GÖNDER</button>
-                        </div>
+                        <button class="btn-hero" style="width:100%; font-size:0.8rem;">PROGRAMI GÜNCELLE</button>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 
-
-    <!-- ========================================== -->
-    <!-- MODALLAR (ANA SAYFA İÇİN)                  -->
-    <!-- ========================================== -->
+    <!-- ============================================================== -->
+    <!-- SABİT MODALLAR VE AÇILIR PENCERELER (TÜM SİSTEM)               -->
+    <!-- ============================================================== -->
     
-    <!-- Giriş Modalı -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:var(--neon); margin-bottom:20px;">SİSTEME GİRİŞ</h2>
-            <p style="color:#888; font-size:0.8rem; margin-bottom:20px;">Admin Paneli: admin / 12345<br>Öğrenci Paneli: demo / 12345</p>
-            <input type="text" id="username" class="modal-input" placeholder="Kullanıcı Adı">
-            <input type="password" id="password" class="modal-input" placeholder="Parola">
-            <button class="btn-neon" style="width:100%; margin-bottom:15px;" onclick="checkLogin()">GİRİŞ YAP</button>
-            <a onclick="closeModal('loginModal')" style="color:#888; font-size:0.9rem; cursor:pointer;">Vazgeç</a>
-        </div>
-    </div>
-
-    <!-- Hesaplamalar Modalı (Küçültülmüş Placeholder) -->
-    <div id="calcModal" class="modal">
-        <div class="modal-content">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:var(--neon); margin-bottom:20px;">HESAPLAMALAR</h2>
-            <p style="color:#ccc; font-size:0.9rem; margin-bottom:20px;">Kalori, Makro ve Yağ Oranı ölçümleri için sisteme üye olun veya giriş yapın.</p>
-            <button class="btn-neon" style="width:100%; margin-bottom:15px;" onclick="closeModal('calcModal'); openModal('loginModal')">GİRİŞ YAP</button>
-            <a onclick="closeModal('calcModal')" style="color:#888; font-size:0.9rem; cursor:pointer;">Kapat</a>
-        </div>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- SCRIPTS                                    -->
-    <!-- ========================================== -->
-    <script>
-        // Sayfa / View Değiştirme Fonksiyonu
-        function showView(viewId) {
-            // Tüm view'ları gizle
-            document.querySelectorAll('.app-view').forEach(view => {
-                view.classList.remove('active');
-            });
-            // İstenen view'u göster
-            document.getElementById(viewId).classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        // Giriş Kontrol Sistemi
-        function checkLogin() {
-            let u = document.getElementById('username').value;
-            let p = document.getElementById('password').value;
-
-            if (u === "admin" && p === "12345") {
-                closeModal('loginModal');
-                showView('view-admin');
-            } else if (u === "demo" && p === "12345") {
-                closeModal('loginModal');
-                showView('view-user');
-            } else {
-                alert("Hatalı kullanıcı adı veya parola!");
-            }
-            
-            // Inputları temizle
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-        }
-
-        function logout() {
-            if(confirm("Çıkış yapmak istediğinize emin misiniz?")) {
-                showView('view-landing');
-            }
-        }
-
-        // Basit Modal Yönetimi
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-    </script>
-</body>
-</html>
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 1000; 
-            background: rgba(10, 10, 10, 0.7); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(204, 255, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        /* Görsel Logo ve Neon Stili */
-        .logo a { 
-            display: flex;
-            align-items: center;
-            text-decoration: none; 
-        }
-        .nav-logo-img {
-            height: 90px; /* BİLGİSAYAR İÇİN LOGO BOYUTU */
-            width: auto;
-            filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.6)); 
-            transition: all 0.3s ease;
-        }
-        .logo a:hover .nav-logo-img {
-            filter: drop-shadow(0 0 15px rgba(204, 255, 0, 1)) drop-shadow(0 0 30px rgba(204, 255, 0, 0.6));
-            transform: scale(1.05);
-        }
-
-        /* Yeni: Hamburger Menü Butonu (Sadece Mobilde Görünecek) */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            z-index: 1100;
-        }
-        .hamburger span {
-            width: 35px;
-            height: 4px;
-            background-color: #ccff00;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(204, 255, 0, 0.5);
-        }
-
-        /* Yeni: Menünün Sağ Tarafı (Linkler ve Buton) */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { 
-            color: #ddd; 
-            text-decoration: none; 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .nav-links a:hover { color: #ccff00; }
-
-        /* Premium Butonlar */
-        .btn-hero { 
-            background-color: #ccff00; 
-            color: #050505; 
-            padding: 12px 28px; 
-            text-decoration: none; 
-            font-weight: 800; 
-            font-family: 'Montserrat', sans-serif;
-            border-radius: 8px; 
-            cursor: pointer; 
-            border: none; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s ease; 
-            box-shadow: 0 4px 15px rgba(204, 255, 0, 0.2);
-        }
-        .btn-hero:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(204, 255, 0, 0.5);
-            background-color: #d4ff33;
-        }
-        
-        main { padding-top: 120px; }
-
-        .hero { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 60px 5%; 
-            min-height: 80vh; 
-            position: relative; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-        }
-        .hero-content { max-width: 50%; }
-        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; margin-bottom: 0; color: #ffffff; letter-spacing: 4px; line-height: 1.2; position: relative; z-index: 2; }
-        .hero-content p { font-size: 1.1rem; color: #bbb; margin-bottom: 30px; font-weight: 300; margin-top: 20px; }
-
-        .led-wrapper {
-            position: relative;
-            display: inline-flex; 
-            padding: 20px 40px; 
-            border-radius: 15px;
-            overflow: hidden;
-            background: #050505;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-        .led-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -150%; left: -150%; 
-            width: 400%; height: 400%;
-            background: conic-gradient(transparent, transparent, transparent, #ccff00);
-            animation: rotateLed 2.5s linear infinite;
-            z-index: 0;
-        }
-        .led-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: 3px; 
-            background: #0a0a0a; 
-            border-radius: 12px;
-            z-index: 1;
-        }
-        @keyframes rotateLed {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .neon-text {
-            color: #ccff00;
-            text-shadow: 0 0 3px #ccff00, 0 0 10px rgba(204, 255, 0, 0.4);
-        }
-        
-        .hero-image { 
-            width: 400px; 
-            height: 550px; 
-            background: linear-gradient(135deg, #111, #1a1a1a); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border: 2px solid rgba(204, 255, 0, 0.3); 
-            border-radius: 20px; 
-            color: #555; 
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(204, 255, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(204, 255, 0, 0.04) 0%, transparent 60%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .step-card {
-            background: linear-gradient(145deg, #151515, #080808);
-            padding: 40px 25px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 350px;
-            border: 1px solid rgba(204, 255, 0, 0.1);
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.4s ease, border 0.4s ease;
-        }
-        .step-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(204, 255, 0, 0.5);
-            box-shadow: 0 15px 40px rgba(204, 255, 0, 0.15);
-        }
-        .step-card h3 { font-size: 1.5rem; color: #ccff00; margin-bottom: 15px; font-weight: 800; }
-        .step-card p { font-size: 1rem; color: #ccc; line-height: 1.6; }
-
-        .full-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); z-index: 2000; overflow-y: auto; padding: 20px; }
-        .section-title { font-family: 'Bebas Neue', cursive; text-align: center; margin-bottom: 40px; font-size: 4rem; color: #ccff00; letter-spacing: 3px; }
-        .paket-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        
-        .paket-card { 
-            background: linear-gradient(145deg, #121212, #0a0a0a); 
-            padding: 30px 20px; 
-            border-radius: 20px; 
-            width: 100%; 
-            max-width: 350px; 
-            border: 1px solid rgba(255,255,255,0.05); 
-            text-align: center; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.4s ease, border 0.4s ease;
-        }
-        .paket-card:hover { transform: translateY(-10px); border: 1px solid rgba(204, 255, 0, 0.3); box-shadow: 0 15px 40px rgba(204, 255, 0, 0.1); }
-        .paket-card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 800; color: #fff; }
-        
-        .program-text { font-size: 0.95rem; color: #aaa; text-align: left; margin: 20px 0; min-height: 200px; white-space: pre-wrap; transition: 0.5s; line-height: 1.8; font-weight: 400; }
-        .locked-content { filter: blur(8px); user-select: none; opacity: 0.5; }
-        .unlocked { filter: blur(0px); opacity: 1; }
-        .coaching-list { list-style: none; padding: 0; margin: 20px 0 30px 0; text-align: left; }
-        .coaching-list li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
-        .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
-
-        .calc-container {
-            background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; 
-            border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 600px; margin: 0 auto; box-shadow: 0 15px 50px rgba(0,0,0,0.9);
-        }
-        .calc-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
-        .calc-tab-btn { flex: 1; min-width: 120px; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; }
-        .calc-tab-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
-        .calc-content { display: none; }
-        .calc-content.active { display: block; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .calc-input, .calc-select {
-            width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333;
-            background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s;
-        }
-        .calc-select { cursor: pointer; appearance: none; }
-        .calc-input:focus, .calc-select:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
-        .gender-group { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 10px; }
-        .gender-btn { flex: 1; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; font-family: 'Montserrat', sans-serif; }
-        .gender-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
-
-        .result-box { background: rgba(204,255,0,0.05); border: 1px solid rgba(204, 255, 0, 0.4); padding: 20px; border-radius: 12px; color:#fff; font-weight: 600; margin-top: 15px; }
-        .result-value { font-size: 2rem; color: #ccff00; font-weight: 800; font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
-
-        .site-footer { background-color: #0d0d0d; border-top: 1px solid rgba(204, 255, 0, 0.1); padding: 60px 5%; margin-top: 50px; }
-        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .footer-brand h2 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
-        .footer-brand p { color: #888; font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; max-width: 250px; }
-        .footer-socials { display: flex; gap: 15px; }
-        .footer-socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; transition: 0.3s; }
-        .footer-socials a:hover { background: #333; }
-        .footer-socials svg { width: 20px; height: 20px; fill: #aaa; transition: 0.3s; }
-        .footer-socials a:hover svg { fill: #ccff00; }
-        
-        .footer-links h3, .footer-contact h3 { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; }
-        .footer-links ul, .footer-contact ul { list-style: none; }
-        .footer-links li { margin-bottom: 15px; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 0.95rem; transition: 0.3s; cursor: pointer; }
-        .footer-links a:hover { color: #ccff00; }
-        
-        .footer-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #888; font-size: 0.95rem; }
-        .icon-circle { min-width: 35px; width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(204, 255, 0, 0.3); display: flex; align-items: center; justify-content: center; background: rgba(204, 255, 0, 0.05); }
-        .icon-circle svg { width: 16px; height: 16px; fill: #ccff00; }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); }
-        .modal-content input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; }
-        .modal-content input:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
-
-        /* ========================================= */
-        /* MOBİL UYUMLULUK (HAMBURGER MENÜ EKLENTİSİ) */
-        /* ========================================= */
-        @media (max-width: 768px) {
-            /* Navbar'ın Yönü Artık Row (Yanyana), Çentik ile Logo Karşılıklı */
-            .navbar { padding: 15px 5%; flex-direction: row; align-items: center; background: rgba(10, 10, 10, 0.98); }
-            
-            /* Logo Mobilde Hafif Küçültüldü Ki Çentik ile Uyumlu Olsun */
-            .nav-logo-img { height: 65px; } 
-
-            /* Hamburger Menü Çentiğini Görünür Yap */
-            .hamburger { display: flex; }
-
-            /* Menü Linklerini ve Butonu İçine Alan Kapsayıcıyı Gizle (Açılır Menü Yap) */
-            .nav-right {
-                display: none; /* Başlangıçta gizli */
-                position: absolute;
-                top: 100%; /* Navbarın hemen altı */
-                left: 0;
-                width: 100%;
-                background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                padding: 20px 5%;
-                border-bottom: 1px solid rgba(204, 255, 0, 0.2);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            }
-            /* Çentiğe Tıklanınca Çalışacak Animasyon Sınıfı */
-            .nav-right.active {
-                display: flex;
-                animation: fadeInMenu 0.3s ease forwards;
-            }
-            @keyframes fadeInMenu { 
-                from { opacity: 0; transform: translateY(-10px); } 
-                to { opacity: 1; transform: translateY(0); } 
-            }
-
-            /* Mobilde Menü İçi Link ve Buton Hizalamaları */
-            .nav-links { flex-direction: column; gap: 20px; align-items: center; width: 100%; padding: 10px 0; }
-            .nav-links a { font-size: 1.2rem; }
-            .navbar .btn-hero { width: 100%; padding: 15px; font-size: 1.1rem; margin-top: 10px; }
-
-            main { padding-top: 110px; }
-
-            h1 { font-size: 2.3rem !important; line-height: 1.3 !important; padding: 10px 0; }
-            h2 { font-size: 2.2rem !important; }
-            .section-title { font-size: 2.5rem !important; }
-            
-            .led-wrapper { padding: 15px 20px; border-radius: 12px; }
-            p { font-size: 0.95rem !important; }
-
-            .hero { flex-direction: column; text-align: center; padding: 20px 5%; min-height: auto; }
-            .hero-content { max-width: 100%; }
-            .hero-image { width: 100%; max-width: 320px; height: 400px; margin: 30px auto 0 auto; }
-
-            .step-card, .paket-card { padding: 25px 15px; margin-bottom: 15px; }
-            .step-card h3, .paket-card h3 { font-size: 1.3rem; }
-
-            .calc-container { padding: 20px; }
-            .calc-content h3 { font-size: 1.5rem !important; }
-            .calc-tabs { gap: 5px; }
-            .calc-tab-btn { min-width: 48%; padding: 10px 5px; font-size: 0.75rem; } 
-            .calc-input, .calc-select { padding: 12px; font-size: 0.85rem; margin-bottom: 12px; }
-            .result-value { font-size: 1.5rem; }
-
-            .modal-content { padding: 25px 15px; }
-            .modal-content h2 { font-size: 2rem !important; }
-
-            .site-footer { padding: 40px 5%; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; gap: 25px; }
-            .footer-brand p { margin: 0 auto 15px auto; }
-            .footer-socials { justify-content: center; margin-bottom: 10px; }
-            .footer-contact li { justify-content: center; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#">
-                <img src="logo.png" alt="Ber can't Logo" class="nav-logo-img">
-            </a>
-        </div>
-        
-        <!-- YENİ: Mobil Hamburger Çentiği -->
-        <div class="hamburger" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <!-- YENİ: Menü Linkleri ve Buton Kapsayıcısı -->
-        <div class="nav-right" id="navMenu">
-            <ul class="nav-links">
-                <li><a href="#how-it-works" onclick="closeMobileMenu()">SİSTEM</a></li>
-                <li><a href="#about" onclick="closeMobileMenu()">HAKKIMDA</a></li>
-                <li><a onclick="openPrograms(); closeMobileMenu()">PROGRAMLAR</a></li>
-                <li><a onclick="openCoaching(); closeMobileMenu()">KOÇLUK</a></li>
-                <li><a onclick="openCalculators(); closeMobileMenu()" style="color: #ccff00;">HESAPLAMALAR</a></li>
-            </ul>
-            <button class="btn-hero" onclick="openLogin(); closeMobileMenu()">HEMEN BAŞLA</button>
-        </div>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <div class="led-wrapper">
-                    <h1>BAHANE YOK <br><span class="neon-text">SONUÇ</span> VAR</h1>
-                </div>
-                <p>Türkiye'nin önde gelen online fitness koçluk platformu, Profesyonel antrenman programları ve sürdürülebilir gelişim için şimdi başla.</p>
-                <button class="btn-hero" onclick="openLogin()">HEMEN BAŞLA</button>
-            </div>
-            <div class="hero-image">
-                <img src="901DD3A5-2604-49F5-B62A-021DF8366672.PNG" alt="Berkant Yenel" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </section>  
-
-        <section id="how-it-works" style="padding: 60px 5%; text-align: center;">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #ccff00; letter-spacing: 2px; margin-bottom: 10px;">Sistem Nasıl İşler?</h2>
-            
-            <p style="color: #ddd; font-weight: 300; margin-bottom: 50px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Gelişim tesadüf değildir. Doğru strateji, disiplinli takip ve kaçınılmaz başarı.</p>
-            
-            <div class="paket-container">
-                <div class="step-card">
-                    <h3>Kişisel Analiz & Yol Haritası</h3>
-                    <p>Mevcut fiziksel durumun, günlük rutinin ve hedeflerin detaylıca incelenerek sadece sana özel bir temel oluşturulur.</p>
-                </div>
-                <div class="step-card">
-                    <h3>Aksiyon & Birebir Süreç</h3>
-                    <p>Sana özel hazırlanan programlar devreye girer. Düzenli raporlamalarla sürecin her adımı yakından izlenir.</p>
-                </div>
-                <div class="step-card">
-                    <h3>Gelişim & Zirve</h3>
-                    <p>Vücudunun adaptasyonuna göre makrolar ve idmanlar güncellenir. Duraklama olmadan sürekli ilerleme hedeflenir.</p>
-                </div>
-            </div>
-        </section>
-
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 20px auto; width: 70%;">
-
-        <section id="about" style="padding: 80px 5%; text-align: center;">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; margin-bottom: 20px; color: #ccff00; letter-spacing: 2px;">HAKKIMDA</h2>
-            <p style="max-width: 800px; margin: 0 auto; font-size: 1.05rem; color: #ddd; font-weight: 300;">Biz, sağlıklı yaşamın ve güçlü bir bedenin herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Amacımız, kullanıcılarımızın fiziksel ve zihinsel potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmak ve sürdürülebilir bir yaşam tarzı oluşturmalarını sağlamaktır. Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımız, kişisel hedeflerinize ulaşmanız için özel olarak tasarlanmıştır. İster kas geliştirmek, ister yağ yakmak, ister daha sağlıklı bir yaşam sürmek isteyin — size uygun çözümler sunuyoruz.<br><br>
-
-Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gelişiminizi takip eden ve sizi her gün daha iyiye taşıyan bir topluluk oluşturmayı hedefliyoruz. Çünkü bizce gerçek başarı, disiplin, istikrar ve doğru rehberlikle mümkündür.<br><br>
-
-Daha güçlü bir vücut, daha sağlıklı bir yaşam ve daha iyi bir sen için buradayız.</p>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <h2>BER CAN'T</h2>
-                <p>Profesyonel online uzaktan eğitim platformu. Sınırlarını zorlaman için tasarlanmış bilimsel antrenman ve beslenme stratejileriyle en iyi versiyonuna ulaş.</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/bybercant" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></a>
-                    <a href="https://www.youtube.com/@bybercantt" target="_blank"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <h3>HIZLI ERİŞİM</h3>
-                <ul>
-                    <li><a href="#">Anasayfa</a></li>
-                    <li><a href="#about">Hakkımda</a></li>
-                    <li><a onclick="openPrograms()">Programlar</a></li>
-                    <li><a onclick="openCoaching()">Paketler</a></li>
-                    <li><a onclick="openCalculators()">Hesaplamalar</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h3>YASAL</h3>
-                <ul>
-                    <li><a onclick="openPrivacy('Gizlilik Sözleşmesi')">Gizlilik Sözleşmesi</a></li>
-                    <li><a onclick="openPrivacy('KVKK Aydınlatma Metni')">KVKK Aydınlatma Metni</a></li>
-                    <li><a onclick="openPrivacy('Mesafeli Satış Sözleşmesi')">Mesafeli Satış Sözleşmesi</a></li>
-                    <li><a onclick="openPrivacy('İptal ve İade Politikası')">İptal ve İade Politikası</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-contact">
-                <h3>İLETİŞİM</h3>
-                <ul>
-                    <li>
-                        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                        <span>Niğde / Türkiye</span>
-                    </li>
-                    <li>
-                        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-                        <span>yenelberkant@gmail.com</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
     <!-- PROGRAMLAR OVERLAY -->
     <div id="programsSection" class="full-overlay">
         <button onclick="closePrograms()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
@@ -1304,7 +665,7 @@ Russian Twist — 3x20</div>
         </section>
     </div>
 
-    <!-- HESAPLAMALAR MERKEZİ -->
+    <!-- HESAPLAMALAR MERKEZİ (FULL OVERLAY) -->
     <div id="calculatorsSection" class="full-overlay">
         <button onclick="closeCalculators()" class="btn-hero" style="position:absolute; top:20px; right:20px;">X KAPAT</button>
         <section style="padding: 40px 5%; margin-top: 40px;">
@@ -1413,19 +774,19 @@ Russian Twist — 3x20</div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
 
-    <!-- MODALLAR (ŞİFRE VE YASAL METİNLER) -->
+    <!-- GİRİŞ VE GİZLİLİK MODALLARI -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:#ccff00; margin-bottom:20px; letter-spacing: 2px;">GİRİŞ YAP</h2>
-            <input type="text" id="username" placeholder="Kullanıcı Adı">
-            <input type="password" id="password" placeholder="Parola">
+            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color:#ccff00; margin-bottom:10px; letter-spacing: 2px;">SİSTEME GİRİŞ</h2>
+            <p style="color:#888; font-size:0.85rem; margin-bottom:20px;">Koç Paneli: admin / 12345<br>Öğrenci Paneli: demo / 12345</p>
+            <input type="text" id="username" class="modal-input" placeholder="Kullanıcı Adı" style="width:100%; padding:15px; margin-bottom:20px; border-radius:8px; border:1px solid #333; background:#1a1a1a; color:#fff;">
+            <input type="password" id="password" class="modal-input" placeholder="Parola" style="width:100%; padding:15px; margin-bottom:20px; border-radius:8px; border:1px solid #333; background:#1a1a1a; color:#fff;">
             <button class="btn-hero" style="width:100%; font-size: 1.1rem;" onclick="checkLogin()">GİRİŞ YAP</button>
-            <button onclick="closeLogin()" style="background:none; color:#888; font-weight: 600; border:none; margin-top:20px; cursor:pointer; font-size: 0.9rem; transition: 0.3s;">Vazgeç</button>
+            <button onclick="closeLogin()" style="background:none; color:#888; font-weight: 600; border:none; margin-top:20px; cursor:pointer; font-size: 0.9rem;">Vazgeç</button>
         </div>
     </div>
 
@@ -1438,7 +799,7 @@ Russian Twist — 3x20</div>
     </div>
 
     <script>
-        // MOBİL MENÜ JS KODLARI
+        // MOBİL MENÜ
         function toggleMobileMenu() {
             document.getElementById('navMenu').classList.toggle('active');
         }
@@ -1449,16 +810,52 @@ Russian Twist — 3x20</div>
             }
         }
 
-        function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }
-        function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }
-        function openCoaching() { document.getElementById('coachingSection').style.display = 'block'; }
-        function closeCoaching() { document.getElementById('coachingSection').style.display = 'none'; }
+        // VIEW VE GİRİŞ YÖNETİMİ
+        function showView(viewId) {
+            document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function checkLogin() {
+            let u = document.getElementById('username').value;
+            let p = document.getElementById('password').value;
+            
+            if (u === "admin" && p === "12345") {
+                closeLogin(); showView('view-admin');
+            } else if (u === "demo" && p === "12345") {
+                closeLogin(); showView('view-user');
+            } else if (u === "user" && p === "12345") {
+                // Sadece programların kilidini açmak isteyen standart kullanıcılar için
+                document.querySelectorAll('.locked-content').forEach(el => el.classList.remove('locked-content'));
+                alert("Program Kilitleri Açıldı!");
+                closeLogin();
+            } else {
+                alert("Hatalı Giriş!");
+            }
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function logoutApp() {
+            if(confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+                showView('view-landing');
+            }
+        }
+
         function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+        
+        function openPrograms() { document.getElementById('programsSection').style.display = 'block'; }
+        function closePrograms() { document.getElementById('programsSection').style.display = 'none'; }
+        
+        function openCoaching() { document.getElementById('coachingSection').style.display = 'block'; }
+        function closeCoaching() { document.getElementById('coachingSection').style.display = 'none'; }
         
         function openCalculators() { document.getElementById('calculatorsSection').style.display = 'block'; }
         function closeCalculators() { document.getElementById('calculatorsSection').style.display = 'none'; }
 
+        // HESAPLAMALAR JS
         function switchCalcTab(tabId, btnElement) {
             document.querySelectorAll('.calc-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.calc-tab-btn').forEach(el => el.classList.remove('active'));
@@ -1547,6 +944,7 @@ Russian Twist — 3x20</div>
             document.getElementById('resMacDisplay').style.display = 'block';
         }
 
+        // YASAL METİNLER
         function openPrivacy(title) { 
             document.getElementById('privacyTitle').innerText = title;
             let content = "Tüm antrenman verileriniz Berkant Yenel online koçluk sistemi güvencesindedir.";
@@ -1562,19 +960,6 @@ Russian Twist — 3x20</div>
             document.getElementById('privacyModal').style.display = 'flex'; 
         }
         function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
-        
-        function checkLogin() {
-            if (document.getElementById('username').value === "admin" && document.getElementById('password').value === "12345") {
-                alert("Başarılı!");
-                document.getElementById('prog1').classList.remove('locked-content');
-                document.getElementById('prog2').classList.remove('locked-content');
-                document.getElementById('prog3').classList.remove('locked-content');
-                document.getElementById('prog1').classList.add('unlocked');
-                document.getElementById('prog2').classList.add('unlocked');
-                document.getElementById('prog3').classList.add('unlocked');
-                closeLogin();
-            } else { alert("Hatalı!"); }
-        }
     </script>
 </body>
 </html>
