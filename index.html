@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ber can't | Premium Coaching Platform</title>
+    <!-- Premium Görünüm İçin Bebas Neue ve Montserrat Fontları -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ========================================= */
@@ -19,7 +20,8 @@
             color: #ffffff; 
             font-family: 'Montserrat', sans-serif; 
             line-height: 1.6; 
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         @keyframes waveBackground {
@@ -28,8 +30,9 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Sayfa Geçişleri İçin View Mantığı */
+        /* Sayfa Geçişleri İçin View Mantığı (BEYAZ EKRAN HATASI BURADAN ÇÖZÜLDÜ) */
         .app-view { display: none; width: 100%; min-height: 100vh; animation: fadeIn 0.4s ease; }
+        .app-view.active { display: block; } /* <--- BU SATIR EKSİKTİ, EKLENDİ */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Navbar & Logo */
@@ -110,17 +113,17 @@
         .coaching-list li::before { content: '✔'; color: #ccff00; font-weight: 800; font-size: 1rem; }
 
         /* Hesaplamalar Stilleri */
-        .calc-container { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); max-width: 600px; margin: 0 auto; }
+        .calc-container { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); max-width: 600px; margin: 0 auto; box-shadow: 0 15px 50px rgba(0,0,0,0.9); }
         .calc-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
-        .calc-tab-btn { flex: 1; min-width: 120px; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+        .calc-tab-btn { flex: 1; min-width: 120px; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
         .calc-tab-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
         .calc-content { display: none; }
         .calc-content.active { display: block; animation: fadeIn 0.4s; }
         
-        .calc-input, .calc-select { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-size: 0.95rem; outline: none; }
-        .calc-input:focus, .calc-select:focus { border-color: #ccff00; }
+        .calc-input, .calc-select { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-size: 0.95rem; outline: none; transition: 0.3s; }
+        .calc-input:focus, .calc-select:focus { border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.2); }
         .gender-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        .gender-btn { flex: 1; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .gender-btn { flex: 1; background: #1a1a1a; color: #888; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .gender-btn.active { background: #ccff00; color: #000; border-color: #ccff00; }
         .result-box { background: rgba(204,255,0,0.05); border: 1px solid rgba(204, 255, 0, 0.4); padding: 20px; border-radius: 12px; margin-top: 15px; font-weight: 600; }
         .result-value { font-size: 2rem; color: #ccff00; font-weight: 800; font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
@@ -129,29 +132,30 @@
         .site-footer { background-color: #0d0d0d; border-top: 1px solid rgba(204, 255, 0, 0.1); padding: 60px 5%; margin-top: 50px; }
         .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
         .footer-brand h2 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
-        .footer-socials { display: flex; gap: 15px; margin-top: 15px; }
+        .footer-brand p { color: #888; font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; max-width: 250px; }
+        .footer-socials { display: flex; gap: 15px; }
         .footer-socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; transition: 0.3s; }
-        .footer-socials a:hover { background: #ccff00; }
-        .footer-socials a:hover svg { fill: #000; }
+        .footer-socials a:hover { background: #333; }
+        .footer-socials a:hover svg { fill: #ccff00; }
         .footer-socials svg { width: 20px; height: 20px; fill: #aaa; transition: 0.3s; }
-        .footer-links h3, .footer-contact h3 { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; margin-bottom: 20px; }
+        .footer-links h3, .footer-contact h3 { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: #ccff00; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
         .footer-links ul { list-style: none; }
         .footer-links li { margin-bottom: 15px; }
-        .footer-links a { color: #888; text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .footer-links a { color: #888; text-decoration: none; transition: 0.3s; cursor: pointer; font-size: 0.95rem; }
         .footer-links a:hover { color: #ccff00; }
-        .footer-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #888; }
-        .icon-circle { width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(204,255,0,0.3); display: flex; align-items: center; justify-content: center; background: rgba(204,255,0,0.05); }
-        .icon-circle svg { width: 16px; fill: #ccff00; }
+        .footer-contact li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #888; font-size: 0.95rem; }
+        .icon-circle { min-width: 35px; width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(204,255,0,0.3); display: flex; align-items: center; justify-content: center; background: rgba(204,255,0,0.05); }
+        .icon-circle svg { width: 16px; height: 16px; fill: #ccff00; }
 
         /* Modal Ortak Sınıfları */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: #0f0f0f; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(204, 255, 0, 0.4); width: 100%; max-width: 400px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); }
         
         /* ========================================= */
         /* 2. DASHBOARD ÖZEL TASARIMLARI             */
         /* ========================================= */
         .dash-layout { display: flex; min-height: 100vh; background: #050505; }
-        .dash-sidebar { width: 260px; background: #0a0a0a; border-right: 1px solid #222; padding: 30px 20px; position: fixed; height: 100vh; }
+        .dash-sidebar { width: 260px; background: #0a0a0a; border-right: 1px solid #222; padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; }
         .dash-logo { display: flex; justify-content: center; margin-bottom: 40px; }
         .dash-logo img { height: 45px; filter: drop-shadow(0 0 8px rgba(204, 255, 0, 0.5)); }
         .dash-menu { list-style: none; }
@@ -159,12 +163,12 @@
         .dash-menu a { display: flex; align-items: center; gap: 15px; color: #888; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: 0.3s; font-size: 0.95rem; font-weight: 500; }
         .dash-menu a:hover, .dash-menu a.active { background: rgba(204, 255, 0, 0.1); color: #ccff00; }
         .dash-menu svg { width: 20px; fill: currentColor; }
-        .logout-btn { position: absolute; bottom: 30px; width: calc(100% - 40px); display: flex; align-items: center; gap: 10px; color: #ff4444; padding: 12px 15px; cursor: pointer; border-radius: 8px; font-weight: 600; }
+        .logout-btn { position: absolute; bottom: 30px; width: calc(100% - 40px); display: flex; align-items: center; gap: 10px; color: #ff4444; padding: 12px 15px; cursor: pointer; border-radius: 8px; font-weight: 600; transition: 0.3s; }
         .logout-btn:hover { background: rgba(255, 68, 68, 0.1); }
 
         .dash-main { margin-left: 260px; padding: 40px; width: calc(100% - 260px); }
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
-        .dash-header h2 { font-size: 2rem; }
+        .dash-header h2 { font-size: 2rem; color: #fff; }
         .dash-header-stats { display: flex; gap: 30px; align-items: center; }
         .h-stat { text-align: center; }
         .h-stat p { font-size: 0.8rem; color: #888; text-transform: uppercase; }
@@ -192,7 +196,7 @@
         .badge-active { background: rgba(204,255,0,0.1); color: #ccff00; padding: 5px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
 
         /* ========================================= */
-        /* 3. MOBİL UYUMLULUK (HEM LANDING HEM DASH) */
+        /* 3. MOBİL UYUMLULUK                        */
         /* ========================================= */
         @media (max-width: 992px) {
             /* Navbar ve Landing Page */
@@ -223,7 +227,7 @@
 
             /* Dashboard Mobil */
             .dash-layout { flex-direction: column; }
-            .dash-sidebar { width: 100%; height: auto; position: relative; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-right: none; border-bottom: 1px solid #222; }
+            .dash-sidebar { width: 100%; height: auto; position: relative; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-right: none; border-bottom: 1px solid #222; z-index: 10; }
             .dash-logo { margin: 0; }
             .dash-menu { display: flex; overflow-x: auto; gap: 10px; width: 100%; margin-left: 20px; margin-bottom: 0; }
             .dash-menu a { padding: 8px 12px; white-space: nowrap; font-size: 0.8rem; }
@@ -281,8 +285,8 @@
             </section>  
 
             <section id="how-it-works" style="padding: 60px 5%; text-align: center;">
-                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: #ccff00; letter-spacing: 2px; margin-bottom: 10px;">Sistem Nasıl İşler?</h2>
-                <p style="color: #ddd; font-weight: 300; margin-bottom: 50px; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Gelişim tesadüf değildir. Doğru strateji, disiplinli takip ve kaçınılmaz başarı.</p>
+                <h2 class="section-title" style="font-size: 3.5rem; margin-bottom: 10px;">Sistem Nasıl İşler?</h2>
+                <p style="color: #ddd; font-weight: 300; margin-bottom: 50px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Gelişim tesadüf değildir. Doğru strateji, disiplinli takip ve kaçınılmaz başarı.</p>
                 
                 <div class="paket-container" style="margin-top: 40px;">
                     <div class="step-card">
@@ -303,7 +307,7 @@
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 20px auto; width: 70%;">
 
             <section id="about" style="padding: 80px 5%; text-align: center;">
-                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; margin-bottom: 20px; color: #ccff00; letter-spacing: 2px;">HAKKIMDA</h2>
+                <h2 class="section-title" style="font-size: 3.5rem; margin-bottom: 20px;">HAKKIMDA</h2>
                 <p style="max-width: 800px; margin: 0 auto; font-size: 1.05rem; color: #ddd; font-weight: 300;">Biz, sağlıklı yaşamın ve güçlü bir bedenin herkes için ulaşılabilir olması gerektiğine inanan bir fitness platformuyuz. Amacımız, kullanıcılarımızın fiziksel ve zihinsel potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmak ve sürdürülebilir bir yaşam tarzı oluşturmalarını sağlamaktır. Uzman antrenörler tarafından hazırlanan bilimsel temelli antrenman programlarımız, kişisel hedeflerinize ulaşmanız için özel olarak tasarlanmıştır. İster kas geliştirmek, ister yağ yakmak, ister daha sağlıklı bir yaşam sürmek isteyin — size uygun çözümler sunuyoruz.<br><br>Sadece bir fitness platformu değil, aynı zamanda motivasyonunuzu artıran, gelişiminizi takip eden ve sizi her gün daha iyiye taşıyan bir topluluk oluşturmayı hedefliyoruz. Çünkü bizce gerçek başarı, disiplin, istikrar ve doğru rehberlikle mümkündür.</p>
             </section>
         </main>
@@ -378,7 +382,7 @@
                     <div style="display:flex; flex-direction:column; gap:30px;">
                         <div class="dash-card">
                             <div class="dash-card-header"><h3>Günlük Hedeflerin</h3></div>
-                            <div style="display:flex; gap:30px; align-items:center; flex-wrap:wrap;">
+                            <div style="display:flex; gap:30px; align-items:center; flex-wrap:wrap; justify-content:center;">
                                 <div class="circle-wrap"><div class="circle-val"><h2 style="color:#fff; font-size:1.8rem;">%72</h2><p style="color:#888; font-size:0.7rem;">Tamamlandı</p></div></div>
                                 <div class="stat-grid">
                                     <div class="mini-stat"><div class="mini-stat-icon"><svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></div><h5 style="color:#ccc;">İdman</h5><p style="color:#ccff00; font-size:0.8rem;">✔ Tamam</p></div>
@@ -774,6 +778,7 @@ Russian Twist — 3x20</div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
